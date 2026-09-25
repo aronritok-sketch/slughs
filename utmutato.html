@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prototípus útmutató – Slugshop</title>
+<meta name="description" content="Mi található az új Slugshop frontend prototípusban, mit érdemes kipróbálni, és mi minta tartalom.">
+<meta name="theme-color" content="#10120d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="guide">
+<div id="site-header"></div>
+
+<main id="main">
+  <section class="page-head grid-bg">
+    <div class="wrap">
+      <ol class="crumbs"><li><a href="index.html">Kezdőlap</a></li><li aria-current="page">Útmutató</li></ol>
+      <h1>Prototípus útmutató</h1>
+      <p>Ez a slugshop.hu új frontendjének kattintható terve. Minden oldal és funkció kipróbálható, de rendelés, üzenet vagy regisztráció valójában nem megy el sehova. A jóváhagyás után ebből készül a WordPress / WooCommerce oldal.</p>
+      <div class="page-head-meta"><a class="btn" href="index.html">Irány a kezdőlap<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--ghost" href="kategoria.html">Webshop</a></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:48px">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">Oldalak</span><h2>Mi hol van</h2></div></div>
+      <div class="services">
+        <a class="service" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5"/></svg><h3>Kezdőlap</h3><p>Lapozható kiemelt sáv, ZAN slug műszaki rajz kaliberváltóval, kategóriák, új termékek szűrőfülekkel, ZAN összehasonlító tábla darabárral, rólunk, videó, cikkek, kapcsolati űrlap.</p></a>
+        <a class="service" href="kategoria.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><h3>Webshop</h3><p>Szűrés kategóriára, kaliberre, árra és készletre. Rendezés, rács és lista nézet, aktív szűrők törölhető címkékkel. Mobilon a szűrők oldalról becsúszó panelben.</p></a>
+        <a class="service" href="termek.html#p-zan-300-59gr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><h3>Termékoldal</h3><p>Ár, készlet, gyors adatok, mennyiség és kosárba gomb, leírás / specifikáció / szállítás fülek, kapcsolódó termékek.</p></a>
+        <a class="service" href="kosar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><h3>Kosár és pénztár</h3><p>Mennyiség módosítása, törlés, kuponmező. A pénztárban szállítási és fizetési mód, céges számla, végül visszaigazolás rendelésszámmal.</p></a>
+        <a class="service" href="szerviz.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg><h3>Szerviz</h3><p>Szolgáltatások, a szerviz menete lépésenként, szervizbejelentő űrlap fotófeltöltéssel.</p></a>
+        <a class="service" href="kapcsolat.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><h3>Kapcsolat</h3><p>Elérhetőségek, cégadatok, útvonaltervezés, üzenetküldés fájlcsatolással. A fegyvereknél az „Ajánlatot kérek” ide visz, kitöltött üzenettel.</p></a>
+        <a class="service" href="cikkek.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg><h3>Cikkek</h3><p>Cikklista és cikk oldal (FX Leopard, slug vagy diabolo, PCP karbantartás).</p></a>
+        <a class="service" href="videok.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg><h3>Videók, Letöltések</h3><p>Videótár a YouTube csatornára mutató kártyákkal, és letölthető dokumentumok listája.</p></a>
+        <a class="service" href="rolunk.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.2 7 22l5-3 5 3-1.2-8.8"/></svg><h3>Rólunk</h3><p>A jelenlegi oldal bemutatkozó szövegei, tények, cégadatok.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">Próbáld ki</span>
+        <h2>Ami működik</h2>
+        <p class="lead">Ezek mind kattinthatók. A kosár és a beállítások a böngészőben megmaradnak, oldalváltás után is.</p>
+      </div>
+      <div class="prose">
+        <ul>
+          <li><strong>Kosár:</strong> a zöld kosár gombbal tegyél be termékeket, a jobb felső kosár ikonra kattintva kinyílik a kosár panel.</li>
+          <li><strong>Kereső:</strong> kattints a keresőmezőre, vagy nyomd meg a <strong>/</strong> billentyűt. Próbáld: „ZAN .30”, „FX20710”, „tár”.</li>
+          <li><strong>HUF / EUR:</strong> a felső sávban átváltja az összes árat.</li>
+          <li><strong>Kaliberváltó:</strong> a kezdőlapi műszaki rajz alatt (.22 / .25 / .30 / .357).</li>
+          <li><strong>Menük:</strong> a „ZAN slugok” és „FX fegyverek” menüpont fölé húzva legördül a kaliber- és alkategória lista.</li>
+          <li><strong>Elfogyott termék:</strong> a csengő gombbal „értesítést kérek” ablak nyílik.</li>
+          <li><strong>Űrlapok:</strong> hibás kitöltésnél jeleznek, a telefonszámot automatikusan formázzák.</li>
+          <li><strong>Mobil:</strong> keskeny ablakban vagy telefonon a menü a bal felső ikonból nyílik.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">Tudnivalók</span>
+        <h2>Mi valós és mi minta</h2>
+      </div>
+      <div class="prose">
+        <p><strong>Valós, a jelenlegi oldalról:</strong> a 20 új termék neve, ára, kategóriája és készlete; a menüpontok; a kiemelt sáv és a rólunk szövegek; telefon, e-mail, közösségi linkek, cégadatok; a Viva Wallet és Barion fizetés; a Fogyasztó Barát tanúsítvány.</p>
+        <p><strong>Még nincsenek termékfotók.</strong> A helyükön termékenként rajzolt ikon áll (slug, céltávcső, tár, nyomásmérő…). A végleges oldalon a valódi fotók jelennek meg.</p>
+        <p><strong>Minta, élesítés előtt ellenőrizendő:</strong></p>
+        <ul>
+          <li>FX Impact M3, Dreamline, Panthera és Leopard: ár nélkül, „Ajánlatot kérek” gombbal.</li>
+          <li>A futárdíj (2.490 Ft) és az EUR árfolyam (395 Ft).</li>
+          <li>Két cikk szövege, a letöltések listája, a videókártyák és a szerviz leírása.</li>
+          <li>A logó ideiglenes (célkereszt + SLUGSHOP felirat).</li>
+        </ul>
+        <p><strong>Nem küld semmit:</strong> a rendelés, az üzenet, a belépés és a regisztráció csak megmutatja, mi történne.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

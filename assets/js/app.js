@@ -14,6 +14,20 @@
   const slugify = (s) => norm(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* Egyfájlos (letölthető) változatban minden oldal egy HTML-ben van,
+     az oldalt a hash választja ki: #kategoria/kat-zan, #termek/p-zan-300-59gr … */
+  const BUNDLE = !!window.SLUG_BUNDLE;
+  const toBundle = (url) => { const m = String(url).match(/^([\w-]+)\.html(?:#(.*))?$/); return m ? (m[1] === "index" && !m[2] ? "index" : m[1] + (m[2] ? "/" + m[2] : "")) : null; };
+  function subHash() {
+    if (!BUNDLE) return location.hash;
+    const h = location.hash.slice(1), i = h.indexOf("/");
+    return i < 0 ? "" : "#" + h.slice(i + 1);
+  }
+  function go(url) { if (BUNDLE) location.hash = toBundle(url) || url; else location.href = url; }
+  let hashHandler = null;
+  const cleanups = [];
+  function onDoc(ev, fn) { document.addEventListener(ev, fn); cleanups.push(() => document.removeEventListener(ev, fn)); }
+
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* tárhely nem elérhető */ } }
@@ -167,7 +181,7 @@
 
   function headerHTML(page) {
     const items = NAV.map((n) => `<li class="nav-item">
-        <a class="nav-link" href="${n.href}"${n.page === page ? ' aria-current="page"' : ""}>${n.label}${n.drop ? icon("chevron") : ""}</a>
+        <a class="nav-link" href="${n.href}"${n.page ? ` data-nav-page="${n.page}"` : ""}${n.page === page ? ' aria-current="page"' : ""}>${n.label}${n.drop ? icon("chevron") : ""}</a>
         ${n.drop ? `<div class="dropdown">${n.drop()}</div>` : ""}
       </li>`).join("");
     const tick = TICKER.map((t) => `<span>${t}</span>`).join("");
@@ -238,7 +252,7 @@
         <div class="ft-legal-note">${icon("shield")}<p><b>Engedélyköteles termékek.</b> A 7,5 joule feletti csőtorkolati energiájú légfegyverek megvásárlása és tartása Magyarországon engedélyhez kötött. Vásárlás előtt kérjen tanácsot tőlünk.</p></div>
       </div>
       <div class="ft-bottom"><div class="wrap">
-        <span>© ${new Date().getFullYear()} Slugshop Kft. Minden jog fenntartva.</span>
+        <span>© ${new Date().getFullYear()} Slugshop Kft. Minden jog fenntartva. · <a href="utmutato.html" style="color:var(--tan)">Prototípus útmutató</a></span>
         <div class="ft-pay"><span>Viva Wallet</span><span>Barion</span><span>Visa</span><span>Mastercard</span><span>Átutalás</span></div>
       </div></div>
     </footer>
@@ -592,7 +606,7 @@
     const si = $("#so-input");
     si.addEventListener("input", () => renderSearch(si.value));
     si.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && si.value.trim()) { location.href = `kategoria.html#q-${encodeURIComponent(si.value.trim())}`; closeLayers(true); }
+      if (e.key === "Enter" && si.value.trim()) { go(`kategoria.html#q-${encodeURIComponent(si.value.trim())}`); closeLayers(true); }
     });
     const tt = $(".to-top");
     const onScroll = () => tt.classList.toggle("is-visible", window.scrollY > 900);
@@ -634,6 +648,7 @@
       left.addEventListener("mouseenter", pause); left.addEventListener("mouseleave", play);
       left.addEventListener("focusin", pause); left.addEventListener("focusout", play);
       if (reduceMotion) hero.classList.add("is-paused");
+      cleanups.push(() => clearInterval(timer));
       // az első ciklus progress-sávja
       requestAnimationFrame(() => { const t = $(".hero-tab[aria-selected=true]", tabsBox); if (t) { t.setAttribute("aria-selected", "false"); void t.offsetWidth; t.setAttribute("aria-selected", "true"); } });
       play();
@@ -747,7 +762,7 @@
 
     function readHash() {
       st.cats.clear(); st.cals.clear(); st.sub = null; st.q = ""; st.limit = 12;
-      decodeURIComponent(location.hash.slice(1)).split("~").forEach((tok) => {
+      decodeURIComponent(subHash().slice(1)).split("~").forEach((tok) => {
         if (tok.startsWith("grp-")) (S.GROUPS[tok.slice(4)] || []).forEach((c) => st.cats.add(c));
         else if (tok.startsWith("kat-") && catOf(tok.slice(4))) st.cats.add(tok.slice(4));
         else if (tok.startsWith("kal-")) st.cals.add(tok.slice(4));
@@ -855,7 +870,7 @@
     $("#more").addEventListener("click", () => { st.limit += 12; update(); });
     $("#filter-open").addEventListener("click", () => openLayer("filters"));
     grid.addEventListener("click", (e) => { if (e.target.closest("[data-reset]")) { st.cats.clear(); st.cals.clear(); st.sub = null; st.q = ""; st.price = "all"; st.stock = false; update(); } });
-    window.addEventListener("hashchange", () => { readHash(); update(); window.scrollTo({ top: 0 }); });
+    hashHandler = () => { readHash(); update(); window.scrollTo({ top: 0 }); };
     readHash(); update();
   }
 
@@ -877,7 +892,7 @@
   function initProduct() {
     const box = $("#pdp");
     const render = () => {
-      const id = location.hash.replace(/^#p-/, "");
+      const id = subHash().replace(/^#p-/, "");
       const p = byId(id) || byId("zan-218-25-5gr");
       const c = catOf(p.cat);
       document.title = `${p.name} – Slugshop`;
@@ -949,7 +964,7 @@
         $("[data-pdp-dec]", box).addEventListener("click", () => { qi.value = Math.max(1, (+qi.value || 1) - 1); });
       }
     };
-    window.addEventListener("hashchange", () => { render(); window.scrollTo({ top: 0 }); });
+    hashHandler = () => { render(); window.scrollTo({ top: 0 }); };
     render();
   }
 
@@ -990,8 +1005,8 @@
         m.textContent = $("#coupon-code").value.trim() ? "Ez a kuponkód nem érvényes. Ellenőrizd az elírást, vagy kérdezz minket." : "Írd be a kuponkódot.";
       });
     };
-    document.addEventListener("cart:change", render);
-    document.addEventListener("currency:change", render);
+    onDoc("cart:change", render);
+    onDoc("currency:change", render);
     render();
   }
 
@@ -1053,7 +1068,7 @@
       if (e.target.id === "co-company") $("#company").hidden = !e.target.checked;
     });
     sync();
-    document.addEventListener("currency:change", sync);
+    onDoc("currency:change", sync);
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (!validateForm(form)) return;
@@ -1070,7 +1085,7 @@
 
   /* ---------------------------------------------------------- kapcsolat */
   function initContact() {
-    const m = location.hash.match(/^#ajanlat-(.+)$/);
+    const m = subHash().match(/^#ajanlat-(.+)$/);
     if (!m) return;
     const p = byId(m[1]);
     const subj = $("#ct-subject"), msg = $("#ct-msg");
@@ -1081,10 +1096,62 @@
 
   /* ---------------------------------------------------------- cikkek */
   function initArticles() { renderPosts($("#posts"), S.POSTS); }
+  function initArticle() {
+    const show = () => {
+      const id = subHash().slice(1) || "fx-leopard";
+      const arts = $$("[data-article]");
+      const hit = arts.some((a) => a.dataset.article === id);
+      arts.forEach((a, i) => { a.hidden = hit ? a.dataset.article !== id : i !== 0; });
+      const h1 = $("[data-article]:not([hidden]) h1");
+      $("#art-crumb").textContent = h1.textContent;
+      document.title = h1.textContent + " – Slugshop";
+    };
+    hashHandler = () => { show(); window.scrollTo({ top: 0 }); };
+    show();
+  }
 
   /* ==================================================================
      INDÍTÁS
      ================================================================== */
+  const PAGES = { home: initHome, category: initCategory, product: initProduct, cart: initCart, checkout: initCheckout, contact: initContact, articles: initArticles, article: initArticle };
+  function enterPage(page) {
+    cleanups.splice(0).forEach((fn) => fn());
+    hashHandler = null;
+    document.body.dataset.page = page;
+    $$(".nav-link").forEach((a) => { if (a.dataset.navPage === page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    if (PAGES[page]) PAGES[page]();
+    initForms();
+    refreshPrices();
+  }
+
+  /* egyfájlos mód: oldalváltás sablonból */
+  let curFile = null;
+  function bundleFile() { const h = location.hash.slice(1); const f = h.split("/")[0]; return $(`template[data-file="${f}"]`) ? f : (curFile ? null : "index"); }
+  function showFile(file) {
+    const t = $(`template[data-file="${file}"]`); if (!t) return false;
+    curFile = file;
+    $("#main").innerHTML = t.innerHTML;
+    document.title = t.dataset.title;
+    closeLayers(true);
+    enterPage(t.dataset.page);
+    window.scrollTo({ top: 0 });
+    return true;
+  }
+  function bindBundle() {
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest("a[href]");
+      if (!a || e.defaultPrevented || a.target === "_blank" || e.metaKey || e.ctrlKey) return;
+      const href = a.getAttribute("href");
+      const b = toBundle(href);
+      if (b) { e.preventDefault(); if (location.hash.slice(1) === b) { const f = b.split("/")[0]; if (f !== curFile) showFile(f); else window.scrollTo({ top: 0 }); } else location.hash = b; return; }
+      if (/^#[\w-]+$/.test(href) && !$(`template[data-file="${href.slice(1)}"]`)) {
+        e.preventDefault();
+        const el = document.getElementById(href.slice(1));
+        if (el) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+      }
+    });
+  }
+
   function boot() {
     const page = document.body.dataset.page || "";
     const h = $("#site-header"); if (h) h.outerHTML = headerHTML(page);
@@ -1092,10 +1159,12 @@
     document.body.insertAdjacentHTML("beforeend", layersHTML());
     if (!store.get("slugshop_cookie", null)) document.body.insertAdjacentHTML("beforeend", cookieHTML());
     bindGlobal();
-    const pages = { home: initHome, category: initCategory, product: initProduct, cart: initCart, checkout: initCheckout, contact: initContact, articles: initArticles };
-    if (pages[page]) pages[page]();
-    initForms();
-    refreshPrices();
+    window.addEventListener("hashchange", () => {
+      if (BUNDLE) { const f = bundleFile(); if (f && f !== curFile) { showFile(f); return; } }
+      if (hashHandler) hashHandler();
+    });
+    if (BUNDLE) { bindBundle(); showFile(bundleFile() || "index"); }
+    else enterPage(page);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 

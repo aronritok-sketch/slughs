@@ -13,6 +13,16 @@ python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
+## Letölthető, egyfájlos változat
+
+`dist/slugshop-prototipus.html` – az egész prototípus egyetlen HTML fájlban (CSS, JS, adatok beágyazva). Letöltés után dupla kattintással megnyitható, e-mailben is továbbküldhető. Az oldalak között ugyanúgy lehet kattintgatni; a cím végén a `#kategoria/…`, `#termek/…` rész választja ki az oldalt. A bal alsó „Útmutató” gomb elmagyarázza, mi van benne. (A betűtípusokhoz internet kell, nélküle tartalék betűvel jelenik meg.)
+
+Újragenerálás a forrásfájlokból:
+
+```bash
+python3 tools/build-single.py
+```
+
 ## Oldalak
 
 | Fájl | Tartalom |
@@ -25,6 +35,7 @@ python3 -m http.server 8000
 | `kapcsolat.html` | Elérhetőségek, cégadatok, üzenetküldés fájlcsatolással |
 | `szerviz.html` | Szolgáltatások, a szerviz menete, szervizbejelentő űrlap |
 | `videok.html`, `letoltesek.html`, `cikkek.html`, `cikk.html`, `rolunk.html` | Tartalmi oldalak |
+| `utmutato.html` | Prototípus útmutató: mi hol van, mit érdemes kipróbálni, mi minta tartalom |
 
 Közös elemek (JS-ből kerülnek be minden oldalra): felső sáv (telefon, e-mail, HUF/EUR, közösségi linkek, belépés), futó hírsáv, ragadós fejléc kereséssel és kosárral, legördülő menük, mobil menü, kosár fiók, kereső (`/` billentyű), belépés/regisztráció ablak, „értesítést kérek” ablak, süti sáv, lábléc a cégadatokkal és az engedélyköteles termékekre vonatkozó megjegyzéssel.
 

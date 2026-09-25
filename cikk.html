@@ -86,21 +86,5 @@
 <div id="site-footer"></div>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/app.js"></script>
-<script>
-(function () {
-  function show() {
-    var id = location.hash.slice(1) || "fx-leopard";
-    var arts = document.querySelectorAll("[data-article]");
-    var found = false;
-    arts.forEach(function (a) { var on = a.dataset.article === id; a.hidden = !on; if (on) found = true; });
-    if (!found) { arts.forEach(function (a, i) { a.hidden = i !== 0; }); }
-    var cur = document.querySelector("[data-article]:not([hidden]) h1");
-    document.getElementById("art-crumb").textContent = cur.textContent;
-    document.title = cur.textContent + " – Slugshop";
-  }
-  window.addEventListener("hashchange", function () { show(); window.scrollTo(0, 0); });
-  show();
-})();
-</script>
 </body>
 </html>
