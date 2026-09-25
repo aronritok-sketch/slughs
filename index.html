@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Slugshop | Légfegyverek és ZAN lövedékek</title>
+<meta name="description" content="FX PCP légfegyverek, ZAN slugok, gyári FX alkatrészek és szerviz. A ZAN Projectiles kizárólagos magyarországi forgalmazója.">
+<meta name="theme-color" content="#10120d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800;900&family=Big+Shoulders+Stencil+Display:wght@800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+
+<main id="main">
+
+  <!-- HERO ============================================================ -->
+  <section class="hero grid-bg" aria-roledescription="carousel" aria-label="Kiemelt ajánlatok">
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <div class="hero-slides" id="hero-slides"></div>
+        <div class="hero-tabs" id="hero-tabs" role="tablist" aria-label="Diák választása"></div>
+      </div>
+
+      <div class="blueprint" role="group" aria-label="ZAN HP slug műszaki adatlap">
+        <span class="bp-corner tl"></span><span class="bp-corner tr"></span><span class="bp-corner bl"></span><span class="bp-corner br"></span>
+        <div class="bp-head"><span><b>DWG</b> ZAN-HP / <span id="bp-cal">.22</span></span><span class="bp-rec">Adatlap</span></div>
+        <svg class="bp-svg" viewBox="0 0 520 380" aria-hidden="true">
+          <defs>
+            <pattern id="bp-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" class="ln-faint" stroke-width=".5"/></pattern>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 10 5 0 9z" fill="#a8a590"/></marker>
+          </defs>
+          <rect width="520" height="380" fill="url(#bp-grid)" opacity=".7"/>
+
+          <g class="bp-reticle">
+            <circle cx="260" cy="190" r="158" class="ln-faint" stroke-width="1"/>
+            <circle cx="260" cy="190" r="158" class="ln" stroke-width="6" stroke-dasharray="1 26.57" opacity=".45"/>
+            <circle cx="260" cy="190" r="120" class="ln-faint" stroke-width="1" stroke-dasharray="3 7"/>
+          </g>
+          <path d="M260 22v70M260 288v70M88 190h40M392 190h40" class="ln-faint" stroke-width="1.5"/>
+
+          <g id="bp-slug" class="bp-slug">
+            <path d="M118 190H408" class="ln-dim" stroke-width="1" stroke-dasharray="14 4 2 4" opacity=".7"/>
+            <path class="fill-body" d="M158 140H290C338 140 362 160 372 176V204C362 220 338 240 290 240H158L150 232V148Z"/>
+            <path d="M178 140V240M186 140V240" class="ln" stroke-width="1" opacity=".5"/>
+            <path d="M372 182 350 186V194L372 198" class="ln" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <path d="M290 140C300 170 300 210 290 240" class="ln" stroke-width=".8" opacity=".35"/>
+
+            <!-- átmérő méretvonal -->
+            <path d="M146 140H96M146 240H96" class="ln-dim" stroke-width=".8"/>
+            <path d="M106 146V234" class="ln-dim" stroke-width="1" marker-start="url(#arr)" marker-end="url(#arr)"/>
+            <text id="bp-dia" x="92" y="190" text-anchor="middle" transform="rotate(-90 92 190)" class="t-big">Ø 5,53</text>
+
+            <!-- jelölések -->
+            <path d="M366 184 410 118H486" class="ln-dim" stroke-width=".8"/>
+            <circle cx="366" cy="184" r="2.5" fill="#c9a66b"/>
+            <text x="412" y="110" class="t-tan">HOLLOW POINT</text>
+            <path d="M232 144 252 84H340" class="ln-dim" stroke-width=".8"/>
+            <circle cx="232" cy="144" r="2.5" fill="#c9a66b"/>
+            <text x="254" y="76" class="t-tan">ZAN PROJECTILES</text>
+            <path d="M162 236 180 290H262" class="ln-dim" stroke-width=".8"/>
+            <circle cx="162" cy="236" r="2.5" fill="#c9a66b"/>
+            <text x="182" y="306">LAPOS TALP</text>
+          </g>
+
+          <!-- szövegmező -->
+          <g transform="translate(330 300)">
+            <rect width="176" height="66" class="ln-faint" stroke-width="1" fill="#14170f"/>
+            <path d="M0 30H176M0 48H176M124 30V66" class="ln-faint" stroke-width="1"/>
+            <text id="bp-title" x="10" y="21" class="t-big">ZAN HP .22</text>
+            <text x="10" y="43" font-size="9">SLUGSHOP KFT</text>
+            <text x="132" y="43" font-size="9">LAP 1/1</text>
+            <text x="10" y="61" font-size="9">NEM MÉRETARÁNYOS</text>
+            <text x="132" y="61" font-size="9" class="t-tan">HU</text>
+          </g>
+        </svg>
+        <dl class="bp-readout" style="margin:0">
+          <div><dt>Átmérő</dt><dd id="rd-dia">5,53 mm</dd></div>
+          <div><dt>Tömeg</dt><dd id="rd-gr">25,5 gr</dd></div>
+          <div><dt>Kiszerelés</dt><dd id="rd-pcs">200 db</dd></div>
+          <div><dt>Ár / doboz</dt><dd id="rd-price">6.200 Ft</dd></div>
+        </dl>
+        <div class="bp-foot">
+          <div class="cal-switch" id="cal-switch" role="group" aria-label="Kaliber választása"></div>
+          <a class="link-arrow" id="bp-link" href="termek.html#p-zan-218-25-5gr">Megnézem<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIZALMI SÁV ===================================================== -->
+  <section class="trust" aria-label="Miért a Slugshop">
+    <div class="wrap trust-in">
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Kizárólagos ZAN forgalmazó</b><span>Magyarországon csak nálunk</span></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg><div><b>Bankkártyás fizetés</b><span>Viva Wallet és Barion</span></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><div><b>Gyári FX alkatrészek</b><span>Cikkszám szerint rendelhető</span></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg><div><b>Saját szerviz</b><span>Javítás, beállítás, belövés</span></div></div>
+    </div>
+  </section>
+
+  <!-- KATEGÓRIÁK ====================================================== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">Kínálat</span><h2>Válassz területet</h2></div>
+        <a class="link-arrow" href="kategoria.html">Teljes webshop<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="cats" id="cats"></div>
+    </div>
+  </section>
+
+  <!-- ÚJ TERMÉKEK ===================================================== -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">Friss szállítmány</span><h2>Új termékek</h2></div>
+        <div class="tabs" id="new-tabs" role="tablist" aria-label="Új termékek szűrése">
+          <button class="tab" type="button" role="tab" data-f="all" aria-selected="true">Összes</button>
+          <button class="tab" type="button" role="tab" data-f="ammo" aria-selected="false">Lövedékek</button>
+          <button class="tab" type="button" role="tab" data-f="kieg" aria-selected="false">FX kiegészítők</button>
+          <button class="tab" type="button" role="tab" data-f="alk" aria-selected="false">Alkatrészek</button>
+        </div>
+      </div>
+      <div class="products" id="new-products"></div>
+      <div class="pager"><button class="btn btn--ghost" type="button" id="new-more"><span>Összes új termék</span></button></div>
+    </div>
+  </section>
+
+  <!-- ZAN SÁV ========================================================= -->
+  <section class="section">
+    <div class="wrap zan-band">
+      <div class="copy">
+        <span class="eyebrow">Kizárólag a Slugshopban</span>
+        <h2>ZAN <em>slugok</em><br>egy táblán</h2>
+        <p>A ZAN Projectiles hollow point slugjai négy kaliberben. Vesd össze a tömeget, a kiszerelést és a darabárat, és tedd kosárba egy kattintással.</p>
+        <a class="btn btn--tan" href="kategoria.html#kat-zan">Összes ZAN slug<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="table-wrap">
+        <table class="spec-table">
+          <caption class="sr-only">ZAN Projectiles HP slugok összehasonlítása</caption>
+          <thead><tr><th scope="col">Kaliber</th><th scope="col">Átmérő</th><th scope="col">Tömeg</th><th scope="col">Doboz</th><th scope="col" class="r">Ár / db</th><th scope="col" class="r">Ár</th><th scope="col" class="r"><span class="sr-only">Kosárba</span></th></tr></thead>
+          <tbody id="zan-table"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- RÓLUNK ========================================================== -->
+  <section class="section section--alt">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">Rólunk</span>
+        <h2>Légfegyver innováció a Slugshopban</h2>
+        <p class="lead">A légfegyver technológia úttörőjeként a legjobb FX modelleket kínáljuk, a Maverick és Dreamline családtól a Pantheráig, mellé precíz ZAN slug lövedékeket és slug csöveket. Az O-gyűrűtől a regulátorig mindent megtalálsz nálunk, ami egy kiváló légfegyverhez kell.</p>
+        <div class="brands" aria-label="Márkáink">
+          <span class="brand">FX Airguns</span><span class="brand">ZAN Projectiles</span><span class="brand">JSB</span><span class="brand">Huma-Air</span><span class="brand">Scandinavian Arms</span><span class="brand">Element Optics</span><span class="brand">CARM</span><span class="brand">Snowpeak</span>
+        </div>
+      </div>
+      <div class="about-points">
+        <div class="about-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.2 7 22l5-3 5 3-1.2-8.8"/></svg><div><h3>Felsőkategóriás légfegyverek</h3><p>Nem minden légfegyver teremtett egyenlőnek. Az FX modelleket a légfegyverek Mercédeszeként emlegetik, és mi ezt a szintet képviseljük az elkötelezett lövészeknek.</p></div></div>
+        <div class="about-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5"/></svg><div><h3>Élvonalbeli pontosság</h3><p>Azoknak, akik nem érik be a középszerűvel. Fegyver, cső és lövedék összehangolva, hogy minden lövés a lehető legpontosabb legyen.</p></div></div>
+        <div class="about-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg><div><h3>Alkatrész és szerviz egy helyen</h3><p>Gyári FX alkatrészek cikkszám szerint, és saját szerviz a beépítéshez, beállításhoz és belövéshez.</p></div></div>
+        <a class="link-arrow" href="rolunk.html" style="margin-top:22px">Bővebben rólunk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEÓ ============================================================ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="video-band">
+        <div class="copy">
+          <span class="eyebrow">Videótár</span>
+          <h2>FX légfegyverek videón</h2>
+          <p>Gyere és fedezd fel az FX légfegyverek világát. Bemutatók, beállítások és lőtéri tesztek a csatornánkon.</p>
+          <div class="hero-cta">
+            <a class="btn btn--tan" href="videok.html">Videók</a>
+            <a class="btn btn--ghost" href="https://www.youtube.com/@laszlomora4678" target="_blank" rel="noopener">YouTube csatorna</a>
+          </div>
+        </div>
+        <div class="video-scope">
+          <svg class="scope" viewBox="0 0 400 400" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="200" cy="200" r="190" stroke-width="2"/><circle cx="200" cy="200" r="120" stroke-dasharray="2 8"/><path d="M200 10v120M200 270v120M10 200h120M270 200h120" stroke-width="5"/><path d="M200 130v50M200 220v50M130 200h50M220 200h50"/><g fill="currentColor" stroke="none"><circle cx="200" cy="140" r="2.5"/><circle cx="200" cy="160" r="2.5"/><circle cx="200" cy="180" r="2.5"/><circle cx="200" cy="220" r="2.5"/><circle cx="200" cy="240" r="2.5"/><circle cx="200" cy="260" r="2.5"/><circle cx="140" cy="200" r="2.5"/><circle cx="160" cy="200" r="2.5"/><circle cx="180" cy="200" r="2.5"/><circle cx="220" cy="200" r="2.5"/><circle cx="240" cy="200" r="2.5"/><circle cx="260" cy="200" r="2.5"/></g></svg>
+          <a class="play-btn" href="https://www.youtube.com/@laszlomora4678" target="_blank" rel="noopener" aria-label="Videók megnyitása a YouTube-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIKKEK =========================================================== -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">Érdekességek, újdonságok, innováció</span><h2>Cikkeink</h2></div>
+        <a class="link-arrow" href="cikkek.html">Összes cikk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="posts" id="posts"></div>
+    </div>
+  </section>
+
+  <!-- KAPCSOLAT ======================================================== -->
+  <section class="section" id="kapcsolat">
+    <div class="wrap contact">
+      <div class="copy">
+        <span class="eyebrow">Kapcsolat</span>
+        <h2>Vegye fel velünk a kapcsolatot</h2>
+        <p>Kérdése van egy slug súlyáról, alkatrész kompatibilitásról vagy szervizről? Írjon, vagy csatoljon fotót a fegyveréről, és segítünk.</p>
+        <ul class="contact-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><div><small>Telefon</small><a href="tel:+36306777836">+36 30 677 7836</a></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><div><small>E-mail</small><a href="mailto:info@slugshop.hu">info@slugshop.hu</a></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><small>Székhely</small><span>5100 Jászberény, Érhát utca 7.</span></div></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <form class="form" id="contact-form" data-form data-success-title="Üzenet elküldve" data-success-text="Köszönjük! Hamarosan válaszolunk a megadott elérhetőségen.">
+          <div class="form-row">
+            <div class="field"><label for="ct-name">Név <span class="req">*</span></label><input class="input" id="ct-name" required autocomplete="name"></div>
+            <div class="field"><label for="ct-email">E-mail</label><input class="input" id="ct-email" type="email" autocomplete="email" placeholder="nev@pelda.hu"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="ct-phone">Telefon <span class="req">*</span></label><input class="input" id="ct-phone" required data-phone inputmode="tel" autocomplete="tel" placeholder="+36 30 123 4567"></div>
+            <div class="field"><label for="ct-subject">Tárgy</label><select class="select" id="ct-subject"><option value="altalanos">Általános kérdés</option><option value="ajanlat">Ajánlatkérés</option><option value="szerviz">Szerviz</option><option value="rendeles">Rendelés</option></select></div>
+          </div>
+          <div class="field"><label for="ct-msg">Üzenet</label><textarea class="textarea" id="ct-msg" placeholder="Fegyvertípus, kaliber, kérdés…"></textarea></div>
+          <div class="field">
+            <span class="label">Kép csatolása</span>
+            <div class="dropzone" tabindex="0" role="button" aria-label="Fájlok csatolása">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+              <span><b>Húzd ide a fájlokat</b> vagy kattints a tallózáshoz</span>
+              <span class="hint">JPG, PNG, HEIC, WEBP, PDF, DOC · max. 10 MB</span>
+              <input type="file" id="ct-files" hidden multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.heic,.webp,.svg">
+            </div>
+            <div class="file-list"></div>
+          </div>
+          <label class="check"><input type="checkbox" id="ct-accept" required> <span>Elfogadom az <a href="#adatvedelem">adatvédelmi nyilatkozatot</a>.</span></label>
+          <button class="btn" type="submit">Üzenet küldése<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
