@@ -176,7 +176,7 @@
     { label: "Cikkeink", href: "cikkek.html", page: "articles" },
     { label: "Kapcsolat", href: "kapcsolat.html", page: "contact" }
   ];
-  const TICKER = ["Kizárólagos magyarországi ZAN forgalmazó", "Viva Wallet bankkártyás fizetés", "Gyári FX alkatrészek cikkszám szerint", "Saját szerviz – Jászberény", "Scandinavian Arms hivatalos forgalmazó", "Kérdése van? +36 30 677 7836"];
+  const TICKER = ["Kizárólagos magyarországi ZAN forgalmazó", "Viva Wallet bankkártyás fizetés", "Gyári FX alkatrészek cikkszám szerint", "Saját szerviz – Jászberény", "Scandinavian Arms hivatalos forgalmazó", "Kérdésed van? +36 30 677 7836"];
   const SOCIAL = `<a href="https://www.facebook.com/profile.php?id=61554078063288" target="_blank" rel="noopener" aria-label="Facebook">${icon("fb")}</a><a href="https://www.instagram.com/slugshop.hungary/" target="_blank" rel="noopener" aria-label="Instagram">${icon("ig")}</a><a href="https://www.youtube.com/@laszlomora4678" target="_blank" rel="noopener" aria-label="YouTube">${icon("yt")}</a>`;
 
   function headerHTML(page) {
@@ -249,7 +249,7 @@
             </dl>
           </div>
         </div>
-        <div class="ft-legal-note">${icon("shield")}<p><b>Engedélyköteles termékek.</b> A 7,5 joule feletti csőtorkolati energiájú légfegyverek megvásárlása és tartása Magyarországon engedélyhez kötött. Vásárlás előtt kérjen tanácsot tőlünk.</p></div>
+        <div class="ft-legal-note">${icon("shield")}<p><b>Engedélyköteles termékek.</b> A 7,5 joule feletti csőtorkolati energiájú légfegyverek megvásárlása és tartása Magyarországon engedélyhez kötött. Vásárlás előtt kérj tanácsot tőlünk.</p></div>
       </div>
       <div class="ft-bottom"><div class="wrap">
         <span>© ${new Date().getFullYear()} Slugshop Kft. Minden jog fenntartva. · <a href="utmutato.html" style="color:var(--tan)">Prototípus útmutató</a></span>
@@ -310,13 +310,13 @@
         <div data-login-panel="login">
           <span class="eyebrow">Fiók</span>
           <h2 id="login-title">Bejelentkezés</h2>
-          <p>Lépjen be a rendelései és címei eléréséhez.</p>
+          <p>Lépj be a rendeléseid és címeid eléréséhez.</p>
           <form class="form" data-form data-success-title="Prototípus" data-success-text="A belépés a WordPress verzióban lesz működőképes.">
             <div class="field"><label for="lg-user">Felhasználónév vagy e-mail <span class="req">*</span></label><input class="input" id="lg-user" required autocomplete="username"></div>
             <div class="field"><label for="lg-pass">Jelszó <span class="req">*</span></label><input class="input" id="lg-pass" type="password" required autocomplete="current-password"></div>
-            <div class="row-between"><label class="check"><input type="checkbox" id="lg-remember"> Emlékezzen rám</label><a class="hint" href="#jelszo">Elfelejtett jelszó?</a></div>
+            <div class="row-between"><label class="check"><input type="checkbox" id="lg-remember"> Maradjak bejelentkezve</label><a class="hint" href="#jelszo">Elfelejtett jelszó?</a></div>
             <button class="btn btn--block" type="submit">${icon("lock")}Belépés</button>
-            <p class="hint">Nincs fiókja? <button class="link-arrow" type="button" data-login-tab="register" style="font-size:inherit">Regisztráció</button></p>
+            <p class="hint">Még nincs fiókod? <button class="link-arrow" type="button" data-login-tab="register" style="font-size:inherit">Regisztráció</button></p>
           </form>
         </div>
         <div data-login-panel="register" hidden>
@@ -329,7 +329,7 @@
             <div class="field"><label for="rg-pass">Jelszó <span class="req">*</span></label><input class="input" id="rg-pass" type="password" required minlength="8" autocomplete="new-password"><span class="hint">Legalább 8 karakter.</span></div>
             <label class="check"><input type="checkbox" id="rg-accept" required> <span>Elfogadom az <a href="#aszf">ÁSZF</a>-et és az <a href="#adatvedelem">adatvédelmi nyilatkozatot</a>.</span></label>
             <button class="btn btn--block" type="submit">Fiók létrehozása</button>
-            <p class="hint">Van már fiókja? <button class="link-arrow" type="button" data-login-tab="login" style="font-size:inherit">Belépés</button></p>
+            <p class="hint">Van már fiókod? <button class="link-arrow" type="button" data-login-tab="login" style="font-size:inherit">Belépés</button></p>
           </form>
         </div>
       </div>
@@ -341,7 +341,7 @@
         <span class="eyebrow">Készletfigyelő</span>
         <h2 id="notify-title">Értesítést kérek</h2>
         <p data-notify-name></p>
-        <form class="form" data-form data-success-title="Feliratkozott" data-success-text="E-mailt küldünk, amint a termék újra raktárra kerül.">
+        <form class="form" data-form data-success-title="Feliratkoztál" data-success-text="E-mailt küldünk, amint a termék újra raktárra kerül.">
           <div class="field"><label for="nt-email">E-mail cím <span class="req">*</span></label><input class="input" id="nt-email" type="email" required autocomplete="email" placeholder="nev@pelda.hu"></div>
           <label class="check"><input type="checkbox" id="nt-accept" required> <span>Elfogadom az <a href="#adatvedelem">adatvédelmi nyilatkozatot</a>.</span></label>
           <button class="btn btn--block" type="submit">${icon("bell")}Értesítést kérek</button>
@@ -493,8 +493,8 @@
         return;
       }
       if (el.required && !v) msg = "Kötelező mező.";
-      else if (v && el.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) msg = "Adjon meg érvényes e-mail címet.";
-      else if (v && el.dataset.phone != null && v.replace(/\D/g, "").length < 11) msg = "Adjon meg teljes telefonszámot.";
+      else if (v && el.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) msg = "Adj meg érvényes e-mail címet.";
+      else if (v && el.dataset.phone != null && v.replace(/\D/g, "").length < 11) msg = "Adj meg teljes telefonszámot.";
       else if (v && el.minLength > 0 && v.length < el.minLength) msg = `Legalább ${el.minLength} karakter szükséges.`;
       if (msg) {
         ok = false;
@@ -529,7 +529,7 @@
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         if (!validateForm(form)) return;
-        form.outerHTML = successBox(form.dataset.successTitle || "Köszönjük!", form.dataset.successText || "Üzenetét megkaptuk, hamarosan válaszolunk.");
+        form.outerHTML = successBox(form.dataset.successTitle || "Köszönjük!", form.dataset.successText || "Az üzenetedet megkaptuk, hamarosan válaszolunk.");
       });
     });
     $$(".dropzone", root).forEach((dz) => {

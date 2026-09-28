@@ -10,7 +10,7 @@ window.SLUG = window.SLUG || {};
 SLUG.CATS = [
   { key: "zan",      name: "ZAN slugok",              short: "ZAN slugok",      icon: "slug",     desc: "ZAN Projectiles hollow point slugok .22-től .357-ig. Magyarországon kizárólag a Slugshopban." },
   { key: "jsb",      name: "JSB diabolók",            short: "JSB diabolók",    icon: "pellet",   desc: "JSB Match minőségű diabolók 4,5 és 5,5 mm-ben." },
-  { key: "fx",       name: "FX légfegyverek",         short: "FX fegyverek",    icon: "rifle",    desc: "FX Airguns PCP légfegyverek. Az ár a konfigurációtól függ, kérjen ajánlatot." },
+  { key: "fx",       name: "FX légfegyverek",         short: "FX fegyverek",    icon: "rifle",    desc: "FX Airguns PCP légfegyverek. Az ár a konfigurációtól függ, kérj ajánlatot." },
   { key: "fx-kieg",  name: "FX kiegészítők",          short: "FX kiegészítők",  icon: "scope",    desc: "Tárak, céltávcsövek, kronográfok, csövek, nyomásmérők és töltés." },
   { key: "fx-alk",   name: "FX alkatrészek",          short: "FX alkatrészek",  icon: "spring",   desc: "Gyári FX alkatrészek cikkszám szerint: rugók, csavarok, tömítések." },
   { key: "snowpeak", name: "Snowpeak",                short: "Snowpeak",        icon: "nozzle",   desc: "Snowpeak (Artemis) légfegyverek alkatrészei és kiegészítői." },
@@ -117,7 +117,7 @@ SLUG.POSTS = [
 
 SLUG.SLIDES = [
   { eyebrow: "Kizárólag a Slugshopban", title: "ELR ZAN<em>slugok</em>", lead: "Magyarországon <strong>csakis kizárólag a Slugshopban.</strong> Már Viva Wallet bankkártyás fizetés is elérhető.", cta: { label: "ELR slugok", href: "kategoria.html#kat-zan" }, tab: "ELR ZAN" },
-  { eyebrow: "PCP új generáció", title: "Légfegyverek<em>forradalma</em>", lead: "Fedezze fel a PCP légfegyverek új generációját. Precizitás, megbízhatóság és forradalmi design egy helyen.", cta: { label: "FX fegyverek", href: "kategoria.html#kat-fx" }, tab: "FX PCP" },
+  { eyebrow: "PCP új generáció", title: "Légfegyverek<em>forradalma</em>", lead: "Fedezd fel a PCP légfegyverek új generációját. Precizitás, megbízhatóság és forradalmi design egy helyen.", cta: { label: "FX fegyverek", href: "kategoria.html#kat-fx" }, tab: "FX PCP" },
   { eyebrow: "Kizárólagos forgalmazó", title: "ZAN lövedékek<em>szakértője</em>", lead: "A ZAN lövedékek <strong>magyarországi kizárólagos forgalmazója</strong> a Slugshop Kft.", cta: { label: "Termékek", href: "kategoria.html#kat-zan" }, tab: "ZAN" },
   { eyebrow: "Hivatalos partner", title: "Scandinavian<em>Arms</em>", lead: "A Slugshop a Scandinavian Arms termékeinek magyarországi forgalmazója.", cta: { label: "Termékek", href: "kategoria.html" }, tab: "Scand. Arms" },
   { eyebrow: "Videótár", title: "FX légfegyverek<em>videón</em>", lead: "Gyere és fedezd fel az FX légfegyverek világát: bemutatók, beállítás, lőtéri tesztek.", cta: { label: "Videók", href: "videok.html" }, tab: "Videók" }
