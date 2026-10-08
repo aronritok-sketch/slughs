@@ -280,13 +280,17 @@
       </div>
     </div></section>
 
-    <section class="feature feature--light iu-section"><div class="iu-row iu-row-vertical-center">
-      <div class="iu-column iu-column-1-2"><h2>${esc(b1.title)}</h2><p>${esc(b1.text)}</p><a class="btn" href="${b1.href}">${esc(b1.button)}</a></div>
-      <div class="iu-column iu-column-1-2 feature-img">${b2.img ? `<img src="${b2.img}" alt="FX légfegyverek" loading="lazy">` : ''}</div>
-    </div></section>
-    <section class="feature feature--dark sec-dark iu-section"><div class="iu-row">
-      <div class="iu-column iu-column-1-2"><h2>${esc(b2.title)}</h2><p>${esc(b2.text)}</p><a class="btn" href="${b2.href}">${esc(b2.button)}</a></div>
-    </div></section>
+    <div class="features">
+      <section class="feature feature--light iu-section"><div class="iu-row iu-row-vertical-center">
+        <div class="iu-column iu-column-1-2"><h2>${esc(b1.title)}</h2><span class="bar"></span><p>${esc(b1.text)}</p><a class="btn" href="${b1.href}">${esc(b1.button)}</a></div>
+      </div></section>
+      ${b2.img ? riflesHTML(b2) : ''}
+      <section class="feature feature--dark sec-dark iu-section"><div class="iu-row">
+        <div class="iu-column iu-column-1-2"><h2>${esc(b2.title)}</h2><span class="bar"></span><p>${esc(b2.text)}</p><a class="btn" href="${b2.href}">${esc(b2.button)}</a></div>
+      </div></section>
+    </div>
+
+    ${pantheraHTML()}
 
     <section class="sec-dark iu-section home" style="padding-top:var(--space-8)"><div class="iu-row"><div class="iu-column iu-column-1-1">
       <h2 class="sec-title center">Új termékek</h2>
@@ -297,6 +301,11 @@
       </div>
     </div></div></section>
 
+    <section class="videos-band sec-dark"><div class="wrap">
+      <div class="band-head"><h2 class="sec-title">Videók</h2><a class="btn" href="#/videok">Összes videó</a></div>
+      ${coverflowHTML()}
+    </div></section>
+
     <section class="contact-band" id="kapcsolat-urlap"><div class="wrap" style="max-width:860px">
       <h2>Vegye fel velünk a kapcsolatot!</h2>${contactForm(true)}
     </div></section>
@@ -305,6 +314,51 @@
       <div class="iu-column iu-column-1-2"><h2 class="sec-title">Cikkeink</h2><p class="lead">Érdekességek, újdonságok, innováció egy helyen</p></div>
       <div class="iu-column iu-column-1-2 iu-column-align-right"><a class="btn" href="#/cikkeink">Cikkeink</a></div>
     </div><div class="iu-row"><div class="iu-column iu-column-1-1"><div class="cards">${latest.map(articleCard).join('')}</div></div></div></section>`;
+  }
+
+  function riflesHTML(b) {
+    const layers = [];
+    for (let i = 0; i < 14; i++) {
+      const z = -13 + i * 2;
+      const face = i === 0 || i === 13;
+      layers.push(`<img src="${face ? b.img : b.imgCore}" alt="" style="transform:translateZ(${z}px)" draggable="false">`);
+    }
+    return `<div class="rifles" aria-hidden="true"><div class="rifles-stage" title="Húzd oldalra a forgatáshoz">
+      <div class="rifles-spin">${layers.join('')}</div><div class="rifles-shadow"></div></div></div>`;
+  }
+
+  function pantheraHTML() {
+    const D = window.PANTHERA; if (!D) return '';
+    return `<section class="panthera sec-dark" aria-label="FX Panthera robbantott ábra">
+      <div class="panthera-sticky">
+        <div class="wrap panthera-head">
+          <span class="eyebrow">FX Panthera</span>
+          <h2 class="sec-title">Darabjaira szedve</h2>
+          <p>Görgess, és nézd meg, miből épül fel egy FX Panthera. Az alkatrészek cikkszám szerint rendelhetők, a robbantott ábrák a Letöltések között vannak.</p>
+        </div>
+        <div class="panthera-stage"><div class="panthera-scene"><img class="panthera-render" src="${D.render}" alt="FX Panthera oldalnézet" draggable="false"></div></div>
+        <div class="wrap panthera-foot">
+          <div class="panthera-count"><b data-pcount>0</b> / ${D.parts.length} alkatrész a helyén</div>
+          <div class="panthera-progress" aria-hidden="true"><i></i></div>
+          <div class="panthera-actions"><a class="btn" href="#/fx-alkatreszek">FX alkatrészek</a><a class="btn" href="${D.pdf}" target="_blank" rel="noopener">Robbantott ábra (PDF)</a></div>
+          <small class="panthera-src">Forrás: FX Airguns gyári robbantott ábra</small>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  function coverflowHTML() {
+    const items = [];
+    S.videos.forEach((v) => (v.items || []).forEach((it) => items.push({ ...it, group: v.title })));
+    if (!items.length) return '';
+    return `<div class="coverflow" tabindex="0" aria-roledescription="körhinta" aria-label="Videók">
+      <div class="cf-track">${items.map((it) => `<div class="cf-item" data-yt="${it.id}" data-title="${esc(it.title)}" data-group="${esc(it.group)}">
+        <button type="button" class="cf-media" aria-label="Lejátszás: ${esc(it.title)}">${it.thumb ? `<img src="${it.thumb}" alt="" draggable="false">` : ''}<span class="cf-play"></span></button>
+      </div>`).join('')}</div>
+      <button class="cf-prev hero-arrow" type="button" aria-label="Előző videó">${ICON.left}</button>
+      <button class="cf-next hero-arrow" type="button" aria-label="Következő videó">${ICON.right}</button>
+      <div class="cf-caption"><span class="card-meta" data-cf-label></span><h3 data-cf-title></h3></div>
+    </div>`;
   }
 
   function articleCard(a) {
@@ -520,6 +574,7 @@
 
   function pageVideos() {
     return `<div class="wrap page">${crumbs([['Videók', null]])}<h1 class="page-title">Videók</h1>
+      <div class="sec-dark videos-inline">${coverflowHTML()}</div>
       <div class="cards">${S.videos.map((v) => `<a class="card" href="#${v.path}"><span class="card-img">${v.img ? `<img src="${v.img}" alt="" loading="lazy">` : ''}</span><span class="card-body"><h3>${esc(v.title)}</h3><p>${esc(v.title)} videók</p><span class="card-meta">Bővebben …</span></span></a>`).join('')}</div></div>`;
   }
   function pageVideo(v) {
@@ -609,6 +664,10 @@
           <li><b>Gyorsabb betöltés</b>WebP képek, kevesebb szkript (nincs jQuery és körhinta-bővítmény).</li>
           <li><b>Akadálymentesség</b>Billentyűzettel kezelhető, jobb kontraszt, alt-szövegek, „Ugrás a tartalomra”.</li>
           <li><b>Kosár és pénztár</b>WooCommerce-alapú, áttekinthető pénztár Viva Wallet bankkártyás fizetéssel.</li>
+          <li><b>Forgó FX fegyverek</b>A két egymásnak támasztott fegyver nagyobb, átnyúlik a fehér és a sötét blokkon, és 3D-ben forog. Egérrel vagy ujjal meg is forgathatod.</li>
+          <li><b>Szétszedett Panthera</b>Új blokk: görgetésre az FX Panthera szétesik, az alkatrészei a gyári robbantott ábra szerint a helyükre repülnek.</li>
+          <li><b>Videókarusszel</b>A Videók oldal 7 videója 3D-s lapozóban a nyitóoldalon és a Videók oldal tetején.</li>
+          <li><b>Parallax</b>A fegyveres háttérképek görgetés közben állnak (asztali gépen).</li>
         </ul>
         <h2>Ami a háttérben jön</h2>
         <ul>
@@ -660,6 +719,7 @@
     const path = decodeURIComponent(raw.split('?')[0]) || '/';
     const r = resolve(path);
     clearInterval(heroTimer);
+    if (window.SlugFX) window.SlugFX.destroy();
     const main = $('#main');
     main.innerHTML = r.html;
     document.title = r.title + ' – Slugshop';
@@ -673,6 +733,11 @@
     window.scrollTo(0, 0);
     bindForms(main);
     if (r.home) initHome();
+    if (window.SlugFX) {
+      $$('.rifles', main).forEach(window.SlugFX.rifles);
+      $$('.panthera', main).forEach(window.SlugFX.panthera);
+      $$('.coverflow', main).forEach(window.SlugFX.coverflow);
+    }
     if (r.cat && $('#grid')) initList(r.cat);
     if (r.product) initProduct(r.product);
     initPhone(main);

@@ -35,6 +35,16 @@ Benne van a teljes mostani oldal:
 | Kosár, belépés, regisztráció, ÁSZF / Impresszum / Adatvédelem | `#/kosar` → `#/penztar` → köszönő oldal; `#/bejelentkezes`, `#/regisztracio`, jogi oldalak |
 | 18+ ablak a fontos tájékoztatással, sütiablak, akadálymentességi gomb | ugyanezek, a régi szöveggel |
 
+**Látványelemek (Áron kérése, 2026-10-08):**
+- **Forgó FX fegyverek** a nyitóoldalon: nagyobban, átnyúlnak a fehér és a sötét blokkon, 3D-ben forognak
+  (14 rétegből kapnak vastagságot, élükre fordulva sem tűnnek el); egérrel/ujjal megforgathatók.
+- **Szétszedett Panthera** (új blokk): görgetésre az FX Panthera összerakott oldalnézete szétesik, és 77 alkatrész 3D-ben a
+  gyári robbantott ábra szerinti helyére repül. Forrás: a Letöltések oldal `FX_Panthera_Exploded_PartsList.pdf`-je,
+  generátor: `tools/panthera.py` (alkatrészekre bontás, textúraatlasz).
+- **3D videókarusszel** a Videók oldal 7 YouTube-videójával (cím és bélyegkép helyben, lejátszás youtube-nocookie-val).
+- **Fix parallax** a fegyveres háttérképeken (asztali gépen; érintőképernyőn kikapcsolva).
+- Teljesítmény: csak transform/opacity animáció (GPU), csak látható blokk számol, „csökkentett mozgás” beállításnál áll.
+
 Az ügyfélnek szóló magyarázat az előnézetben: **„Előnézet – mi változott?”** gomb (`#/elonezet`).
 Az űrlapok, a belépés és a rendelés semmit nem küldenek el.
 
@@ -78,6 +88,8 @@ assets/js/app.js         útvonalak, oldalak, kosár, kereső, 18+ / süti / aka
 assets/img/              GENERÁLT: WebP képek (p = termék, c = kategória, site, art, page)
 tools/fetch.py           a régi oldal letöltése a cache/ mappába (nincs a gitben)
 tools/extract.py         cache → data.js + képek, szövegjavítások (FIXES)
+tools/panthera.py        a szétszedett Panthera adatai (atlasz, alkatrészek) a gyári PDF-ből
+assets/js/fx.js          látványelemek: forgó fegyverek, Panthera, 3D videókarusszel
 tools/build-single.py    → dist/slugshop-elonezet.html
 tests/smoke.mjs          minden útvonal asztalon és mobilon: JS-hiba, túlcsordulás, egy H1
 tests/flow.mjs           18+, süti, kereső, kosár, pénztár, rendelés
@@ -91,6 +103,7 @@ archiv/taktikai-terv/    a korábbi, elvetett újratervezés
 pip install beautifulsoup4 pillow
 python3 tools/fetch.py          # a régi oldal letöltése (ami a cache/-ben van, azt nem kéri újra)
 python3 tools/extract.py        # data.js + képek (~10 perc első futásra, a képletöltés miatt)
+pip install pymupdf numpy scipy && python3 tools/panthera.py   # a Panthera-blokk adatai
 python3 tools/build-single.py   # dist/slugshop-elonezet.html
 node tests/smoke.mjs && node tests/flow.mjs
 ```

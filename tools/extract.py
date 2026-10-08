@@ -124,6 +124,46 @@ def slug(s):
     return re.sub(r'[^a-z0-9]+', '-', s.translate(tr)).strip('-')[:80] or 'x'
 
 
+def silhouette(url, name, width):
+    """A kép sötét sziluettje (ugyanaz az alfa) – a 3D-s forgatásnál a test „vastagsága”."""
+    src = fetch_bin(url)
+    if not src:
+        return None
+    im = Image.open(src).convert('RGBA')
+    if im.width > width:
+        im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
+    alpha = im.getchannel('A')
+    core = Image.new('RGBA', im.size, (24, 24, 28, 255))
+    core.putalpha(alpha)
+    rel = f'assets/img/site/{name}.webp'
+    core.save(os.path.join(ROOT, rel), 'WEBP', quality=70, method=6)
+    return rel
+
+
+def youtube_item(vid):
+    """A YouTube-videó címe (oEmbed) és bélyegképe, helyben tárolva (az előnézet net nélkül is mutatja)."""
+    d = os.path.join(CACHE, 'yt')
+    os.makedirs(d, exist_ok=True)
+    meta, jpg = os.path.join(d, vid + '.json'), os.path.join(d, vid + '.jpg')
+    if not os.path.exists(meta):
+        subprocess.run(['curl', '-sS', '-m', '20', f'https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={vid}&format=json', '-o', meta])
+    if not os.path.exists(jpg):
+        subprocess.run(['curl', '-sS', '-m', '20', f'https://i.ytimg.com/vi/{vid}/maxresdefault.jpg', '-o', jpg])
+    try:
+        title = json.load(open(meta))['title']
+    except Exception:
+        title = ''
+    thumb = None
+    try:
+        im = Image.open(jpg).convert('RGB')
+        im = im.resize((640, round(im.height * 640 / im.width)), Image.LANCZOS)
+        thumb = f'assets/img/site/yt-{vid}.webp'
+        im.save(os.path.join(ROOT, thumb), 'WEBP', quality=72, method=6)
+    except Exception:
+        pass
+    return {'id': vid, 'title': title, 'thumb': thumb}
+
+
 # ------------------------------------------------------------------ HTML tisztítás
 def clean(html, kind='content'):
     s = BeautifulSoup(html or '', 'html.parser')
@@ -276,7 +316,8 @@ def main():
         paras = [txt(p) for p in e.find_all('p') if txt(p) and txt(p) != txt(a)]
         im = e.find('img')
         blocks.append({'title': txt(head), 'text': ' '.join(paras), 'button': txt(a), 'href': '#' + urlparse(a['href']).path,
-                       'img': image(im.get('src'), 'site', 'blokk-' + cls, 1100, 75) if im else None})
+                       'img': image(im.get('src'), 'site', 'blokk-' + cls, 1600, 80) if im else None,
+                       'imgCore': silhouette(im.get('src'), 'blokk-' + cls + '-mag', 1600) if im else None})
     new_ids = []
     for a in hs.find(class_='negyedik').select('.product-name a, h3 a'):
         last = urlparse(a['href']).path.rsplit('/', 1)[1]
@@ -346,6 +387,7 @@ def main():
         videos.append({'path': path, 'title': txt(sub.select_one('.item-page h1, .page-header h1, h2')) or txt(a),
                        'intro': txt(item.find('p')),
                        'img': image(im.get('src'), 'site', 'video-' + slug(path), 900, 72) if im else None, 'youtube': ids,
+                       'items': [youtube_item(i) for i in ids],
                        'html': clean(re.sub(r'https?://(www\.)?youtube\.com/watch\?v=[\w-]{11}', '', body.decode_contents()) if body else '', 'page')})
     print('videóoldal:', len(videos))
 

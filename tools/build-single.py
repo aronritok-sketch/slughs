@@ -38,7 +38,7 @@ def inline_css(rel):
 
 def inline_js(rel):
     js = open(os.path.join(ROOT, rel), encoding='utf-8').read()
-    if rel.endswith('data.js'):
+    if rel.endswith('data.js'):  # data.js és panthera-data.js
         js = re.sub(r'assets/img/[\w./-]+\.(?:webp|svg|png|jpg)',
                     lambda m: data_uri(os.path.join(ROOT, m.group(0))) if os.path.exists(os.path.join(ROOT, m.group(0))) else m.group(0), js)
     return js.replace('</script', '<\\/script')

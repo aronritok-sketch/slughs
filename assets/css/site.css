@@ -346,3 +346,87 @@ html.a11y-big { font-size: 112.5%; }
 .prose { overflow-wrap: anywhere; }
 .prose table { display: block; overflow-x: auto; }
 h1, h2, h3, h4, .woocommerce-loop-product__title, .shop_table .product-name { overflow-wrap: anywhere; }
+
+/* ==========================================================================
+   Látványelemek: forgó fegyverek, szétszedett Panthera, 3D videókarusszel, parallax
+   ========================================================================== */
+
+/* Fix parallax a fegyveres háttérképeknél (érintőképernyőn kikapcsolva: ott akadozna) */
+@media (hover: hover) and (pointer: fine) {
+  .intro, .contact-band, .site-footer { background-attachment: scroll, fixed, scroll; }
+}
+
+/* A két egymásnak támasztott fegyver: átnyúlik a fehér és a sötét blokkon, 3D-ben forog */
+.features { position: relative; }
+.features .feature { position: relative; z-index: 1; }
+.features .feature .iu-row { min-height: 340px; align-items: center; }
+.rifles { position: absolute; z-index: 2; top: 3%; bottom: 2%; right: max(var(--margin), calc((100% - var(--container)) / 2)); width: min(44%, 620px); pointer-events: none; }
+.rifles-stage { position: relative; height: 100%; perspective: 1700px; display: grid; place-items: center; pointer-events: auto; cursor: grab; touch-action: pan-y; user-select: none; }
+.rifles-stage.is-drag { cursor: grabbing; }
+.rifles-spin { position: relative; height: 96%; aspect-ratio: 600 / 800; transform-style: preserve-3d; will-change: transform; }
+.rifles-spin img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; backface-visibility: visible; -webkit-user-drag: none; }
+.rifles-shadow { position: absolute; left: 50%; bottom: 1%; width: 62%; height: 26px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.6), rgba(0,0,0,0)); transform: translateX(-50%); filter: blur(2px); }
+@media (max-width: 991.8px) {
+  .rifles { position: relative; top: auto; bottom: auto; right: auto; width: 100%; height: 440px; background: linear-gradient(var(--c-white) 50%, var(--c-panel) 50%); }
+  .features .feature .iu-row { min-height: 0; }
+  .feature--light { padding-bottom: var(--space-6); }
+  .feature--dark { padding-top: var(--space-6); }
+}
+
+/* Szétszedett Panthera: ragadós színpad, görgetésre robbanó alkatrészek */
+.panthera { position: relative; height: 340vh; background: radial-gradient(ellipse at 50% 55%, #2a2a30 0%, #121215 62%); border-top: 1px solid #2c2c31; }
+.panthera-sticky { position: sticky; top: 74px; height: calc(100vh - 74px); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; padding: var(--space-5) 0 var(--space-4); }
+.panthera-head .sec-title { margin-bottom: 0; }
+.panthera-head { text-align: center; }
+.panthera-head p { max-width: 62ch; margin: var(--space-2) auto 0; }
+.eyebrow { display: inline-block; font-size: var(--fs-small); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--c-primary); margin-bottom: var(--space-2); }
+.panthera-stage { position: relative; perspective: 1400px; perspective-origin: 50% 40%; touch-action: pan-y; }
+.panthera-scene { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; will-change: transform; }
+.panthera-render { position: absolute; z-index: 2; filter: drop-shadow(0 18px 24px rgba(0,0,0,.55)); }
+.pp { position: absolute; left: 0; top: 0; background-image: url('../img/panthera/atlas.webp'); background-repeat: no-repeat; will-change: transform, opacity; opacity: 0; transform-origin: 50% 50%; filter: drop-shadow(0 0 3px rgba(234,129,11,.18)); }
+.panthera.is-done .pp { filter: drop-shadow(0 0 2px rgba(234,129,11,.35)); }
+.panthera-foot { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-3) var(--space-5); }
+.panthera-count { color: var(--c-on-dark-muted); font-size: var(--fs-small); }
+.panthera-count b { color: var(--c-primary); font-size: 1.375rem; font-variant-numeric: tabular-nums; }
+.panthera-progress { height: 3px; background: #2e2e33; }
+.panthera-progress i { display: block; height: 100%; background: var(--c-primary); transform-origin: left; transform: scaleX(0); }
+.panthera-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: flex-end; }
+.panthera-src { grid-column: 1 / -1; color: #8a8a90; font-size: var(--fs-xs); }
+@media (max-width: 991.8px) {
+  .panthera { height: 300vh; }
+  .panthera-sticky { top: 64px; height: calc(100vh - 64px); padding-top: var(--space-5); }
+  .panthera-head p { font-size: var(--fs-small); }
+  .panthera-foot { grid-template-columns: 1fr; }
+  .panthera-actions { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { .panthera { height: auto; } .panthera-sticky { position: relative; top: 0; height: 90vh; } }
+
+/* 3D videókarusszel (coverflow) */
+.videos-band { padding: var(--space-9) 0; background: linear-gradient(#17171b, #101013); border-top: 1px solid #2c2c31; }
+.band-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); margin-bottom: var(--space-6); }
+.band-head .sec-title { margin: 0; }
+.coverflow { position: relative; perspective: 1600px; outline: none; padding-bottom: var(--space-2); }
+.coverflow:focus-visible { box-shadow: var(--focus); }
+.cf-track { position: relative; width: min(760px, 78%); margin: 0 auto; aspect-ratio: 16 / 9; transform-style: preserve-3d; }
+.cf-item { position: absolute; inset: 0; transition: transform .6s var(--ease), opacity .6s var(--ease); transform-style: preserve-3d; }
+.cf-media { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 1px solid #34343a; background: #0b0b0d; cursor: pointer; overflow: hidden; display: grid; place-items: center; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8); -webkit-box-reflect: below 6px linear-gradient(transparent 72%, rgba(255,255,255,.12)); }
+.cf-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.cf-item.is-current .cf-media { border-color: var(--c-primary); }
+.cf-item.is-current .cf-media:hover img { transform: scale(1.03); }
+.cf-media iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cf-play { position: relative; width: 78px; height: 54px; border-radius: 14px; background: rgba(230, 33, 23, .92); display: grid; place-items: center; opacity: 0; transition: opacity .3s; }
+.cf-play::before { content: ''; border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
+.cf-item.is-current .cf-play { opacity: 1; }
+.cf-item:not(.is-current) .cf-media::after { content: ''; position: absolute; inset: 0; background: rgba(10,10,12,.45); }
+.coverflow .hero-arrow { top: calc(50% - 40px); }
+.cf-caption { text-align: center; margin-top: var(--space-7); min-height: 4.5em; }
+.cf-caption h3 { font-size: 1.375rem; font-weight: 600; margin: var(--space-1) 0 0; }
+.videos-inline { background: #121215; padding: var(--space-7) var(--space-4) var(--space-5); margin-bottom: var(--space-7); }
+@media (max-width: 760px) {
+  .cf-track { width: 86%; }
+  .coverflow .hero-arrow { display: grid; width: 38px; height: 38px; }
+  .cf-caption { margin-top: var(--space-5); }
+}
+.videos-band, .videos-inline { overflow: hidden; }
+.features, .panthera { overflow-x: clip; }
+.coverflow .hero-arrow { z-index: 20; }
