@@ -361,11 +361,11 @@ h1, h2, h3, h4, .woocommerce-loop-product__title, .shop_table .product-name { ov
 .features .feature { position: relative; z-index: 1; }
 .features .feature .iu-row { min-height: 340px; align-items: center; }
 .rifles { position: absolute; z-index: 2; top: 3%; bottom: 2%; right: max(var(--margin), calc((100% - var(--container)) / 2)); width: min(44%, 620px); pointer-events: none; }
-.rifles-stage { position: relative; height: 100%; perspective: 1700px; display: grid; place-items: center; pointer-events: auto; cursor: grab; touch-action: pan-y; user-select: none; }
+.rifles-stage { position: relative; height: 100%; pointer-events: auto; cursor: grab; touch-action: pan-y; user-select: none; }
 .rifles-stage.is-drag { cursor: grabbing; }
-.rifles-spin { position: relative; height: 96%; aspect-ratio: 600 / 800; transform-style: preserve-3d; will-change: transform; }
-.rifles-spin img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; backface-visibility: visible; -webkit-user-drag: none; }
-.rifles-shadow { position: absolute; left: 50%; bottom: 1%; width: 62%; height: 26px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.6), rgba(0,0,0,0)); transform: translateX(-50%); filter: blur(2px); }
+.fx3d-canvas { position: absolute; inset: 0; display: block; }
+.fx3d-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity .6s; }
+.is-3d > .fx3d-fallback { opacity: 0; pointer-events: none; }
 @media (max-width: 991.8px) {
   .rifles { position: relative; top: auto; bottom: auto; right: auto; width: 100%; height: 440px; background: linear-gradient(var(--c-white) 50%, var(--c-panel) 50%); }
   .features .feature .iu-row { min-height: 0; }
@@ -380,14 +380,15 @@ h1, h2, h3, h4, .woocommerce-loop-product__title, .shop_table .product-name { ov
 .panthera-head { text-align: center; }
 .panthera-head p { max-width: 62ch; margin: var(--space-2) auto 0; }
 .eyebrow { display: inline-block; font-size: var(--fs-small); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--c-primary); margin-bottom: var(--space-2); }
-.panthera-stage { position: relative; perspective: 1400px; perspective-origin: 50% 40%; touch-action: pan-y; }
-.panthera-scene { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; will-change: transform; }
-.panthera-render { position: absolute; z-index: 2; filter: drop-shadow(0 18px 24px rgba(0,0,0,.55)); }
-.pp { position: absolute; left: 0; top: 0; background-image: url('../img/panthera/atlas.webp'); background-repeat: no-repeat; will-change: transform, opacity; opacity: 0; transform-origin: 50% 50%; filter: drop-shadow(0 0 3px rgba(234,129,11,.18)); }
-.panthera.is-done .pp { filter: drop-shadow(0 0 2px rgba(234,129,11,.35)); }
+.panthera-stage { position: relative; touch-action: pan-y; }
+.panthera-stage .fx3d-fallback { object-fit: contain; padding: 0 6%; }
+.p3d-labels { position: absolute; inset: 0; pointer-events: none; opacity: 0; }
+.p3d-leads { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.p3d-leads line { stroke: rgba(234,129,11,.75); stroke-width: 1; }
+.p3d-leads circle { fill: #EA810B; stroke: rgba(18,18,21,.9); stroke-width: 1.5; }
+.p3d-label { position: absolute; left: 0; top: 0; padding: 5px 10px; background: rgba(18,18,21,.82); border: 1px solid rgba(234,129,11,.55); color: #fff; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; backdrop-filter: blur(4px); }
 .panthera-foot { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-3) var(--space-5); }
 .panthera-count { color: var(--c-on-dark-muted); font-size: var(--fs-small); }
-.panthera-count b { color: var(--c-primary); font-size: 1.375rem; font-variant-numeric: tabular-nums; }
 .panthera-progress { height: 3px; background: #2e2e33; }
 .panthera-progress i { display: block; height: 100%; background: var(--c-primary); transform-origin: left; transform: scaleX(0); }
 .panthera-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: flex-end; }

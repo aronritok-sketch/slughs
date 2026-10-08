@@ -317,14 +317,8 @@
   }
 
   function riflesHTML(b) {
-    const layers = [];
-    for (let i = 0; i < 14; i++) {
-      const z = -13 + i * 2;
-      const face = i === 0 || i === 13;
-      layers.push(`<img src="${face ? b.img : b.imgCore}" alt="" style="transform:translateZ(${z}px)" draggable="false">`);
-    }
     return `<div class="rifles" aria-hidden="true"><div class="rifles-stage" title="Húzd oldalra a forgatáshoz">
-      <div class="rifles-spin">${layers.join('')}</div><div class="rifles-shadow"></div></div></div>`;
+      <img class="fx3d-fallback" src="${b.img}" alt="" draggable="false"></div></div>`;
   }
 
   function pantheraHTML() {
@@ -336,9 +330,9 @@
           <h2 class="sec-title">Darabjaira szedve</h2>
           <p>Görgess, és nézd meg, miből épül fel egy FX Panthera. Az alkatrészek cikkszám szerint rendelhetők, a robbantott ábrák a Letöltések között vannak.</p>
         </div>
-        <div class="panthera-stage"><div class="panthera-scene"><img class="panthera-render" src="${D.render}" alt="FX Panthera oldalnézet" draggable="false"></div></div>
+        <div class="panthera-stage"><img class="fx3d-fallback" src="${D.render}" alt="FX Panthera oldalnézet" draggable="false"></div>
         <div class="wrap panthera-foot">
-          <div class="panthera-count"><b data-pcount>0</b> / ${D.parts.length} alkatrész a helyén</div>
+          <div class="panthera-count">Görgess tovább – a fegyver alkatrészeire bomlik</div>
           <div class="panthera-progress" aria-hidden="true"><i></i></div>
           <div class="panthera-actions"><a class="btn" href="#/fx-alkatreszek">FX alkatrészek</a><a class="btn" href="${D.pdf}" target="_blank" rel="noopener">Robbantott ábra (PDF)</a></div>
           <small class="panthera-src">Forrás: FX Airguns gyári robbantott ábra</small>
@@ -664,8 +658,8 @@
           <li><b>Gyorsabb betöltés</b>WebP képek, kevesebb szkript (nincs jQuery és körhinta-bővítmény).</li>
           <li><b>Akadálymentesség</b>Billentyűzettel kezelhető, jobb kontraszt, alt-szövegek, „Ugrás a tartalomra”.</li>
           <li><b>Kosár és pénztár</b>WooCommerce-alapú, áttekinthető pénztár Viva Wallet bankkártyás fizetéssel.</li>
-          <li><b>Forgó FX fegyverek</b>A két egymásnak támasztott fegyver nagyobb, átnyúlik a fehér és a sötét blokkon, és 3D-ben forog. Egérrel vagy ujjal meg is forgathatod.</li>
-          <li><b>Szétszedett Panthera</b>Új blokk: görgetésre az FX Panthera szétesik, az alkatrészei a gyári robbantott ábra szerint a helyükre repülnek.</li>
+          <li><b>Forgó FX fegyverek</b>Két egymásnak támasztott, valódi 3D-s (WebGL) FX Panthera, átnyúlik a fehér és a sötét blokkon, és folyamatosan körbeforog. Egérrel vagy ujjal meg is forgathatod.</li>
+          <li><b>Szétszedett Panthera</b>Új blokk: görgetésre a 3D-s FX Panthera körül elfordul a kamera, a fegyver alkatrészeire bomlik, és címkék mutatják, mi micsoda. Fém, eloxált és gumi anyagok, valódi fények és árnyék.</li>
           <li><b>Videókarusszel</b>A Videók oldal 7 videója 3D-s lapozóban a nyitóoldalon és a Videók oldal tetején.</li>
           <li><b>Parallax</b>A fegyveres háttérképek görgetés közben állnak (asztali gépen).</li>
         </ul>
@@ -720,6 +714,7 @@
     const r = resolve(path);
     clearInterval(heroTimer);
     if (window.SlugFX) window.SlugFX.destroy();
+    if (window.SlugFX3D) window.SlugFX3D.destroy();
     const main = $('#main');
     main.innerHTML = r.html;
     document.title = r.title + ' – Slugshop';
@@ -734,9 +729,11 @@
     bindForms(main);
     if (r.home) initHome();
     if (window.SlugFX) {
-      $$('.rifles', main).forEach(window.SlugFX.rifles);
-      $$('.panthera', main).forEach(window.SlugFX.panthera);
       $$('.coverflow', main).forEach(window.SlugFX.coverflow);
+    }
+    if (window.SlugFX3D) {
+      $$('.rifles', main).forEach(window.SlugFX3D.rifles);
+      $$('.panthera', main).forEach(window.SlugFX3D.panthera);
     }
     if (r.cat && $('#grid')) initList(r.cat);
     if (r.product) initProduct(r.product);
