@@ -1,91 +1,128 @@
-# Slugshop – új frontend (HTML prototípus)
+# Slugshop – slugshop.hu átköltöztetése WordPressre (ráncfelvarrás)
 
-A slugshop.hu (Joomla) teljes frontendjének újratervezése statikus HTML/CSS/JS formában. Ha ez a verzió jóvá van hagyva, ebből készül a WordPress (WooCommerce) sablon.
+Slugshop Kft., Jászberény: FX légfegyverek, ZAN slugok (kizárólagos magyarországi forgalmazó), JSB, alkatrészek,
+szerviz. A mostani oldal Joomla 4 + VirtueMart (vp_smart sablon).
 
-**Irány:** modern, sötét olíva alapszín, coyote-tan jelölések, a brand zöldje az akciógombokon. Katonai/taktikai hangulat, de visszafogottan: célkereszt-sarkok, műszaki rajz, stencil címsorok, mono „adatlap” feliratok.
+## A döntés (Áron, 2026-10-08)
 
-## Megnyitás
+- **Nincs új design, csak ráncfelvarrás.** Az ügyfél kérése: a kinézet, a szövegek, a képek, a kategóriák és a termékek
+  maradjanak, minden hasonlítson a mostani oldalra. Ugyanaz a módszer, mint a Joomla-költöztetéseknél
+  (Bébiszitter Akadémia, littleminds.hu): **a design és a szöveg a régi oldalé, minden más legyen profi.**
+- **Az új oldal a mi rendszerünkön készül:** WordPress + WooCommerce, `iu_theme` + `slugshop` child téma (mint a Mandala),
+  űrlap- és page builder plugin nélkül.
+- **JUTA-Soft kapcsolat, mint a Mandalánál:** termékek, árak, készlet a JUTA-ból; a rendelések a JUTA-ba. Terv: [docs/JUTA.md](docs/JUTA.md).
+- **Első lépés: egyoldalas, kattintható HTML-előnézet** jóváhagyásra. Ez az, ami most ebben a repóban van.
+- A korábbi, sötét „taktikai” újratervezés (2026-09-25) érvényét vesztette: [`archiv/taktikai-terv/`](archiv/taktikai-terv/README.md).
 
-Nincs build lépés. Nyisd meg az `index.html`-t böngészőben (dupla kattintás), vagy indíts egy helyi szervert:
+## Az előnézet
 
-```bash
-python3 -m http.server 8000
-# → http://localhost:8000
-```
+**Egy fájlban:** [`dist/slugshop-elonezet.html`](dist/slugshop-elonezet.html) (~12 MB). Dupla kattintással megnyílik,
+internet nélkül is működik (a betűk és a képek benne vannak; a YouTube-videókhoz kell net). Ügyfélnek a CRM
+ügyfélportálon át megy (Tartalom → anyag → Weboldal-előnézet), nem külső linkként.
 
-## Letölthető, egyfájlos változat
+Fejlesztéshez az `index.html` is megnyitható közvetlenül, vagy: `python3 -m http.server 8000`.
 
-`dist/slugshop-prototipus.html` – az egész prototípus egyetlen HTML fájlban (CSS, JS, adatok beágyazva). Letöltés után dupla kattintással megnyitható, e-mailben is továbbküldhető. Az oldalak között ugyanúgy lehet kattintgatni; a cím végén a `#kategoria/…`, `#termek/…` rész választja ki az oldalt. A bal alsó „Útmutató” gomb elmagyarázza, mi van benne. (A betűtípusokhoz internet kell, nélküle tartalék betűvel jelenik meg.)
+Benne van a teljes mostani oldal:
 
-Újragenerálás a forrásfájlokból:
-
-```bash
-python3 tools/build-single.py
-```
-
-## Oldalak
-
-| Fájl | Tartalom |
+| Régi oldal | Előnézet (útvonal = a régi URL) |
 |---|---|
-| `index.html` | Nyitóoldal: hero dia + ZAN műszaki rajz kaliberváltóval, bizalmi sáv, kategóriák, új termékek (szűrhető), ZAN összehasonlító tábla, rólunk, videó, cikkek, kapcsolat űrlap |
-| `kategoria.html` | Webshop: kategória-, kaliber-, ár- és készletszűrő, rendezés, rács/lista nézet, aktív szűrő chipek. Mobilon a szűrő oldalsó fiókban nyílik |
-| `termek.html` | Termék adatlap: ár, készlet, gyors specifikáció, mennyiség + kosárba, leírás / specifikáció / szállítás fülek, kapcsolódó termékek |
-| `kosar.html` | Kosár: mennyiség, törlés, kuponmező, összesítő |
-| `penztar.html` | Pénztár: kapcsolattartó, szállítás (személyes átvételnél elrejti a címet), céges számla, fizetési mód, ÁSZF, visszaigazolás |
-| `kapcsolat.html` | Elérhetőségek, cégadatok, üzenetküldés fájlcsatolással |
-| `szerviz.html` | Szolgáltatások, a szerviz menete, szervizbejelentő űrlap |
-| `videok.html`, `letoltesek.html`, `cikkek.html`, `cikk.html`, `rolunk.html` | Tartalmi oldalak |
-| `utmutato.html` | Prototípus útmutató: mi hol van, mit érdemes kipróbálni, mi minta tartalom |
+| Kezdőlap: csúszka (5 dia), 4 csempe, bemutatkozás, két szöveges blokk, Új termékek, kapcsolati űrlap, Cikkeink | `#/` – ugyanez, a Cikkeink blokkban a legfrissebb cikkekkel |
+| 30 kategória a fával, leírással, alkategória-csempékkel | `#/zan-slugok`, `#/fx-termekek/…` – oldalsáv, rendezés, „csak raktáron” |
+| 516 termék (530 adatlap, a több kategóriában szereplők összevonva), ár, készlet, cikkszám, leírás, galéria | `#/zan-slugok/22-5-5mm-slugs/…` – adatlap, kosárba / értesítést kérek, kérdés |
+| Szerviz, Rólunk, Letöltések (robbantott ábrák PDF-ben), Kapcsolat (cím, nyitvatartás, űrlap) | `#/szerviz`, `#/rolunk`, `#/letoltesek`, `#/kapcsolat` |
+| Videók (FX Impact M3, King, DRS – 7 YouTube-videó) | `#/videok`, `#/videok/fx-king` … |
+| Cikkeink: 11 magyar + 4 angol cikk | `#/cikkeink`, `#/cikkeink/cikkek/…`, `#/cikkeink/articles/…` |
+| Kosár, belépés, regisztráció, ÁSZF / Impresszum / Adatvédelem | `#/kosar` → `#/penztar` → köszönő oldal; `#/bejelentkezes`, `#/regisztracio`, jogi oldalak |
+| 18+ ablak a fontos tájékoztatással, sütiablak, akadálymentességi gomb | ugyanezek, a régi szöveggel |
 
-Közös elemek (JS-ből kerülnek be minden oldalra): felső sáv (telefon, e-mail, HUF/EUR, közösségi linkek, belépés), futó hírsáv, ragadós fejléc kereséssel és kosárral, legördülő menük, mobil menü, kosár fiók, kereső (`/` billentyű), belépés/regisztráció ablak, „értesítést kérek” ablak, süti sáv, lábléc a cégadatokkal és az engedélyköteles termékekre vonatkozó megjegyzéssel.
+Az ügyfélnek szóló magyarázat az előnézetben: **„Előnézet – mi változott?”** gomb (`#/elonezet`).
+Az űrlapok, a belépés és a rendelés semmit nem küldenek el.
 
-A kosár, a pénznem és a süti-döntés a böngésző `localStorage`-ában marad meg, így oldalak között is működik.
+### Mi változott (ráncfelvarrás)
 
-## Fájlszerkezet
+- A menü egy sorban (a régin a „Kapcsolat” második sorba tört), ragadós fejléc, mobilon oldalsó menü.
+- Mobilnézet: csempék 2×2-ben, a nyitókép szövege olvasható sötétítéssel, nincs vízszintes görgetés.
+- Egyforma termékkártyák, „Elfogyott” jelölés, „Értesítést kérek!”; termékoldalon „Ebben a kategóriában még”.
+- A nyitóoldali „Cikkeink” blokk eddig üres volt → a legfrissebb cikkek.
+- 16 px alap betűméret (a régin 14–15 px), AA kontraszt, billentyűzetes fókusz, „Ugrás a tartalomra”, alt-szövegek.
+- WebP képek, jQuery és körhinta-bővítmény nélkül.
+- Csak felsorolt szövegjavítások (`tools/extract.py` → `FIXES`): Bővebbem → Bővebben, elismerves → elismerve,
+  Drimline → Dreamline, bankártyás → bankkártyás, Elmultál → Elmúltál, Csak is → Csakis, Szervíz → Szerviz,
+  hiányzó szóközök, „Only 10 in stock” → „Raktáron (10 db)”. A szöveg egyébként betűre a régi
+  (a régi oldal vegyesen magáz és tegez – ez is marad, lásd Nyitott kérdések).
+
+### A régi oldal hibái, amiket találtunk
+
+| Hiba | Az új oldalon |
+|---|---|
+| Az **Impresszum** és az **Adatvédelmi nyilatkozat** oldal üres (csak a cím) | Impresszum a cégadatokkal; adatkezelési tájékoztató a Fogyasztó Barátból, mint az ÁSZF |
+| A nyitóoldali „Cikkeink” körhinta üres | a legfrissebb cikkek |
+| Az „ELR Zan slug” kategória üres, pedig az 1. dia gombja oda visz (az ELR termékek a „ZAN slugok” főkategóriában vannak) | élesítés előtt: a termékeket a kategóriába tenni, vagy a gombot a főkategóriára |
+| „Teszt csomag” kategória a nyilvános menüben | rákérdezni: valódi termékcsomag vagy teszt? |
+| `/tarak/fx-impact-kaliber-specifikus-egylovesu-rakodo-o-gyuruvel` a listában van, de az adatlapja nem nyílik meg | a termék adatait ellenőrizni |
+| Egy termékkép sérült (`elsosegely_csomag_vadasz…`), 44 terméknek nincs leírása | képcsere / leírás pótlása (nem kötelező) |
+| Angol rendszerüzenet a készletnél („Only 10 in stock”) | magyarul |
+
+## Felépítés
 
 ```
-assets/
-  css/style.css      design tokenek + minden komponens
-  js/data.js         termékek, kategóriák, diák, beállítások
-  js/app.js          fejléc/lábléc, kosár, kereső, űrlapok, oldalmodulok
-  img/termekek/      termékfotók (lásd lent)
-  img/cikkek/        cikkek borítóképei
+index.html               az előnézet váza (a tartalmat az app.js rajzolja a data.js-ből)
+theme/theme.json         paletta és betű (a child téma theme.json-ja)
+assets/css/vars.css      tokenek, --iu-* felülírások (child téma vars.css)
+assets/css/iu.css        az iu szerkezeti alap – CSAK a prototípushoz (WordPressben az iu_theme adja)
+assets/css/site.css      fejléc, csúszka, sávok, lábléc, űrlapok, felugrók (child téma style.css)
+assets/css/shop.css      WooCommerce klasszikus markup: lista, adatlap, kosár, pénztár (child téma shop.css)
+assets/css/fonts.css     Barlow (helyi másolat) + assets/fonts/
+assets/js/data.js        GENERÁLT: kategóriák, termékek, oldalak, cikkek, videók (tools/extract.py)
+assets/js/app.js         útvonalak, oldalak, kosár, kereső, 18+ / süti / akadálymentesség
+assets/img/              GENERÁLT: WebP képek (p = termék, c = kategória, site, art, page)
+tools/fetch.py           a régi oldal letöltése a cache/ mappába (nincs a gitben)
+tools/extract.py         cache → data.js + képek, szövegjavítások (FIXES)
+tools/build-single.py    → dist/slugshop-elonezet.html
+tests/smoke.mjs          minden útvonal asztalon és mobilon: JS-hiba, túlcsordulás, egy H1
+tests/flow.mjs           18+, süti, kereső, kosár, pénztár, rendelés
+docs/JUTA.md             JUTA-Soft terv
+archiv/taktikai-terv/    a korábbi, elvetett újratervezés
 ```
 
-## Képek
+## Újragenerálás
 
-A feltöltött mentésből a képek nem jöttek át, ezért minden termék helyén egy vonalas rajz áll (slug, diabolo, céltávcső, tár stb.). Ha a képfájl létezik, automatikusan lecseréli a rajzot.
+```bash
+pip install beautifulsoup4 pillow
+python3 tools/fetch.py          # a régi oldal letöltése (ami a cache/-ben van, azt nem kéri újra)
+python3 tools/extract.py        # data.js + képek (~10 perc első futásra, a képletöltés miatt)
+python3 tools/build-single.py   # dist/slugshop-elonezet.html
+node tests/smoke.mjs && node tests/flow.mjs
+```
 
-- Termékfotó: `assets/img/termekek/<termék-id>.jpg` – az id a `data.js`-ben van, pl. `zan-218-25-5gr.jpg`, `nexus-gen2-4-25x50.jpg`.
-- Cikk borító: `assets/img/cikkek/<cikk-id>.jpg`, pl. `fx-leopard.jpg`.
-- Logó: jelenleg SVG célkereszt + „SLUGSHOP” felirat az `app.js` `LOGO` konstansában; a valódi logóval egy sorban cserélhető.
+Ha a régi oldalon változik valami (új termék, ár), elég a `cache/` megfelelő mappáját törölni és a három lépést újrafuttatni.
 
-## Mi valós és mi minta?
+## WordPress-terv (jóváhagyás után)
 
-**Valós** (a jelenlegi oldalról): a 20 új termék neve, ára, kategóriája és készlete; a menüpontok; a hero szövegek; a rólunk szövegek; telefon, e-mail, közösségi linkek; cégadatok; a Fogyasztó Barát tanúsítvány; a Viva Wallet és Barion fizetés.
+`iu_theme` + `slugshop` child téma, a Mandala felépítésével (`wp-theme/slugshop`, telepítő varázsló, WP-CLI):
 
-**Minta, élesítés előtt ellenőrizendő** (`sample: true` a `data.js`-ben, vagy megjelölve az oldalon):
+| Előnézet | WordPress |
+|---|---|
+| fejléc, felső sáv, menü, lábléc | `templates/global_header.html`, `global_footer.html` (iu/menu, iu-woocommerce/search, mini-cart) |
+| kezdőlap sávjai | `front_page_content.html` iu/section › iu/row › iu/column blokkokból; csúszka: `iu/image-slider`; „Új termékek”: saját blokk |
+| kategóriaoldal | `tax_product_cat_content.html`: oldalsáv kategóriafa (saját blokk), `[products … class="mainquery"]` |
+| termékkártya | „Loop Product” `iu_pattern` |
+| adatlap | `single_product_content.html` (images, price, stock, add-to-cart, short-description, iu/content) |
+| kosár, pénztár | WooCommerce klasszikus (shortcode-os) pénztár, `local_pickup` a személyes átvételhez |
+| kapcsolati, szerviz-, kérdés-űrlap | `iu/form` (nincs CF7) |
+| 18+ ablak, sütiablak, akadálymentesség | a child téma saját funkciói (mint a Bébiszitter Akadémiánál) |
+| ÁSZF, adatkezelés | Fogyasztó Barát beágyazás (`MB0C642A`), ahogy most |
+| JUTA | [docs/JUTA.md](docs/JUTA.md) |
 
-- FX Impact M3 / Dreamline / Panthera / Leopard fegyverek „Ár egyeztetés alapján” jelöléssel (ár nélkül, ajánlatkérő gombbal)
-- Szállítási díj (futár 2.490 Ft) és az EUR árfolyam (395) – ezt élesben a WooCommerce adja
-- A cikkek szövege (a Leopard cikknek csak a bevezetője valós), a letöltések listája, a videókártyák
-- A szerviz szolgáltatások és a menet leírása
+Migráció: a VirtueMart termékei, kategóriái, képei és a cikkek importja; **az URL-ek maradnak** (termék-permalink a
+kategóriautakkal), ami mégis változik, arra 301. Fizetés: Viva Wallet WooCommerce bővítmény.
 
-## Hangnem
+## Nyitott kérdések (az ügyfélnek, a portálon kérdőívként)
 
-A vásárlóknak szóló minden szöveg **tegező** (HelloProVision-szabály, 2026-09-28): „Válaszd”, „kérj ajánlatot”, „Írj nekünk”. Új szövegnél, hibaüzenetnél, e-mail sablonnál is így maradjon.
-
-## Következő lépés: WordPress (Infinite Unity + child téma)
-
-Jóváhagyás után a HelloProVision szabványa szerint készül, kivétel nélkül:
-
-1. **Téma:** `iu_theme` (Infinite Unity) + `slugshop` child téma (`style.css`: `Template: iu_theme`). A design a child téma `vars.css`-ében (`:root` változók) és a `theme.json` palettában: sötét olíva háttér, coyote-tan, brand-zöld; Big Shoulders + Archivo + JetBrains Mono. A keretrendszerhez (`themes/iu_theme`, `mu-plugins/iu_*`) nem nyúlunk, minden projektkód a child témába kerül. Nincs page builder, slider-, wishlist- és űrlap-plugin.
-2. **Sablonok** a child téma `templates/` mappájában: `global_header.html` / `global_footer.html` (felső sáv, hírsáv, menü, `iu-woocommerce/search`, `mini-cart`, `account-menu`; lábléc cégadatokkal és az engedélyköteles termékek megjegyzésével), `front_page_content.html`, `single_page_content.html` (saját H1-hez), `single_product_content.html` (`iu-woocommerce` blokkok: `images`, `price`, `add-to-cart`, `stock`, `product-brand`, `product-badges`, `product-attributes`, `short-description`, `iu/title`, `iu/breadcrumbs`, `iu/content`; leírás / specifikáció / szállítás fülek `iu/tabs`-szal), `tax_product_cat_content.html` és a bolt oldal (`[products … class="mainquery"]` + `iu-woocommerce/filter`), `blog_page_content.html`, `single_post_content.html`, `search_content.html`, `404_content.html`. A termékkártya a „Loop Product” `iu_pattern`.
-3. **Termékadatok:** a `data.js` helyére a WooCommerce adatbázis kerül. Kaliber = `pa_kaliber` attribútum (ebből a kaliberszűrő és a menü kaliberlistája), márka = `product_brand`. Az „Ár egyeztetés alapján” FX fegyverek ár nélküli termékek, a kosár gomb helyett ajánlatkérő gombbal (child téma szűrő). Bruttó árak, 27% ÁFA (`woocommerce_prices_include_tax = yes`).
-4. **Egyedi blokkok** (`iucb_add_block`, `inc/blocks/…`): hero diavetítés + ZAN műszaki rajz kaliberváltóval, ZAN összehasonlító tábla (kosárba gombbal), bizalmi sáv, futó hírsáv, válogatott termékkarusszel (a `product-carousel` csak a legújabb 12-t mutatja), „értesítést kérek” készletfigyelő, HUF/EUR kijelzés (ha marad).
-5. **Űrlapok:** kapcsolat, ajánlatkérés, szervizbejelentés és készletfigyelő az `iu/form` blokkal, űrlap-plugin nélkül (nincs CF7, Fluent Forms). A keretrendszer-hiba miatt az `email` attribútum üres marad, a küldést a child téma `iu_form_submit_{formId}` szűrője végzi (a mezők címkével, válaszcím a kitöltő e-mailje, az `iu/form-accept` ellenőrzése is ott). Ugyanez a szűrő adja át az érdeklődőt a **HelloProVision CRM-nek** a leads hídon (`hpv_leads_map()` → `hpv_leads_send()`, a `helloprovision-leads.php` mu-pluginból; a beállító varázsló telepíti). A CRM csak e-mail címmel vesz fel érdeklődőt, ezért a WordPress-változatban az e-mail mező legyen kötelező. Fájlcsatolás (fotó a fegyverről) a szűrőben, `wp_handle_upload`-dal, méret- és típusellenőrzéssel.
-6. **Kosár, pénztár, fiók:** WooCommerce klasszikus (shortcode-os) kosár és pénztár. Szállítás: futár (díj a WooCommerce-ben) és `local_pickup` (Jászberény) – a blokkos „Pickup location” a klasszikus pénztárral nem működik. Fizetés: **Viva Wallet** és **Barion** WooCommerce fizetési bővítmény (fizetési kaput szabad pluginnal), plusz előre utalás (BACS). ÁSZF oldal a pénztárhoz, céges számla mezők.
-7. **SEO:** JSON-LD a child témában (`inc/schema.php`): `Product` (név, SKU, márka, `Offer` HUF-ban, készlet; az ár nélküli FX fegyvereknél `Offer` nélkül) és `LocalBusiness` / `Store` (Slugshop Kft., Jászberény, Érhát utca 7., telefon, nyitvatartás ha az ügyfél megadja, `sameAs` Facebook, Instagram, YouTube). Oldalanként egy H1, canonical a szűrt listákon.
-8. **Telepítés kódként** (`inc/setup.php`, verziózott, egyszer futó lépések): oldalak, menü, jogi oldalak (ÁSZF, adatkezelés, impresszum, elállás), WooCommerce beállítások (ÁFA, szállítási zónák, pénznem), „Loop Product” minta.
-9. **Joomla-migráció:** termékek, képek és cikkek átköltöztetése, **301-es átirányítások** a régi Joomla URL-ekről az új WooCommerce URL-ekre (termék, kategória, cikk, letöltések; leképezési táblából, a child témában `template_redirect`-en vagy szerverszinten).
-10. **Ellenőrzés élesítés előtt:** teljes rendelés (kosár → pénztár → köszönő oldal → e-mailek), minden űrlap beküldése (e-mail + CRM), mobil nézet vízszintes görgetés nélkül, 404, keresés.
+1. **Szállítási díjak és módok** (futár, személyes átvétel; utánvét van-e?), Barion kell-e a Viva Wallet mellett.
+2. **Megszólítás:** a régi szöveg vegyesen magáz („Vegye fel velünk a kapcsolatot”) és tegez (kategórialeírások).
+   A költöztetési szabály szerint a szöveg marad – vagy egységesítsük tegezőre?
+3. EUR-ár kell-e (a régi oldalon van HUF/EUR váltó); ha igen, milyen árfolyammal.
+4. „Teszt csomag” kategória, üres „ELR Zan slug” kategória (fent).
+5. JUTA: a kérdések a [docs/JUTA.md](docs/JUTA.md) végén.
+6. Bekössük-e az űrlapokat a HelloProVision CRM-be (az Alpha Movers-nél Áron nem kérte; általános szabály még nincs).

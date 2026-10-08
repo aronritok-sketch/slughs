@@ -1,80 +1,58 @@
 #!/usr/bin/env python3
-"""Egyetlen, önálló HTML fájlt készít a prototípusból (dist/slugshop-prototipus.html).
+"""Egyfájlos, kattintható előnézet: dist/slugshop-elonezet.html
 
-Minden oldal <template>-be kerül, a CSS és a JS beágyazva. A fájl bárhol
-megnyitható, nem kell hozzá szerver; oldalváltás a # utáni részből történik.
+Az index.html-be beágyazza a CSS-t (a betűkkel és háttérképekkel), a JS-t és az összes képet (data URI),
+így a fájl dupla kattintással, internet nélkül is megnyílik, e-mailben küldhető, és a CRM ügyfélportál
+„Weboldal-előnézet” anyagába is feltölthető. Internet csak a YouTube-videókhoz kell.
+
 Futtatás a repó gyökeréből:  python3 tools/build-single.py
 """
-import html
+import base64
+import mimetypes
+import os
 import re
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-PAGES = ["index", "kategoria", "termek", "kosar", "penztar", "kapcsolat", "szerviz",
-         "videok", "letoltesek", "cikkek", "cikk", "rolunk", "utmutato"]
-FONTS = re.search(r'<link rel="stylesheet" href="(https://fonts\.googleapis\.com[^"]+)">',
-                  (ROOT / "index.html").read_text(encoding="utf-8")).group(1)
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MIME = {'.webp': 'image/webp', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2'}
 
 
-def read(rel):
-    return (ROOT / rel).read_text(encoding="utf-8")
+def data_uri(path):
+    ext = os.path.splitext(path)[1].lower()
+    mime = MIME.get(ext) or mimetypes.guess_type(path)[0] or 'application/octet-stream'
+    return f'data:{mime};base64,' + base64.b64encode(open(path, 'rb').read()).decode()
 
 
-def page_parts(name):
-    src = read(f"{name}.html")
-    title = re.search(r"<title>(.*?)</title>", src, re.S).group(1)
-    page = re.search(r'<body data-page="([^"]*)"', src).group(1)
-    main = re.search(r'<main id="main">(.*)</main>', src, re.S).group(1)
-    return title, page, main
+def inline_css(rel):
+    css_path = os.path.join(ROOT, rel)
+    css = open(css_path, encoding='utf-8').read()
+
+    def repl(m):
+        url = m.group(2)
+        if url.startswith(('data:', 'http', '#')):
+            return m.group(0)
+        target = os.path.normpath(os.path.join(os.path.dirname(css_path), url))
+        return f'url("{data_uri(target)}")' if os.path.exists(target) else m.group(0)
+
+    return re.sub(r'url\((["\']?)([^)"\']+)\1\)', repl, css)
 
 
 def inline_js(rel):
-    js = read(rel)
-    assert "</script" not in js.lower(), rel
-    return js
+    js = open(os.path.join(ROOT, rel), encoding='utf-8').read()
+    if rel.endswith('data.js'):
+        js = re.sub(r'assets/img/[\w./-]+\.(?:webp|svg|png|jpg)',
+                    lambda m: data_uri(os.path.join(ROOT, m.group(0))) if os.path.exists(os.path.join(ROOT, m.group(0))) else m.group(0), js)
+    return js.replace('</script', '<\\/script')
 
 
-templates = []
-for name in PAGES:
-    title, page, main = page_parts(name)
-    templates.append(f'<template data-file="{name}" data-page="{page}" data-title="{html.escape(title, quote=True)}">{main}</template>')
+def main():
+    html = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
+    html = re.sub(r'<link rel="stylesheet" href="([^"]+)">', lambda m: f'<style>\n{inline_css(m.group(1))}\n</style>', html)
+    html = re.sub(r'<script src="([^"]+)"></script>', lambda m: f'<script>\n{inline_js(m.group(1))}\n</script>', html)
+    os.makedirs(os.path.join(ROOT, 'dist'), exist_ok=True)
+    out = os.path.join(ROOT, 'dist', 'slugshop-elonezet.html')
+    open(out, 'w', encoding='utf-8').write(html)
+    print(f'dist/slugshop-elonezet.html  {os.path.getsize(out) / 1024 / 1024:.1f} MB')
 
-out = f"""<!doctype html>
-<html lang="hu">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Slugshop | Légfegyverek és ZAN lövedékek</title>
-<meta name="description" content="A slugshop.hu új frontendjének kattintható prototípusa, egy fájlban.">
-<meta name="theme-color" content="#10120d">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{FONTS}">
-<style>
-{read("assets/css/style.css")}
-.proto-pill {{ position: fixed; z-index: 55; left: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; background: var(--tan); color: var(--bg); font-family: var(--f-mono); font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; box-shadow: var(--shadow); }}
-.proto-pill:hover {{ background: var(--tan-2); }}
-</style>
-</head>
-<body data-page="">
-<div id="site-header"></div>
-<main id="main"></main>
-<div id="site-footer"></div>
-<a class="proto-pill" href="utmutato.html">? Útmutató</a>
-{"".join(templates)}
-<script>window.SLUG_BUNDLE = true;</script>
-<script>
-{inline_js("assets/js/data.js")}
-</script>
-<script>
-{inline_js("assets/js/app.js")}
-</script>
-</body>
-</html>
-"""
 
-dist = ROOT / "dist"
-dist.mkdir(exist_ok=True)
-target = dist / "slugshop-prototipus.html"
-target.write_text(out, encoding="utf-8")
-print(f"{target.relative_to(ROOT)}  {len(out.encode()) // 1024} KB")
+if __name__ == '__main__':
+    main()

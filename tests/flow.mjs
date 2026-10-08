@@ -1,0 +1,45 @@
+// Vásárlási folyamat az egyfájlos előnézetben: 18+ kapu, süti, kereső, kosár, pénztár, köszönő oldal.
+import { createRequire } from 'module';
+import { execSync } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const require = createRequire(import.meta.url);
+let pw;
+try { pw = require('playwright'); } catch { pw = require(execSync('npm root -g').toString().trim() + '/playwright'); }
+const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const FILE = 'file://' + path.join(root, 'dist', 'slugshop-elonezet.html');
+const fails = []; const ok = (c, m) => { if (!c) fails.push(m); else console.log('✓ ' + m); };
+
+const b = await pw.chromium.launch();
+const p = await (await b.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+p.on('pageerror', (e) => fails.push('JS-hiba: ' + e.message));
+await p.route(/^https?:/, (r) => r.abort());
+await p.goto(FILE);
+ok(await p.isVisible('.modal.age'), '18+ ablak megjelenik');
+await p.click('[data-age=yes]');
+ok(await p.isVisible('.cookie'), 'sütiablak megjelenik az elfogadás után');
+await p.click('[data-ck-act=all]');
+await p.keyboard.press('/'); await p.waitForTimeout(100);
+await p.keyboard.type('zan 25,5');
+ok((await p.locator('.search-hit').count()) > 0, 'kereső talál („zan 25,5”)');
+await p.keyboard.press('Enter'); await p.waitForTimeout(100);
+ok((await p.locator('#main li.product').count()) > 0, 'keresési találati oldal');
+await p.goto(FILE + '#/zan-slugok/22-5-5mm-slugs'); await p.waitForTimeout(100);
+await p.click('#main li.product.instock [data-add] >> nth=0');
+ok((await p.textContent('[data-cart-count]')).trim() === '1', 'kosárba tétel a listából');
+await p.click('#main li.product.instock a.woocommerce-LoopProduct-link >> nth=1'); await p.waitForTimeout(100);
+await p.click('[data-q="1"]'); await p.click('.single_add_to_cart_button');
+ok((await p.textContent('[data-cart-count]')).trim() === '3', 'kosárba tétel az adatlapról (2 db)');
+await p.goto(FILE + '#/kosar'); await p.waitForTimeout(100);
+ok((await p.locator('.shop_table tbody tr').count()) === 2, 'kosár: 2 tétel');
+await p.click('a[href="#/penztar"]'); await p.waitForTimeout(100);
+await p.click('[data-form=checkout] button[type=submit]');
+ok((await p.locator('.field-error').count()) > 0, 'pénztár: hiányzó mezők jelölve');
+for (const [id, v] of [['#b-last', 'Teszt'], ['#b-first', 'Elek'], ['#b-email', 'teszt@pelda.hu'], ['#b-zip', '5100'], ['#b-city', 'Jászberény'], ['#b-street', 'Fő utca 1.']]) await p.fill(id, v);
+await p.type('#b-tel', '06301234567');
+await p.check('[data-form=checkout] input[type=checkbox][required]');
+await p.click('[data-form=checkout] button[type=submit]'); await p.waitForTimeout(150);
+ok((await p.locator('.order-done').count()) === 1 && (await p.textContent('[data-cart-count]')).trim() === '0', 'rendelés leadva, kosár ürítve');
+await b.close();
+console.log(fails.length ? '\nHIBA:\n' + fails.join('\n') : '\nMinden rendben.');
+process.exit(fails.length ? 1 : 0);

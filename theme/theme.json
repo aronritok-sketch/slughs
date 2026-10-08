@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "custom": false,
+      "customGradient": false,
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "palette": [
+        { "name": "Fehér", "slug": "white", "color": "#FFFFFF" },
+        { "name": "Világos (leírás doboz)", "slug": "light", "color": "#F4F4F4" },
+        { "name": "Vonal", "slug": "line", "color": "#E5E5E5" },
+        { "name": "Tinta (szöveg)", "slug": "ink", "color": "#262626" },
+        { "name": "Halvány szöveg", "slug": "muted", "color": "#666666" },
+        { "name": "Sötét (háttér)", "slug": "dark", "color": "#17171B" },
+        { "name": "Panel (fejléc, lábléc)", "slug": "panel", "color": "#222226" },
+        { "name": "Acél (gomb)", "slug": "steel", "color": "#403F42" },
+        { "name": "Acél mély (gomb)", "slug": "steel-deep", "color": "#28282B" },
+        { "name": "Acél keret", "slug": "steel-line", "color": "#47474A" },
+        { "name": "Narancs (kiemelés)", "slug": "primary", "color": "#EA810B" },
+        { "name": "Arany (logó)", "slug": "gold", "color": "#F2C230" },
+        { "name": "Siker", "slug": "success", "color": "#2E7D32" },
+        { "name": "Hiba", "slug": "error", "color": "#C62828" }
+      ]
+    },
+    "typography": {
+      "customFontSize": false,
+      "fontFamilies": [
+        { "name": "Barlow", "slug": "text", "fontFamily": "'Barlow', system-ui, sans-serif" }
+      ]
+    },
+    "spacing": { "customSpacingSize": false },
+    "layout": { "contentSize": "1290px", "wideSize": "1440px" }
+  }
+}
