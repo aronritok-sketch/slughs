@@ -4891,9 +4891,15 @@ three/build/three.module.js:
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const norm = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   const ft = (n) => (n == null ? '' : String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' Ft');
+  // a portál homokozójában nincs localStorage (kivételt dob): ott a window.name őrzi az állapotot újratöltésig
+  const nameStore = () => { try { const o = JSON.parse(window.name || '{}'); return o && typeof o === 'object' ? o : {}; } catch (e) { return {}; } };
   const store = {
-    get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
-    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* nincs tárhely */ } }
+    get(k, d) {
+      try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { const o = nameStore(); return k in o ? o[k] : d; }
+    },
+    set(k, v) {
+      try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { const o = nameStore(); o[k] = v; try { window.name = JSON.stringify(o); } catch (e2) { /* nincs tárhely */ } }
+    }
   };
   const IMG = S.site.img;
 

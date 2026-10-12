@@ -22,8 +22,8 @@ internet nélkül is működik (a betűk és a képek benne vannak; a YouTube-vi
 **Ügyfélnek a portálon:** [`dist/slugshop-elonezet.zip`](dist/slugshop-elonezet.zip) (~8 MB, `index.html` + `assets/`)
 → ügyfélportál, Tartalom → anyag → Weboldal-előnézet (zip), nem külső linkként. A kísérőüzenet:
 [`dist/KISERO-UZENET.md`](dist/KISERO-UZENET.md). A portál homokozóban futtatja (átlátszatlan eredet, nincs
-`localStorage`): a 18+ és a sütiablak minden megnyitáskor feljön, a kosár csak az adott megnyitásig él, a beágyazott
-YouTube helyett a „Megnézem a YouTube-on” link segít. A portál homokozójával (CSP sandbox + `Access-Control-Allow-Origin: *`)
+`localStorage`): ott a `window.name` őrzi a 18+ választást, a sütibeállítást és a kosarat (újratöltés után is, a lap
+bezárásáig); ha a beágyazott YouTube nem indul, a „Megnézem a YouTube-on” link segít. A portál homokozójával (CSP sandbox + `Access-Control-Allow-Origin: *`)
 kipróbálva: betűk, 3D, kosár, navigáció rendben.
 
 Fejlesztéshez az `index.html` is megnyitható közvetlenül, vagy: `python3 -m http.server 8000`.
