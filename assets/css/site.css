@@ -51,7 +51,8 @@ a:hover { color: var(--c-primary); }
 
 /* --- Fejléc: logó, egysoros menü, kereső és kosár --- */
 .site-header { position: sticky; top: 0; z-index: 100; background: var(--c-panel) url('../img/site/headerBg.webp') center/cover; border-bottom: 1px solid #000; }
-.site-header .wrap { display: flex; align-items: center; gap: var(--space-6); min-height: 96px; }
+.site-header .wrap { display: flex; align-items: center; gap: var(--space-4); min-height: 96px; }
+.logo { flex: none; }
 .logo img { width: 84px; height: auto; transition: width var(--dur) var(--ease); }
 .site-header.is-scrolled .logo img { width: 62px; }
 .site-header.is-scrolled .wrap { min-height: 74px; }
@@ -60,7 +61,7 @@ a:hover { color: var(--c-primary); }
 .main-nav > ul > li { position: relative; }
 .main-nav > ul > li + li { border-left: 1px solid #333337; }
 .main-nav > ul > li > a {
-  display: flex; align-items: center; height: 46px; padding: 0 15px;
+  display: flex; align-items: center; height: 46px; padding: 0 14px;
   background: linear-gradient(#2c2c30, #222226); color: var(--c-white);
   font-size: var(--iu-menu-font-size); font-weight: 600; text-transform: uppercase; letter-spacing: .01em; white-space: nowrap;
 }
@@ -77,8 +78,9 @@ a:hover { color: var(--c-primary); }
 .cart-count[data-n="0"] { display: none; }
 .burger { display: none !important; }
 
-@media (max-width: 1240px) { .main-nav > ul > li > a { padding: 0 10px; font-size: .8125rem; } }
-@media (max-width: 1100px) {
+/* a teljes menü a logóval és az ikonokkal 1360 px fölött fér ki, alatta tömörebb, 1230 px alatt hamburger */
+@media (max-width: 1360px) { .main-nav > ul > li > a { padding: 0 10px; font-size: .8125rem; } }
+@media (max-width: 1230px) {
   .main-nav { display: none; }
   .burger { display: grid !important; }
   .site-header .wrap { justify-content: space-between; min-height: 72px; }
@@ -270,6 +272,10 @@ mark { background: rgba(234,129,11,.3); color: inherit; }
 .yt span { position: relative; width: 72px; height: 50px; border-radius: 12px; background: #e62117; display: grid; place-items: center; }
 .yt span::before { content: ''; border-style: solid; border-width: 10px 0 10px 17px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
 .yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+/* beágyazott lejátszó helyett közvetlenül is megnyitható (pl. a portál homokozójában) */
+.yt-out { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-2); font-size: var(--fs-small); color: var(--c-primary-text); text-decoration: underline; text-underline-offset: 3px; }
+.sec-dark .yt-out { color: var(--c-primary); }
+.yt-out::after { content: '↗'; text-decoration: none; }
 .video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); margin-bottom: var(--space-6); }
 @media (max-width: 760px) { .video-grid { grid-template-columns: 1fr; } }
 

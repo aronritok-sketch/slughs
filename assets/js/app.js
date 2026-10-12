@@ -351,7 +351,7 @@
       </div>`).join('')}</div>
       <button class="cf-prev hero-arrow" type="button" aria-label="Előző videó">${ICON.left}</button>
       <button class="cf-next hero-arrow" type="button" aria-label="Következő videó">${ICON.right}</button>
-      <div class="cf-caption"><span class="card-meta" data-cf-label></span><h3 data-cf-title></h3></div>
+      <div class="cf-caption"><span class="card-meta" data-cf-label></span><h3 data-cf-title></h3><a class="yt-out" data-cf-link href="https://www.youtube.com/watch?v=${items[0].id}" target="_blank" rel="noopener">Megnézem a YouTube-on</a></div>
     </div>`;
   }
 
@@ -573,7 +573,7 @@
   }
   function pageVideo(v) {
     return `<div class="wrap page">${crumbs([['Videók', '/videok'], [v.title, null]])}<h1 class="page-title">${esc(v.title)}</h1>
-      <div class="video-grid">${v.youtube.map((id) => `<button class="yt" type="button" data-yt="${id}" aria-label="Videó lejátszása"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span></span></button>`).join('')}</div>
+      <div class="video-grid">${v.youtube.map((id) => `<div><button class="yt" type="button" data-yt="${id}" aria-label="Videó lejátszása"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span></span></button><a class="yt-out" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Megnézem a YouTube-on</a></div>`).join('')}</div>
       <div class="prose">${v.html}</div></div>`;
   }
 
@@ -674,7 +674,7 @@
         <p>A szövegeket nem írtuk át, csak ezeket a pontos javításokat végeztük el:</p>
         <div class="table-scroll"><table class="fix-table"><thead><tr><th>Régi</th><th>Új</th></tr></thead><tbody>${fixes}</tbody></table></div>
         <h2>Amit az előnézet nem tud</h2>
-        <p>Az űrlapok, a belépés és a rendelés nem küld el semmit, fizetés nincs. A YouTube-videókhoz internet kell. Az árak és a készlet a letöltés pillanatában érvényes állapotot mutatják.</p>
+        <p>Az űrlapok, a belépés és a rendelés nem küld el semmit, fizetés nincs. A YouTube-videókhoz internet kell; ha egy videó itt nem indulna el, a „Megnézem a YouTube-on” link új lapon megnyitja. Az árak és a készlet a letöltés pillanatában érvényes állapotot mutatják.</p>
         <p><strong>Ha valamit másképp szeretnél, írd meg</strong> – oldalanként, akár képernyőképpel.</p>
       </div></div>`;
   }

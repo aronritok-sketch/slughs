@@ -21,6 +21,7 @@
     const items = Array.from(root.querySelectorAll('.cf-item'));
     const title = root.querySelector('[data-cf-title]');
     const label = root.querySelector('[data-cf-label]');
+    const link = root.querySelector('[data-cf-link]');
     if (!items.length) return;
     let cur = 0;
     const set = (n) => {
@@ -41,6 +42,7 @@
       });
       if (title) title.textContent = items[cur].dataset.title;
       if (label) label.textContent = `${cur + 1} / ${items.length} · ${items[cur].dataset.group}`;
+      if (link) link.href = `https://www.youtube.com/watch?v=${items[cur].dataset.yt}`;
     };
     items.forEach((el, i) => {
       el.dataset.thumbHtml = el.querySelector('.cf-media').innerHTML;

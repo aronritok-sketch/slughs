@@ -17,8 +17,14 @@ szerviz. A mostani oldal Joomla 4 + VirtueMart (vp_smart sablon).
 ## Az előnézet
 
 **Egy fájlban:** [`dist/slugshop-elonezet.html`](dist/slugshop-elonezet.html) (~12 MB). Dupla kattintással megnyílik,
-internet nélkül is működik (a betűk és a képek benne vannak; a YouTube-videókhoz kell net). Ügyfélnek a CRM
-ügyfélportálon át megy (Tartalom → anyag → Weboldal-előnézet), nem külső linkként.
+internet nélkül is működik (a betűk és a képek benne vannak; a YouTube-videókhoz kell net).
+
+**Ügyfélnek a portálon:** [`dist/slugshop-elonezet.zip`](dist/slugshop-elonezet.zip) (~8 MB, `index.html` + `assets/`)
+→ ügyfélportál, Tartalom → anyag → Weboldal-előnézet (zip), nem külső linkként. A kísérőüzenet:
+[`dist/KISERO-UZENET.md`](dist/KISERO-UZENET.md). A portál homokozóban futtatja (átlátszatlan eredet, nincs
+`localStorage`): a 18+ és a sütiablak minden megnyitáskor feljön, a kosár csak az adott megnyitásig él, a beágyazott
+YouTube helyett a „Megnézem a YouTube-on” link segít. A portál homokozójával (CSP sandbox + `Access-Control-Allow-Origin: *`)
+kipróbálva: betűk, 3D, kosár, navigáció rendben.
 
 Fejlesztéshez az `index.html` is megnyitható közvetlenül, vagy: `python3 -m http.server 8000`.
 
@@ -101,6 +107,7 @@ assets/js/fx3d.js        GENERÁLT: tools/3d (esbuild) csomagolja a three.js-sze
 tools/3d/                a 3D csomagoló (npm install && npm run build)
 assets/js/fx.js          3D videókarusszel
 tools/build-single.py    → dist/slugshop-elonezet.html
+tools/build-zip.py       → dist/slugshop-elonezet.zip (a portál Weboldal-előnézetéhez)
 tests/smoke.mjs          minden útvonal asztalon és mobilon: JS-hiba, túlcsordulás, egy H1
 tests/flow.mjs           18+, süti, kereső, kosár, pénztár, rendelés
 docs/JUTA.md             JUTA-Soft terv
@@ -116,6 +123,7 @@ python3 tools/extract.py        # data.js + képek (~10 perc első futásra, a k
 pip install pymupdf numpy pillow opencv-python-headless && python3 tools/panthera.py   # a 3D-modell adatai
 (cd tools/3d && npm install && npm run build)   # assets/js/fx3d.js
 python3 tools/build-single.py   # dist/slugshop-elonezet.html
+python3 tools/build-zip.py      # dist/slugshop-elonezet.zip
 node tests/smoke.mjs && node tests/flow.mjs
 ```
 
