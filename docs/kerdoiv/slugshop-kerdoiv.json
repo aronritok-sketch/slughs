@@ -1,0 +1,230 @@
+{
+ "title": "Slugshop – kérdéssor az új webshop élesítéséhez",
+ "questions": [
+  {
+   "key": "szall_modok",
+   "hu": "Milyen szállítási módok legyenek az új webshopban?",
+   "en": "Milyen szállítási módok legyenek az új webshopban?",
+   "type": "textarea",
+   "required": true,
+   "section": "Szállítás",
+   "hint": "pl. GLS futár, GLS csomagpont / automata, személyes átvétel (Jászberény, Megyeház u. 3.) – ha más is kell, írd ide"
+  },
+  {
+   "key": "szall_dij",
+   "hu": "Mennyi a szállítási díj (bruttó)? Ha súly vagy kosárérték szerint változik, a teljes díjtábla.",
+   "en": "Mennyi a szállítási díj (bruttó)? Ha súly vagy kosárérték szerint változik, a teljes díjtábla.",
+   "type": "textarea",
+   "required": true,
+   "section": "Szállítás",
+   "hint": "pl. GLS futár 2 490 Ft, csomagpont 1 990 Ft; 30 000 Ft felett ingyenes"
+  },
+  {
+   "key": "szall_ingyenes",
+   "hu": "Van ingyenes szállítás? Ha igen, milyen kosárértéktől?",
+   "en": "Van ingyenes szállítás? Ha igen, milyen kosárértéktől?",
+   "type": "text",
+   "required": false,
+   "section": "Szállítás",
+   "hint": ""
+  },
+  {
+   "key": "szall_gls",
+   "hu": "Van GLS-szerződésetek (ügyfélszám), és a GLS-címkét eddig honnan nyomtattátok?",
+   "en": "Van GLS-szerződésetek (ügyfélszám), és a GLS-címkét eddig honnan nyomtattátok?",
+   "type": "text",
+   "required": true,
+   "section": "Szállítás",
+   "hint": "A GLS bővítmény ezzel köti be a csomagpont-választót és a címkenyomtatást."
+  },
+  {
+   "key": "szall_kulfold",
+   "hu": "Küldtök külföldre is? Ha igen, hova és mennyiért?",
+   "en": "Küldtök külföldre is? Ha igen, hova és mennyiért?",
+   "type": "text",
+   "required": false,
+   "section": "Szállítás",
+   "hint": "A régi oldalon volt EUR-váltó."
+  },
+  {
+   "key": "fiz_modok",
+   "hu": "Milyen fizetési módok legyenek?",
+   "en": "Milyen fizetési módok legyenek?",
+   "type": "textarea",
+   "required": true,
+   "section": "Fizetés és számlázás",
+   "hint": "pl. Viva Wallet bankkártya (a régi oldalon is), előre utalás, utánvét, fizetés átvételkor az üzletben"
+  },
+  {
+   "key": "fiz_viva",
+   "hu": "Megvan a Viva Wallet (Viva.com) üzleti fiókotok? Ki fér hozzá?",
+   "en": "Megvan a Viva Wallet (Viva.com) üzleti fiókotok? Ki fér hozzá?",
+   "type": "text",
+   "required": true,
+   "section": "Fizetés és számlázás",
+   "hint": "A bekötéshez a Merchant ID, az API-kulcs és a fizetési forrás (source code) kell – ezeket ne ide írd: a portálon kérjük."
+  },
+  {
+   "key": "fiz_bank",
+   "hu": "Előre utaláshoz: bankszámlaszám és a kedvezményezett neve.",
+   "en": "Előre utaláshoz: bankszámlaszám és a kedvezményezett neve.",
+   "type": "text",
+   "required": false,
+   "section": "Fizetés és számlázás",
+   "hint": "Csak ha lesz előre utalás."
+  },
+  {
+   "key": "fiz_utanvet",
+   "hu": "Utánvétnél van-e külön díj (bruttó)?",
+   "en": "Utánvétnél van-e külön díj (bruttó)?",
+   "type": "text",
+   "required": false,
+   "section": "Fizetés és számlázás",
+   "hint": "Csak ha lesz utánvét."
+  },
+  {
+   "key": "fiz_barion",
+   "hu": "A régi oldalon Barion Pixel futott. Fizettek még Barionnal, vagy kivehetjük?",
+   "en": "A régi oldalon Barion Pixel futott. Fizettek még Barionnal, vagy kivehetjük?",
+   "type": "text",
+   "required": false,
+   "section": "Fizetés és számlázás",
+   "hint": ""
+  },
+  {
+   "key": "fiz_eur",
+   "hu": "Kell-e euróban is fizetni (a régi oldal fejlécében HUF/EUR váltó volt)?",
+   "en": "Kell-e euróban is fizetni (a régi oldal fejlécében HUF/EUR váltó volt)?",
+   "type": "text",
+   "required": false,
+   "section": "Fizetés és számlázás",
+   "hint": "Az euró külön bővítményt és árfolyamot jelent; ha nem kell, a forint marad."
+  },
+  {
+   "key": "fiz_szamla",
+   "hu": "Mivel számláztok? (Számlázz.hu, Billingo, a JUTA állítja ki, kézzel …)",
+   "en": "Mivel számláztok? (Számlázz.hu, Billingo, a JUTA állítja ki, kézzel …)",
+   "type": "text",
+   "required": true,
+   "section": "Fizetés és számlázás",
+   "hint": "Ha Számlázz.hu vagy Billingo, a webshop magától kiállítja a számlát; a cégeknek az adószámot is ráírja."
+  },
+  {
+   "key": "juta_kapcsolat",
+   "hu": "Ki kezeli nálatok a JUTA-t, és kit kereshetünk a technikai részével (Zoli?)? Név, telefon, e-mail.",
+   "en": "Ki kezeli nálatok a JUTA-t, és kit kereshetünk a technikai részével (Zoli?)? Név, telefon, e-mail.",
+   "type": "text",
+   "required": true,
+   "section": "JUTA-Soft",
+   "hint": ""
+  },
+  {
+   "key": "juta_rendeles",
+   "hu": "Milyen állapotú rendelés menjen be a JUTA-ba: a kifizetett vagy a teljesített (kiküldött)?",
+   "en": "Milyen állapotú rendelés menjen be a JUTA-ba: a kifizetett vagy a teljesített (kiküldött)?",
+   "type": "text",
+   "required": true,
+   "section": "JUTA-Soft",
+   "hint": "A Mandalánál a teljesített rendelések mennek."
+  },
+  {
+   "key": "juta_akcio",
+   "hu": "Az akciós árakat a JUTA-ban kezelitek, vagy a webshopban?",
+   "en": "Az akciós árakat a JUTA-ban kezelitek, vagy a webshopban?",
+   "type": "text",
+   "required": false,
+   "section": "JUTA-Soft",
+   "hint": ""
+  },
+  {
+   "key": "juta_cikkszam",
+   "hu": "A JUTA cikkszáma (vonalkód) ugyanaz, mint a webshop cikkszáma (EAN / FX-cikkszám)?",
+   "en": "A JUTA cikkszáma (vonalkód) ugyanaz, mint a webshop cikkszáma (EAN / FX-cikkszám)?",
+   "type": "text",
+   "required": true,
+   "section": "JUTA-Soft",
+   "hint": "A párosítás a cikkszám alapján megy; ahol eltér, ott kézzel kell egyeztetni."
+  },
+  {
+   "key": "regi_vasarlok",
+   "hu": "Átvigyük a régi vásárlói fiókokat (név, cím, e-mail)? A jelszavak nem vihetők át: első belépéskor újat kérnek.",
+   "en": "Átvigyük a régi vásárlói fiókokat (név, cím, e-mail)? A jelszavak nem vihetők át: első belépéskor újat kérnek.",
+   "type": "text",
+   "required": true,
+   "section": "A régi webshop adatai",
+   "hint": ""
+  },
+  {
+   "key": "regi_rendelesek",
+   "hu": "Kellenek a régi rendelések az új webshopban is (pl. reklamációhoz), vagy elég, ha a JUTA-ban megvannak?",
+   "en": "Kellenek a régi rendelések az új webshopban is (pl. reklamációhoz), vagy elég, ha a JUTA-ban megvannak?",
+   "type": "text",
+   "required": true,
+   "section": "A régi webshop adatai",
+   "hint": ""
+  },
+  {
+   "key": "regi_kuponok",
+   "hu": "Vannak élő kuponok, kedvezmények vagy törzsvásárlói árak?",
+   "en": "Vannak élő kuponok, kedvezmények vagy törzsvásárlói árak?",
+   "type": "text",
+   "required": false,
+   "section": "A régi webshop adatai",
+   "hint": ""
+  },
+  {
+   "key": "ceg_tarhely",
+   "hu": "Hol lesz az új webshop tárhelye? A régi az MHostingnál van – maradjon ott, vagy költözzön?",
+   "en": "Hol lesz az új webshop tárhelye? A régi az MHostingnál van – maradjon ott, vagy költözzön?",
+   "type": "text",
+   "required": true,
+   "section": "Cégadatok, jogi oldalak, tárhely",
+   "hint": "Az impresszumba a tárhelyszolgáltató neve, címe és elérhetősége kell."
+  },
+  {
+   "key": "ceg_domain",
+   "hu": "Ki fér hozzá a slugshop.hu domainhez (DNS)?",
+   "en": "Ki fér hozzá a slugshop.hu domainhez (DNS)?",
+   "type": "text",
+   "required": true,
+   "section": "Cégadatok, jogi oldalak, tárhely",
+   "hint": "A hozzáférést a portálon, jelszókezelőn át kérjük."
+  },
+  {
+   "key": "ceg_email",
+   "hu": "Melyik postafiókból menjenek a webshop levelei (pl. info@slugshop.hu)? Hol van a postafiók?",
+   "en": "Melyik postafiókból menjenek a webshop levelei (pl. info@slugshop.hu)? Hol van a postafiók?",
+   "type": "text",
+   "required": true,
+   "section": "Cégadatok, jogi oldalak, tárhely",
+   "hint": "A levélküldéshez az SMTP-adatok kellenek – azokat a portálon kérjük."
+  },
+  {
+   "key": "ceg_aszf",
+   "hu": "Az ÁSZF és az adatkezelési tájékoztató a Fogyasztó Baráttól töltődik be. Ki frissíti ott az új szállítási és fizetési módokat?",
+   "en": "Az ÁSZF és az adatkezelési tájékoztató a Fogyasztó Baráttól töltődik be. Ki frissíti ott az új szállítási és fizetési módokat?",
+   "type": "text",
+   "required": true,
+   "section": "Cégadatok, jogi oldalak, tárhely",
+   "hint": "Az új webshop új adatkezelést is hoz: kapcsolati űrlap képfeltöltéssel, „Értesítést kérek” feliratkozás."
+  },
+  {
+   "key": "meres_ki",
+   "hu": "Ki kezeli a GTM-et és a hirdetéseket (ti, egy ügynökség)? Kérünk hozzá hozzáférést.",
+   "en": "Ki kezeli a GTM-et és a hirdetéseket (ti, egy ügynökség)? Kérünk hozzá hozzáférést.",
+   "type": "text",
+   "required": false,
+   "section": "Mérés és hirdetések",
+   "hint": ""
+  },
+  {
+   "key": "meres_kell",
+   "hu": "Maradjon mind a három mérőkód?",
+   "en": "Maradjon mind a három mérőkód?",
+   "type": "text",
+   "required": false,
+   "section": "Mérés és hirdetések",
+   "hint": ""
+  }
+ ]
+}

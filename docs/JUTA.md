@@ -1,37 +1,56 @@
-# JUTA-Soft kapcsolat – terv (a Mandala mintájára)
+# JUTA-Soft kapcsolat – a Mandala mintájára
 
 Áron döntése (2026-10-08): a Slugshop webshopja ugyanúgy kapcsolódik a JUTA-Softhoz, mint a mandala.hu.
 A Mandala leírása: `aronritok-sketch/mdn` → `docs/JUTA.md`, kód: `wp-theme/mandala/inc/features/juta.php`.
 
-## Hogyan működik a Mandalánál
+## Ahol most tartunk (2026-10-15)
 
-- A kapcsolat **nem a téma része**: a tárhelyen, a web gyökerében egy `/juta/` mappa két szkripttel, amelyeket a
-  tárhely **cronja** hív.
-  - `raw_sync.php`: a JUTA készlet-exportja (`keszlet.csv`) alapján **cikkszám szerint** frissíti a WooCommerce
-    termékek árát, akciós árát, készletét és készletállapotát; ismeretlen cikkszámból piszkozat termék lesz.
-  - `elad.php`: a teljesített webshop-rendeléseket fájlba írja a JUTA-nak (`elad/eladNNNN.txt`), és megjelöli őket,
-    hogy ne menjenek újra.
-- A szkriptek a sebesség miatt WordPress nélkül, közvetlenül az adatbázisba írnak. A **téma** ezért 10 percenként
-  összeveti a termékek ár- és készletadatait, és a megváltozottaknál törli a gyorsítótárat (Redis), frissíti a kereső-
-  és szűrőindexet, az új termékeket jóváhagyási sorba teszi (piszkozat, ellenőrzőlistával), és naplózza a szinkront
-  (az őrszem szól, ha 26 óránál régebben volt változás).
-- A rendelések a WooCommerce HPOS-tábláiból mennek; a régi boltból átköltöztetett rendeléseket a téma megjelöli
-  (`_elad_exported_file = regi-bolt`), hogy ne küldje be újra őket.
+- **A régi (Joomla/VirtueMart) webshopon a JUTA már fut** (CRM: slugshop projekt, „Juta fix” feladat, 2026-10-06):
+  a tárhelyen (MHosting) a szerver cronja 30 percenként hívja a készlet-szinkront és a rendelés-generálást. Az eddigi
+  ütemező (Cronicle) leállt, ezért került a szerver cronjába; az egyeztetés Zolival ment.
+- Ezek a szkriptek a **VirtueMart táblákba** írnak és onnan olvasnak. Az új bolt WooCommerce: a szkriptek
+  **WooCommerce-es változata** kell – ugyanaz, ami a Mandalánál fut (`/juta/raw_sync.php`, `/juta/elad.php`), az új
+  adatbázisra és táblaelőtagra beállítva.
+- A `slugshop` téma a Mandala figyelőjét kapta (`wp-theme/slugshop/inc/juta.php`): a szkripteken nem kell változtatni.
 
-## Slugshopnál ugyanígy
+## Hogyan működik (WooCommerce)
 
-- A `slugshop` child téma kapja a Mandala `juta.php` megfelelőjét (figyelő, jóváhagyási sor az új termékekhez,
-  az átköltöztetett rendelések jelölése), a Mandala kódjából átvéve.
-- A termékek egyeztetésének kulcsa a **cikkszám**. A mostani VirtueMart-cikkszámok vegyesek: van EAN
-  (pl. `3830079160087` – ZAN .218 25,5 grain), gyári FX-cikkszám (pl. `FX20710`) és belső kód. Importáláskor ezt kell
-  a JUTA cikkszámával (`barcode`) összevetni.
-- A fizetési módok leképezése az `elad.php`-ben: a Viva Wallet azonosítóját fel kell venni a kártyás listába (a Mandalánál
-  a Teya `borgun` azonosítója hiányzott, ezért utalásként ment át).
+- A kapcsolat **nem a téma része**: a web gyökerében egy `/juta/` mappa két szkripttel, a tárhely cronja hívja őket.
+  - `raw_sync.php`: a JUTA készlet-exportja alapján **cikkszám (SKU) szerint** frissíti az árat, a készletet és a
+    készletállapotot (`_regular_price`, `_price`, `_stock`, `_stock_status`, `_manage_stock`, `wc_product_meta_lookup`);
+    ismeretlen cikkszámból piszkozat termék lesz.
+  - `elad.php`: a teljesített (`wc-completed`) rendeléseket fájlba írja a JUTA-nak (`elad/eladNNNN.txt`), és
+    `_elad_exported_file` jelölőt tesz rájuk. A HPOS-táblákat olvassa (a Mandalánál `md_wc_orders` … – az előtag itt más).
+- A szkriptek WordPress nélkül, közvetlenül az adatbázisba írnak. A téma 10 percenként összeveti a termékek ár- és
+  készletadatainak lenyomatát, és a megváltozottaknál:
+  - törli az objektum-gyorsítótárat és a WooCommerce átmeneti adatait (különben a régi ár / készlet látszhat),
+  - ha egy termék **újra raktárra került**, kiküldi az „Értesítést kérek” leveleket (a régi oldal funkciója),
+  - feljegyzi a szinkron idejét: az admin (és a Megjelenés → Slugshop → Élesítési ellenőrzés) szól, ha 26 óránál
+    régebben volt változás,
+  - az új (a JUTA-ból jött, piszkozat) termékeket az adminban jelzi (kategória, kép, leírás kell, aztán közzététel).
+- Nem kötelező jelzések, ha a szkriptek valaha WordPress-betöltéssel futnak: `do_action('slugshop_juta_sync_done')`,
+  `slugshop_juta_orders_to_send()` / `do_action('slugshop_juta_orders_sent', $ids)`.
 
-## Kérdések az ügyfélnek / a JUTA-t kezelő kollégának
+## Átállás a régi boltról
 
-1. Fut-e már JUTA-Soft a Slugshopnál, és ki kezeli (a Mandalánál a beállítást Laci végzi, útmutató alapján)?
-2. Van-e készlet-export (`keszlet.csv` vagy más formátum), és milyen gyakran frissül?
-3. A JUTA cikkszáma megegyezik-e a webshop mostani cikkszámaival (EAN / FX-cikkszám)?
-4. Milyen rendelési állapotnál menjen a rendelés a JUTA-ba (fizetve / teljesítve)?
-5. Az akciós ár a JUTA-ból jön-e (a Mandalánál a JUTA „Akciós ár” a viszonteladói ár – itt valószínűleg nem kell)?
+1. **Tesztoldalon (staging) a `raw_sync.php` mehet** (csak a staging adatbázisát írja), az **`elad.php` NEM**: a
+   tesztrendelések ne kerüljenek a JUTA-ba. A staging cronjában csak a szinkron legyen.
+2. A cikkszámok egyeztetése: a JUTA `barcode` mezője = a WooCommerce SKU. A régi boltból átjött cikkszámok vegyesek
+   (EAN, pl. `3830079160087`; gyári FX-cikkszám, pl. `FX20710`; belső kód). Az első staging-szinkron után nézd meg:
+   hány új piszkozat keletkezett (= a JUTA ismer, a bolt nem) és hány termék nem változott (= a bolt ismer, a JUTA
+   nem). A régi boltban egy cikkszám kétszer szerepelt (`9990000007233`): az egyik termék `slugshop_old_sku` metában
+   őrzi – ezt javítani kell.
+3. **Fizetési módok leképezése** az `elad.php`-ben: a Viva Wallet bővítmény azonosítóját fel kell venni a kártyás
+   listába (a Mandalánál a Teya `borgun` azonosítója hiányzott, ezért utalásként ment át). Az előre utalás (`bacs`),
+   az utánvét (`cod`) és a személyes átvételes fizetés leképezését a JUTA-t kezelő kollégával egyeztetni.
+4. **Élesítés napján:** a régi (VirtueMart-os) cron leállítása, az új szkriptek cronja be (szinkron + rendelés). Az
+   éles rendelésszámok a WooCommerce saját számai; a régi rendelések nem jönnek át (ha mégis, az átvevő eszköz a
+   `_slugshop_imported` metát írja, a téma pedig `regi-bolt` jelölőt tesz rájuk, hogy az `elad.php` ne küldje újra).
+5. A `/juta/*.php` fájlokat **ne nyisd meg böngészőből** tesztként: minden megnyitás lefuttatja őket.
+
+## Kérdések (kérdéssor Z02)
+
+1. Ki kezeli a JUTA-oldalt (Zoli?), és ki adja a WooCommerce-es szkripteket (a Mandaláé alapján)?
+2. Milyen gyakran frissül a készlet-export, és milyen állapotú rendelés menjen a JUTA-ba (fizetve / teljesítve)?
+3. Az akciós ár a JUTA-ból jön-e (a Mandalánál a JUTA „Akciós ár” a viszonteladói ár – itt valószínűleg nem kell)?
+4. A JUTA állítja-e ki a számlát, vagy külön számlázó kell (Számlázz.hu, Billingo)?

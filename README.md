@@ -11,7 +11,21 @@ szerviz. A mostani oldal Joomla 4 + VirtueMart (vp_smart sablon).
 - **Az új oldal a mi rendszerünkön készül:** WordPress + WooCommerce, `iu_theme` + `slugshop` child téma (mint a Mandala),
   űrlap- és page builder plugin nélkül.
 - **JUTA-Soft kapcsolat, mint a Mandalánál:** termékek, árak, készlet a JUTA-ból; a rendelések a JUTA-ba. Terv: [docs/JUTA.md](docs/JUTA.md).
-- **Első lépés: egyoldalas, kattintható HTML-előnézet** jóváhagyásra. Ez az, ami most ebben a repóban van.
+- **Első lépés: egyoldalas, kattintható HTML-előnézet** jóváhagyásra – **az ügyfél jóváhagyta (2026-10-15)**.
+
+## Állapot (2026-10-15): a WordPress-téma kész, élesítés Lacinál
+
+- **Téma:** [`wp-theme/slugshop`](wp-theme/slugshop) (iu_theme child + WooCommerce), csomag:
+  [`dist/slugshop-tema.zip`](dist/slugshop-tema.zip); képek és PDF-ek: [`dist/slugshop-media.zip`](dist/slugshop-media.zip).
+  A régi URL-ek változatlanok, a telepítő (Megjelenés → Slugshop) mindent létrehoz: 30 kategória, 516 termék teljes
+  méretű képekkel, 45 PDF, 17 oldal, 15 cikk, menük, WooCommerce-alapok.
+- **Élesítés:** [`docs/wp/TELEPITES.md`](docs/wp/TELEPITES.md), Laci teendőlistája:
+  [`docs/atadas/Slugshop_teendok_Laci.pdf`](docs/atadas/Slugshop_teendok_Laci.pdf) (10 fázis, 58 lépés; CRM: slugshop
+  projekt, „Élesítés 1/4–4/4” + „Slugshop élesítés – teljes folyamat”).
+- **Az ügyféltől kell:** kérdéssor (szállítás, fizetés, JUTA, régi adatok, tárhely, mérés):
+  [`docs/kerdoiv/slugshop-kerdoiv.json`](docs/kerdoiv/slugshop-kerdoiv.json) a portálra (Egyedi kérdéssor), PDF és Word a
+  [`docs/atadas`](docs/atadas) és [`docs/kerdoiv`](docs/kerdoiv) mappában.
+- **Fejlesztés, tesztek:** [`docs/wp/DEVELOPER.md`](docs/wp/DEVELOPER.md) (tools/wp, tests/wp).
 - A korábbi, sötét „taktikai” újratervezés (2026-09-25) érvényét vesztette: [`archiv/taktikai-terv/`](archiv/taktikai-terv/README.md).
 
 ## Az előnézet
