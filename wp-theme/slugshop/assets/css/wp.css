@@ -1,0 +1,79 @@
+/* ==========================================================================
+   WordPress-illesztés: az előnézet kinézete a valódi iu_theme + WooCommerce markupon.
+   (A sablonzónák: a keretrendszer <header>/<main>/<footer>-be teszi a blokkokat; a saját blokkok teljes
+   szélességű szekciókban vannak – slug-full –, ezek ne kapják az iu-section térközét.)
+   ========================================================================== */
+
+body { background: var(--c-paper); }
+.iu-section.slug-full { padding: 0; }
+.iu-section.slug-full > .iu-row { width: 100%; }
+.slug-chrome { position: relative; z-index: 100; }
+body > header { position: sticky; top: calc(-1 * var(--topbar-h, 44px)); z-index: 100; }
+body > header .site-header { position: relative; top: auto; }
+main { display: block; min-height: 40vh; }
+#main:focus { outline: none; }
+
+/* Oldal: cím a sablonból, a tartalom szekciója a cím alatt szorosan */
+.slug-page-head .page-head { padding-bottom: 0; }
+.iu-section.slug-page-body { padding-top: var(--space-5); padding-bottom: var(--space-9); }
+.slug-page-body .prose { max-width: 860px; }
+.slug-page-body .wc-page, .slug-page-body .contact-col { max-width: none; }
+
+/* Űrlap: rejtett csapdamező */
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+.field .label { font-size: var(--fs-small); font-weight: 600; }
+
+/* Letöltések */
+.downloads { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-3); }
+.downloads a { display: flex; justify-content: space-between; gap: var(--space-3); align-items: center; padding: var(--space-3) var(--space-4); border: var(--border); background: var(--c-light); color: var(--c-ink); text-decoration: none; }
+.downloads a:hover, .downloads a:focus-visible { border-color: var(--c-primary); }
+.dl-title { font-weight: 600; }
+.dl-meta { font-size: var(--fs-xs); color: var(--c-muted); white-space: nowrap; }
+
+/* Impresszum táblázat */
+.company { border-collapse: collapse; width: 100%; max-width: 720px; }
+.company th, .company td { text-align: left; padding: var(--space-2) var(--space-3); border-bottom: var(--border); vertical-align: top; }
+.company th { width: 40%; font-weight: 600; }
+
+/* Keresés: rács */
+.search-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.article-img { width: 100%; max-height: 520px; object-fit: cover; margin-bottom: var(--space-5); }
+.wp-figure { margin: var(--space-5) 0; }
+.wp-figure img { width: 100%; height: auto; }
+.wc-tabs h2.tab { font-size: inherit; margin: 0; }
+
+/* WooCommerce: kosár, pénztár, fiók (a WooCommerce saját CSS-e itt töltődik, ezt igazítjuk a régi oldal kinézetéhez) */
+.woocommerce .button, .woocommerce button.button, .woocommerce a.button, .woocommerce input.button, .woocommerce #respond input#submit {
+  background: var(--btn-bg); color: var(--c-white); border: 1px solid var(--c-steel-line); border-radius: var(--radius-s);
+  font: 600 var(--fs-button)/1 var(--font-text); text-transform: uppercase; letter-spacing: var(--ls-label); padding: 14px 22px;
+}
+.woocommerce .button:hover, .woocommerce button.button:hover, .woocommerce a.button:hover { background: var(--c-steel); color: var(--c-primary); }
+.woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce #place_order, .woocommerce .checkout-button {
+  background: var(--c-primary); border-color: var(--c-primary); color: #17171B;
+}
+.woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce #place_order:hover, .woocommerce .checkout-button:hover { background: #ff9a2a; color: #17171B; }
+.woocommerce table.shop_table { border-radius: 0; border-color: var(--c-line); }
+.woocommerce table.shop_table th { font-weight: 600; }
+.woocommerce-cart table.cart img { width: 64px; }
+.woocommerce form .form-row input.input-text, .woocommerce form .form-row textarea, .woocommerce form .form-row select, .woocommerce .quantity .qty,
+.select2-container .select2-selection--single {
+  border: 1px solid #cfcfcf; border-radius: var(--radius-s); padding: 10px 12px; min-height: 44px; font: inherit; background: var(--c-white);
+}
+.woocommerce form .form-row label { font-weight: 600; font-size: var(--fs-small); }
+.woocommerce-checkout #payment { background: var(--c-light); border-radius: 0; }
+.woocommerce-checkout #payment div.payment_box { background: var(--c-white); color: var(--c-ink); }
+.woocommerce-checkout #payment div.payment_box::before { border-bottom-color: var(--c-white); }
+.woocommerce-message, .woocommerce-info { border-top-color: var(--c-primary); }
+.woocommerce-message::before, .woocommerce-info::before { color: var(--c-primary); }
+.woocommerce-error { border-top-color: var(--c-error); }
+.woocommerce ul#shipping_method li .method-note { display: block; font-size: var(--fs-xs); color: var(--c-muted); }
+.woocommerce-MyAccount-navigation ul { list-style: none; padding: 0; margin: 0; border: var(--border); }
+.woocommerce-MyAccount-navigation li a { display: block; padding: 10px 14px; color: var(--c-ink); text-decoration: none; border-bottom: var(--border); }
+.woocommerce-MyAccount-navigation li.is-active a { color: var(--c-primary-text); font-weight: 600; }
+.wc-page .woocommerce { font-size: var(--fs-body); }
+/* WooCommerce értesítés a kategória- és termékoldalon (pl. JS nélküli kosárba tétel után) */
+.page .woocommerce-message, .page .woocommerce-error, .page .woocommerce-info { list-style: none; margin: 0 0 var(--space-5); padding: var(--space-3) var(--space-4); background: var(--c-light); border-left: 4px solid var(--c-primary); }
+
+@media (max-width: 991.8px) {
+  body > header { top: 0; }
+}

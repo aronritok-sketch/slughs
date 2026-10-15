@@ -1,0 +1,288 @@
+{
+ "phone": "+36 30 677 7836",
+ "email": "info@slugshop.hu",
+ "social": {
+  "facebook": "https://www.facebook.com/profile.php?id=61554078063288",
+  "instagram": "https://www.instagram.com/slugshop.hungary/",
+  "youtube": "https://www.youtube.com/@laszlomora4678"
+ },
+ "company": {
+  "name": "Slugshop Korlátolt Felelősségű Társaság",
+  "seat": "5100 Jászberény, Érhát utca 7.",
+  "tax": "32247147-2-16",
+  "reg": "16-09-022741",
+  "reps": "Móra László ügyvezető, Tibori Ádám ügyvezető",
+  "court": "Szolnoki Törvényszék Cégbírósága",
+  "host": ""
+ },
+ "contact": {
+  "address": "Jászberény, Megyeház u. 3, 5100",
+  "street": "Megyeház u. 3.",
+  "map": "https://maps.app.goo.gl/m44BG8VAzE7YMUXa7",
+  "hours": [
+   [
+    "hétfő - péntek",
+    "08:00–16:00"
+   ],
+   [
+    "szombat",
+    "08:00–12:00"
+   ],
+   [
+    "vasárnap",
+    "Zárva"
+   ]
+  ]
+ },
+ "menu": [
+  [
+   "Zan slugok",
+   "/zan-slugok"
+  ],
+  [
+   "Fx fegyverek és kiegészítők",
+   "/fx-termekek"
+  ],
+  [
+   "FX Alkatrészek",
+   "/fx-alkatreszek"
+  ],
+  [
+   "Snowpeak",
+   "/snowpeak"
+  ],
+  [
+   "Letöltések",
+   "/letoltesek"
+  ],
+  [
+   "Szerviz",
+   "/szerviz"
+  ],
+  [
+   "Videók",
+   "/videok"
+  ],
+  [
+   "Cikkeink",
+   "/cikkeink"
+  ],
+  [
+   "Kapcsolat",
+   "/kapcsolat"
+  ]
+ ],
+ "footerMenu": [
+  [
+   "Rólunk",
+   "/rolunk"
+  ],
+  [
+   "ÁSZF",
+   "/aszf"
+  ],
+  [
+   "Impresszum",
+   "/impresszum"
+  ],
+  [
+   "Adatvédelmi nyilatkozat",
+   "/adatvedelmi-nyilatkozat"
+  ]
+ ],
+ "slides": [
+  {
+   "title": "ELR ZAN SLUGOK",
+   "text": "Magyarországon csakis kizárólag a Slugshopban! Már Viva Wallet bankkártyás fizetés is elérhető oldalunkon!",
+   "button": "ELR Slugok",
+   "href": "/zan-slugok/elr-zan-slug",
+   "img": "slide-elrslug-png.webp"
+  },
+  {
+   "title": "Légfegyverek forradalma",
+   "text": "Fedezze fel a PCP légfegyverek új generációját. Precizitás, megbízhatóság, és forradalmi design egy helyen: a Slugshop Webshopban!",
+   "button": "Termékek",
+   "href": "/zan-slugok",
+   "img": "slide-slide01-webp.webp"
+  },
+  {
+   "title": "Légfegyverek és ZAN lövedékek szakértője",
+   "text": "Zan lövedékek magyarországi kizárólagos forgalmazója a Slugshop Kft.!",
+   "button": "Termékek",
+   "href": "/zan-slugok",
+   "img": "slide-slideuj-webp.webp"
+  },
+  {
+   "title": "Légfegyverek forradalma",
+   "text": "Slugshop, a Scandinavian Arms termékeinek magyarországi forgalmazója!",
+   "button": "Termékek",
+   "href": "/zan-slugok",
+   "img": "slide-7cd2a8-b2995fa723f546eba954caa717f92b1bmv2-webp.webp"
+  },
+  {
+   "title": "FX légfegyverek – videótár",
+   "text": "Gyere és fedezd fel az Fx légfegyverek világát!",
+   "button": "Videók",
+   "href": "/videok",
+   "img": "slide-image-9-png.webp"
+  }
+ ],
+ "tiles": [
+  {
+   "title": "FX TERMÉKEK",
+   "href": "/fx-termekek",
+   "img": "tile-fxwhite-png.webp"
+  },
+  {
+   "title": "Zan slugok",
+   "href": "/zan-slugok",
+   "img": "tile-image19-png.webp"
+  },
+  {
+   "title": "Karbantartás, céltáblák",
+   "href": "/karbantartas-celtablak",
+   "img": "tile-image23-png.webp"
+  },
+  {
+   "title": "Szerviz",
+   "href": "/szerviz",
+   "img": "tile-image22-png.webp"
+  }
+ ],
+ "intro": {
+  "title": "Légfegyver innováció a Slugshopban",
+  "text": "Üdvözöljük a Slugshopban, ahol a légfegyver technológia úttörőjeként büszkén kínáljuk a legfinomabb FX, FLUG és Panthera modelleket. A Maverick tervezésű fegyvereinkkel, a precíz Zan slug lövedékekkel és a Heavy csővel garantáljuk az élvonalbeli teljesítményt. Az O-gyűrűtől a Regulátoron át a Dreamline designig mindent megtalál nálunk, ami egy kiváló légfegyverhez szükséges. Fedezze fel nálunk a légfegyverezés következő generációját!"
+ },
+ "blocks": [
+  {
+   "title": "Felsőkategóriás légfegyverek a Slugshopban",
+   "text": "Nem minden légfegyver teremtett egyenlőnek. A Slugshop kínálatában olyan prémium minőségű légfegyvereket talál, mint amilyenek a FX márkájú modellek, melyek az autóiparban a Mercédesz kiválóságával vannak egyenlő szinten. Kiemelkedünk a konkurenciából a magas színvonalú termékeinkkel, garantálva ezzel a tökéletes lövészélményt az igazán elkötelezett légfegyver-tulajdonosoknak.",
+   "button": "Bővebben",
+   "href": "/rolunk",
+   "img": "",
+   "imgCore": ""
+  },
+  {
+   "title": "Élvonalbeli minőség és teljesítmény a légfegyverek világában",
+   "text": "Azoknak, akik nem elégszenek meg a középszerűséggel és igazán kiváló légfegyverre vágynak, a Slugshop a tökéletes választás. A FX márkájú modellekkel, melyek a légfegyverek Mercédeszeként vannak elismerve, biztosítjuk, hogy minden lövés a legnagyobb precizitással és teljesítménnyel rendelkezzen. Válassza a legjobbat, válassza a Slugshopot.",
+   "button": "Bővebben",
+   "href": "/rolunk",
+   "img": "blokk-harmadik.webp",
+   "imgCore": "blokk-harmadik-mag.webp"
+  }
+ ],
+ "newProducts": [
+  "mechanix-fast-kesztyu-11-xxl",
+  "carm-kihajthato-egyszeres-rakodo-beepitett-o-gyuruvel-fx-panthera-2c-dynamic-2c-king-szamara-436",
+  "carm-slug-tar-fx-crown-dreamline-maverick-wc-mk3-hoz-429",
+  "fx-king-600-brown-pcp-legpuska",
+  "bipod-accu-tac-fc-4-g2-arca-swiss",
+  "bipod-accu-tac-fc-5-g2",
+  "fx-legfegyverek-no-limit-scope-rogzitok-30-mm-fecskefark",
+  "elektronikus-szint-mdt-lra-send-it-mv3",
+  "rogzitosin-fx-drs-30-moa-high-weaver-picatinny",
+  "mini-csigatar-fx-pantherahoz-2c-dynamic-2c-king-433",
+  "jsb-exact-jumbo-monster-552mm-2539gr-200db",
+  "st0011-018528-940",
+  "jsb-exact-jumbo-rs-bigbox-5-52-mm-0-870-g-500-db",
+  "zan-hp-slug-218-33-grain-200-db",
+  "fx-szenszalas-hordohuvely",
+  "cheese-bag",
+  "fx-panthera-2c-dynamic-2c-king-tar-boritoja-432",
+  "komplett-o-gyuru-cserekeszlet-fx-crownhoz",
+  "tisztito-folt"
+ ],
+ "age": {
+  "title": "Elmúltál 18 éves?",
+  "sub": "weboldalunkat csak 18 éven felüliek látogathatják",
+  "noteTitle": "Fontos tájékoztatás!",
+  "note": [
+   "Felhívjuk vásárlóink figyelmét, hogy egyes általunk forgalmazott alkatrészek – például rugók, felömlők, betolótüskék, és szelepek – beszerelése befolyásolhatja a légfegyver csőtorkolati energiáját. Ezért minden javítást vagy alkatrész cserét követően nyomatékosan javasoljuk a légfegyver újraellenőrzését a Polgári Kézilőfegyver- és Lőszervizsgáló Kft.-nél (1031 Budapest, Gyöngysor utca 6.).",
+   "Felhívjuk figyelmüket, hogy az esetleges átalakításokból eredő jogi következményekért cégünk nem vállal felelősséget!"
+  ]
+ },
+ "cookie": {
+  "title": "Hozzájárulást kérünk az Ön adatainak felhasználásához, annak érdekében, hogy minőségibb élményt nyújtsunk.",
+  "text": "A weboldalon sütiket használunk annak érdekében hogy a legjobb élményben legyen része."
+ },
+ "blogIntro": {
+  "cikkeink": "<p>Célunk, hogy naprakész információkat, hasznos tippeket és gyakorlati útmutatókat adjunk át mindazoknak, akik szeretnének mélyebben eligazodni a témában. Itt folyamatosan követheted a legfrissebb <strong>újdonságokat, innovációkat és szakmai trendeket</strong>, legyen szó termékhasználatról, fejlesztésekről vagy iparági változásokról.</p>",
+  "cikkeink/cikkek": "",
+  "cikkeink/articles": ""
+ },
+ "videos": [
+  {
+   "path": "/videok/fx-impact-m3",
+   "title": "FX Impact M3",
+   "img": "video-videok-fx-impact-m3.webp",
+   "items": [
+    {
+     "id": "Qm7KVXepQCI",
+     "title": "Introducing the New FX Impact M3",
+     "thumb": "yt-Qm7KVXepQCI.webp"
+    }
+   ]
+  },
+  {
+   "path": "/videok/fx-king",
+   "title": "FX King",
+   "img": "video-videok-fx-king.webp",
+   "items": [
+    {
+     "id": "LweenEy8s7M",
+     "title": "THE NEW FX KING IS HERE !",
+     "thumb": "yt-LweenEy8s7M.webp"
+    },
+    {
+     "id": "nXFkD2FxyBo",
+     "title": "FX KING Stock Removal",
+     "thumb": "yt-nXFkD2FxyBo.webp"
+    },
+    {
+     "id": "dW4cidFss1M",
+     "title": "FX Dynamic barrel and caliber conversion",
+     "thumb": "yt-dW4cidFss1M.webp"
+    },
+    {
+     "id": "CdYPp0u3lIw",
+     "title": "FX Dynamic slug power kit  Installation",
+     "thumb": "yt-CdYPp0u3lIw.webp"
+    }
+   ]
+  },
+  {
+   "path": "/videok/fx-drs",
+   "title": "FX DRS",
+   "img": "video-videok-fx-drs.webp",
+   "items": [
+    {
+     "id": "I7huDMSaTI8",
+     "title": "THE NEW FX DRS ! ( OVERVIEW )",
+     "thumb": "yt-I7huDMSaTI8.webp"
+    },
+    {
+     "id": "me5B-zcpwnY",
+     "title": "FX DRS TACTICAL",
+     "thumb": "yt-me5B-zcpwnY.webp"
+    }
+   ]
+  }
+ ],
+ "trackers": {
+  "gtm": "GTM-K2DT9KZ8",
+  "fbPixel": "1273288477167785",
+  "barionPixel": "BP-hkJPSBB2DS-0D",
+  "fogyasztobarat": "MB0C642A",
+  "fogyasztobaratBadge": true
+ },
+ "seo": {
+  "homeTitle": "Légfegyverek és ZAN lövedékek",
+  "homeDescription": "Slugshop – prémium PCP légfegyverek, FX Airguns, ZAN slugok és professzionális PCP szerviz Magyarországon. Szakértő rendszerhangolás.\n"
+ },
+ "legacyMap": {
+  "/bejelentkezes": "/fiokom",
+  "/regisztracio": "/fiokom?regisztracio=1",
+  "/kosar/penztar": "/penztar"
+ },
+ "currencySwitcher": false
+}

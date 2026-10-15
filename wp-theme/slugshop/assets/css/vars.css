@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Slugshop – design tokenek (a child téma vars.css-e)
+   A régi slugshop.hu (Joomla, vp_smart sablon) mért értékei, ráncfelvarrva:
+   ugyanazok a színek és a Barlow betű, egységes térköz- és méretskálával.
+   A paletta WordPressben a theme.json-ból jön (--wp--preset--color--*).
+   ========================================================================== */
+
+:root {
+  /* --- Paletta (theme.json slugok) – a régi oldal színei --- */
+  --wp--preset--color--white: #FFFFFF;
+  --wp--preset--color--light: #F4F4F4;      /* termékleírás doboza */
+  --wp--preset--color--line: #E5E5E5;
+  --wp--preset--color--ink: #262626;        /* szöveg fehér háttéren */
+  --wp--preset--color--muted: #666666;
+  --wp--preset--color--dark: #17171B;       /* oldal háttere, „Új termékek” sáv */
+  --wp--preset--color--panel: #222226;      /* fejléc, lábléc */
+  --wp--preset--color--steel: #403F42;      /* gomb átmenet teteje */
+  --wp--preset--color--steel-deep: #28282B; /* gomb átmenet alja */
+  --wp--preset--color--steel-line: #47474A; /* gomb kerete */
+  --wp--preset--color--primary: #EA810B;    /* narancs kiemelés: aktív menü, csempefelirat, ikonok */
+  --wp--preset--color--gold: #F2C230;       /* a logó sárgája */
+  --wp--preset--color--success: #2E7D32;
+  --wp--preset--color--error: #C62828;
+
+  --c-white: var(--wp--preset--color--white);
+  --c-light: var(--wp--preset--color--light);
+  --c-line: var(--wp--preset--color--line);
+  --c-ink: var(--wp--preset--color--ink);
+  --c-muted: var(--wp--preset--color--muted);
+  --c-dark: var(--wp--preset--color--dark);
+  --c-panel: var(--wp--preset--color--panel);
+  --c-steel: var(--wp--preset--color--steel);
+  --c-steel-deep: var(--wp--preset--color--steel-deep);
+  --c-steel-line: var(--wp--preset--color--steel-line);
+  --c-primary: var(--wp--preset--color--primary);
+  --c-gold: var(--wp--preset--color--gold);
+  --c-success: var(--wp--preset--color--success);
+  --c-error: var(--wp--preset--color--error);
+  --c-paper: var(--c-white);
+  --c-on-dark: #FFFFFF;
+  --c-on-dark-muted: rgba(255, 255, 255, .74);  /* 9,6:1 a dark-on */
+  --c-primary-text: #B85F00;                      /* narancs szövegként fehéren (AA: 4,6:1) */
+
+  /* --- Tipográfia: Barlow mindenhol, mint a régi oldalon --- */
+  --font-display: 'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-text: 'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --fs-hero: 4.375rem;  /* 70 – nyitókép címe */
+  --fs-h1: 2.25rem;     /* 36 */
+  --fs-h2: 1.75rem;     /* 28 – szekciócím (nagybetűs) */
+  --fs-h3: 1.375rem;    /* 22 */
+  --fs-h4: 1.125rem;    /* 18 */
+  --fs-h5: 1rem;
+  --fs-h6: .8125rem;
+  --fs-lead: 1.125rem;
+  --fs-body: 1rem;      /* 16 – a régi 14–15 px helyett (olvashatóság) */
+  --fs-small: .875rem;
+  --fs-xs: .75rem;
+  --fs-button: .8125rem;/* 13 – nagybetűs gombfelirat, mint a régin */
+  --lh-heading: 1.15;
+  --lh-body: 1.6;
+  --ls-heading: 0;
+  --ls-label: .06em;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 88px; --space-10: 120px;
+
+  --container: 1290px;
+  --gutter: 30px;
+  --margin: 40px;
+
+  --radius-s: 2px;      /* a régi oldal szögletes; csak egy leheletnyi kerekítés */
+  --radius-m: 4px;
+  --border: 1px solid var(--c-line);
+  --shadow-s: 0 1px 2px rgba(0, 0, 0, .08);
+  --shadow-m: 0 8px 24px -10px rgba(0, 0, 0, .35);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur: .18s;
+  --focus: 0 0 0 2px var(--c-white), 0 0 0 4px var(--c-primary);
+  --tap: 44px;
+  --header-h: 112px;
+  --btn-bg: linear-gradient(var(--c-steel), var(--c-steel-deep));
+
+  /* --- iu_theme változók --- */
+  --iu-text-font-family: var(--font-text);
+  --iu-heading-font-family: var(--font-display);
+  --iu-menu-font-family: var(--font-text);
+  --iu-text-font-size: var(--fs-body);
+  --iu-text-small-font-size: var(--fs-small);
+  --iu-heading-1-font-size: var(--fs-h1);
+  --iu-heading-2-font-size: var(--fs-h2);
+  --iu-heading-3-font-size: var(--fs-h3);
+  --iu-heading-4-font-size: var(--fs-h4);
+  --iu-heading-5-font-size: var(--fs-h5);
+  --iu-heading-6-font-size: var(--fs-h6);
+  --iu-button-font-size: var(--fs-button);
+  --iu-menu-font-size: .875rem;
+  --iu-text-line-height: var(--lh-body);
+  --iu-heading-line-height: var(--lh-heading);
+  --iu-text-color: var(--c-ink);
+  --iu-text-color-muted: var(--c-muted);
+  --iu-heading-color: var(--c-ink);
+  --iu-menu-color: var(--c-white);
+  --iu-link-color: var(--c-primary-text);
+  --iu-icon-default-color: var(--c-white);
+  --iu-icon-highlight-color: var(--c-primary);
+  --iu-section-default-padding: var(--space-9);
+  --iu-section-fullwidth-padding: 0px;
+  --iu-row-width: min(var(--container), calc(100% - 2 * var(--margin)));
+  --iu-column-gap: var(--gutter);
+  --iu-group-gap: var(--space-4);
+  --iu-menu-gap: 0px;
+}
+
+@media (max-width: 991.8px) {
+  :root {
+    --fs-hero: 2.75rem;
+    --fs-h1: 1.875rem;
+    --fs-h2: 1.5rem;
+    --fs-h3: 1.25rem;
+    --gutter: 16px;
+    --margin: 20px;
+    --header-h: 64px;
+    --iu-section-default-padding: var(--space-8);
+  }
+}
+@media (max-width: 480px) {
+  :root { --fs-hero: 2.25rem; --margin: 16px; }
+}

@@ -1,0 +1,104 @@
+[
+ {
+  "slug": "kezdolap",
+  "title": "Kezdőlap",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "minden-termek",
+  "title": "Minden termék",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "kosar",
+  "title": "Kosár",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "penztar",
+  "title": "Pénztár",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "fiokom",
+  "title": "Fiókom",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "szerviz",
+  "title": "Szerviz",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "rolunk",
+  "title": "Rólunk",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "letoltesek",
+  "title": "Letöltések - robbantott ábrák",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "kapcsolat",
+  "title": "Kapcsolat",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "aszf",
+  "title": "Általános szerződési feltételek",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "adatvedelmi-nyilatkozat",
+  "title": "Adatvédelmi nyilatkozat",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "impresszum",
+  "title": "Impresszum",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "videok",
+  "title": "Videók",
+  "parent": null,
+  "order": 0
+ },
+ {
+  "slug": "fx-impact-m3",
+  "title": "FX Impact M3",
+  "parent": "videok",
+  "order": 0
+ },
+ {
+  "slug": "fx-king",
+  "title": "FX King",
+  "parent": "videok",
+  "order": 1
+ },
+ {
+  "slug": "fx-drs",
+  "title": "FX DRS",
+  "parent": "videok",
+  "order": 2
+ },
+ {
+  "slug": "cikkeink",
+  "title": "Cikkeink",
+  "parent": null,
+  "order": 0
+ }
+]

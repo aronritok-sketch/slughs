@@ -1,0 +1,16 @@
+/*
+Theme Name: Slugshop
+Theme URI: https://slugshop.hu
+Description: A slugshop.hu (Slugshop Kft., Jászberény – FX légfegyverek, ZAN slugok) webshopjának child témája az Infinite Unity (iu_theme) keretrendszerre. A régi Joomla/VirtueMart oldal kinézete és szövege ráncfelvarrva, WooCommerce-szel: a régi URL-ek maradnak, 18+ kapu, süti-hozzájárulás, 3D-s (WebGL) FX Panthera a nyitóoldalon, JUTA-Soft kapcsolat, telepítő.
+Author: HelloProVision
+Author URI: https://helloprovision.com
+Template: iu_theme
+Version: 1.0.0
+Requires at least: 6.5
+Requires PHP: 8.1
+Text Domain: slugshop
+License: Proprietary
+*/
+
+/* A kinézet az assets/css fájlokban van (a jóváhagyott előnézetből): fonts.css → vars.css → iu-compat.css → site.css →
+   shop.css. Az iu_theme saját CSS-e betöltve marad; erre épülünk, nem cseréljük le. */

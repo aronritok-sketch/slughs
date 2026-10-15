@@ -1,0 +1,272 @@
+[
+ {
+  "path": "/fx-alkatreszek",
+  "slug": "fx-alkatreszek",
+  "name": "FX alkatrészek",
+  "menu": "FX alkatrészek",
+  "parent": null,
+  "desc": "<p><strong>Az FX alkatrészek kategóriában</strong> a leggyakoribb szerviz- és tuning elemeket találod egy helyen: O-gyűrűk és tömítések, szeleprészek, regulátor elemek, rugók, cső és cső-kiegészítők, valamint egyéb komponensek. Válassz modell szerint (DRS / Panthera / Leopard / King / Dreamline / Impact), és mindig figyelj a kompatibilitásra (évjárat, kivitel, cikkszám). Ha nem vagy biztos benne, melyik alkatrész kell, írd meg a fegyver típusát és a hibajelenséget – segítünk gyorsan beazonosítani.</p>",
+  "img": ""
+ },
+ {
+  "path": "/fx-termekek",
+  "slug": "fx-termekek",
+  "name": "Fx termékek",
+  "menu": "Fx termékek",
+  "parent": null,
+  "desc": "",
+  "img": ""
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok",
+  "slug": "fx-kiegeszitok",
+  "name": "FX kiegészítők",
+  "menu": "FX kiegészítők",
+  "parent": "/fx-termekek",
+  "desc": "<p><strong>Az FX kiegészítők kategóriában</strong> minden olyan hasznos tartozékot megtalálsz, amivel kényelmesebb, pontosabb és jobban személyre szabható a fegyvered: tárak/magazinok, szerelékek és sínek, bipodok, markolatok, cső- és palack kiegészítők, valamint tuning és apró praktikus alkatrészek. Válassz mindig a fegyver típusához és kiviteléhez (DRS / Panthera / Leopard / King / Dreamline / Impact), és ha nem vagy biztos a kompatibilitásban, írj nekünk – segítünk gyorsan a megfelelő tartozék kiválasztásában.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/bipodok",
+  "slug": "bipodok",
+  "name": "Bipodok",
+  "menu": "Bipodok",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A bipod (lőtámasz) segít a fegyver stabil megtámasztásában, így könnyebb következetes, pontos lövéseket leadni edzésen és sportcélú használatnál. Ebben a kategóriában különböző bipod megoldásokat találsz légpuskához.<br/>Választásnál figyelj a rögzítésre (Picatinny/Weaver, Arca, sling stud stb.), az állíthatóságra, a magasságtartományra és arra, hogy terepen vagy asztalról használod-e. Ha megírod, milyen fegyverre és milyen rögzítésre kell, segítünk kiválasztani a megfelelőt.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-bipodok.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/celtavcsovek-2c-red-dot",
+  "slug": "celtavcsovek-2c-red-dot",
+  "name": "Céltávcsövek, red dot",
+  "menu": "Céltávcsövek, red dot",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A megfelelő optika nagyot dob a találati képen: a céltávcső és a red dot irányzék segít a pontosabb célzásban és a gyorsabb célfelvételben edzésen és sportcélú használatnál. Ebben a kategóriában találsz <strong>céltávcsöveket</strong> és <strong>red dot</strong> megoldásokat légpuskához, valamint a kapcsolódó kiegészítőket.<br/>Választásnál figyelj a felhasználásra (közel/távol), a nagyítás tartományra, a parallaxis állításra, és arra, hogy <strong>MOA vagy MRAD</strong> rendszerben szeretnél-e gondolkodni. Ha megírod, milyen távokra használnád, segítünk a jó optika kiválasztásában.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-celtavcsovek-2c-red-dot.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/csovek-csobetetek",
+  "slug": "csovek-csobetetek",
+  "name": "Csövek, csőbetétek",
+  "menu": "Csövek, csőbetétek",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A <strong>cső és csőbetét</strong> (liner) a pontosság egyik kulcseleme: befolyásolja a szórásképet, a lövedék stabilitását és azt is, hogy pellethez vagy slughoz melyik megoldás ad jobb eredményt. Ebben a kategóriában találsz <strong>csöveket, csőbetéteket és kapcsolódó kiegészítőket</strong> PCP légpuskákhoz. Választásnál figyelj a kompatibilitásra (típus, hossz, rögzítés), és ha megírod a fegyvered modelljét + kaliberét, segítünk a megfelelő cső/liner kiválasztásában.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-csovek-csobetetek.webp"
+ },
+ {
+  "path": "/tarak",
+  "slug": "tarak",
+  "name": "FX tárak",
+  "menu": "FX tárak",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p>A megfelelő tár (magazin) gyorsabb újratöltést és kényelmesebb használatot ad edzésen és sportcélú lövészetnél. Ebben a kategóriában találsz <strong>légpuska tárakat</strong> több típushoz és kaliberhez – különösen FX és Snowpeak platformokra, illetve kompatibilis megoldásokra. Választásnál mindig figyelj a <strong>fegyver típusára</strong>, a <strong>kaliberre</strong> és a tár <strong>verziójára</strong> (modell/évjárat). Ha nem vagy biztos benne, melyik tár kell, írd meg a fegyver pontos típusát és a kalibert – segítünk kiválasztani a megfelelőt.</p>",
+  "img": "cats/tarak.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/fx-tartozekok",
+  "slug": "fx-tartozekok",
+  "name": "FX tartozékok",
+  "menu": "FX tartozékok",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>Az <strong>FX tartozékok</strong> kategóriában a mindennapi használathoz szükséges apró, de fontos kiegészítőket találod: rögzítők, csavarok, kupakok, adapterek és egyéb praktikus elemek FX légfegyverekhez. Ezek a tételek sokszor kompatibilitásfüggők (modell/kivitel/évjárat), ezért ha nem vagy biztos benne, melyik kell, írd meg a fegyver pontos típusát és amit keresel – segítünk gyorsan kiválasztani a megfelelő tartozékot.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-fx-tartozekok.webp"
+ },
+ {
+  "path": "/karbantartas-celtablak",
+  "slug": "karbantartas-celtablak",
+  "name": "Karbantartás, céltáblák",
+  "menu": "Karbantartás, céltáblák",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A rendszeres karbantartás segít megőrizni a légfegyvered pontosságát és megbízható működését. Ebben a kategóriában találsz <strong>tisztító és ápoló termékeket</strong>, valamint <strong>céltáblákat és célanyagokat</strong> edzéshez és gyakorláshoz. Ha nem vagy biztos benne, melyik tisztító/ápoló való a fegyveredhez, írj nekünk – segítünk választani.</p>",
+  "img": "cats/karbantartas-celtablak.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/kronografok",
+  "slug": "kronografok",
+  "name": "Kronográfok",
+  "menu": "Kronográfok",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p>A krónográf a pontos beállítás alapja: megmutatja a lövedék <strong>valós torkolati sebességét</strong>, így könnyebb stabilan hangolni a fegyvert, ellenőrizni a regulátor működését, és pontosabb ballisztikai adatokat használni (pellet/slug). Ebben a kategóriában olyan krónográfokat találsz, amelyekkel gyorsan és megbízhatóan mérhetsz edzésen és sportcélú használatnál. Ha megírod a fegyvered típusát és a célsebességet, segítünk a megfelelő krónográf kiválasztásában.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-kronografok.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/lozsakok-2c-lotamaszok",
+  "slug": "lozsakok-2c-lotamaszok",
+  "name": "Lőzsákok, lőtámaszok",
+  "menu": "Lőzsákok, lőtámaszok",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p>A stabil alátámasztás a pontos lövések alapja. Ebben a kategóriában találsz <strong>lőzsákokat és lőtámaszokat</strong>, amelyek segítenek a fegyver nyugodt megtámasztásában, így könnyebb következetes szórásképet lőni edzésen és sportcélú használatnál. Választásnál figyelj, hogy inkább <strong>front</strong> vagy <strong>rear</strong> alátámasztás kell, illetve milyen testhelyzetben használnád (asztal/bench, terep, bipod mellé). Ha megírod, mire használod, segítünk kiválasztani a legjobb megoldást.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-lozsakok-2c-lotamaszok.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/nyomasmerok-1",
+  "slug": "nyomasmerok-1",
+  "name": "Nyomásmérők",
+  "menu": "Nyomásmérők",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p>A megfelelő nyomásértékek ismerete alap a stabil működéshez: a <strong>tartálynyomás</strong> és a <strong>regulátor nyomás</strong> ellenőrzése segít a megbízható teljesítményben és a következetes lövésképben. Ebben a kategóriában <strong>PCP nyomásmérőket (manométereket)</strong> és kapcsolódó kiegészítőket találsz csere vagy bővítés céljára. Választásnál figyelj a kompatibilitásra (típus, menet/illesztés, mérési tartomány). Ha megírod a fegyver típusát, segítünk a megfelelő nyomásmérő kiválasztásában.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-nyomasmerok-1.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/regulator",
+  "slug": "regulator",
+  "name": "Regulátor",
+  "menu": "Regulátor",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A <strong>regulátor (nyomásszabályzó)</strong> feladata, hogy a palack nyomását egy stabil, beállított értékre szabályozza – így a fegyver <strong>egyenletesebb sebességet</strong> és kiszámíthatóbb működést tud adni. Ebben a kategóriában <strong>PCP regulátorokat és kapcsolódó elemeket</strong> találsz FX platformokhoz.<br/>Választásnál mindig figyelj a kompatibilitásra (modell/kivitel, AMP / AMP II rendszer), és arra, hogy pellethez vagy slughoz milyen beállítás a cél. Ha megírod a fegyver típusát és kaliberét, segítünk kiválasztani a megfelelő regulátort vagy alkatrészt.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-regulator.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/hatokor-rogzitok",
+  "slug": "hatokor-rogzitok",
+  "name": "Távcsőrögzítők",
+  "menu": "Távcsőrögzítők",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A stabil rögzítés a pontos célzás alapja. Ebben a kategóriában <strong>távcső- és kiegészítő rögzítőket</strong> találsz: gyűrűket, szerelékeket, síneket és egyéb rögzítő megoldásokat légpuskához. Választásnál figyelj a rögzítési szabványra (11 mm dovetail / Picatinny), a távcső csőátmérőjére (pl. 30 mm / 34 mm), a szerelékmagasságra, és arra, hogy szükséges-e extra dőlés (MOA) hosszabb távhoz.<br/>Ha megírod, milyen fegyvered és milyen távcsöved van, segítünk a megfelelő rögzítő kiválasztásában.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-hatokor-rogzitok.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/tavolsagmerok",
+  "slug": "tavolsagmerok",
+  "name": "Távolságmérők",
+  "menu": "Távolságmérők",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A távolság pontos ismerete kulcs a következetes találatokhoz. Ebben a kategóriában olyan <strong>távolságmérőket</strong> találsz, amelyek gyors mérést, stabil működést és könnyű kezelhetőséget adnak edzésen és sportcélú használatnál. Választásnál érdemes figyelni a <strong>mérési tartományra</strong>, a <strong>kijelző olvashatóságára</strong>, a méretre/tömegre és a rögzítési lehetőségekre. Ha megírod, milyen távokra használod és milyen felszereléssel, segítünk a jó modell kiválasztásában.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-tavolsagmerok.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/hangtompitok",
+  "slug": "hangtompitok",
+  "name": "Hangtompítók",
+  "menu": "Hangtompítók",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A hangtompító (moderátor) kényelmesebb lövészetet ad edzésen és sportcélú használatnál: csökkentheti a lövés hangját és a zavaró “csattanást”, így kulturáltabb lesz a használat. Ebben a kategóriában többféle méretű és menetes megoldást találsz – a legfontosabb a <strong>kompatibilis menet/adapter</strong> kiválasztása.<br/>Választásnál figyelj a menetre (pl. 1/2 UNF, M18x1 stb.), a csőátmérőre és arra, hogy milyen fegyverhez keresed. Ha megírod a fegyver típusát és a menetet, segítünk a megfelelő hangtompító kiválasztásában.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-hangtompitok.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-kiegeszitok/levego-toltes-es-szerelveny",
+  "slug": "levego-toltes-es-szerelveny",
+  "name": "Levegő töltés és szerelvény",
+  "menu": "Levegő töltés és szerelvény",
+  "parent": "/fx-termekek/fx-kiegeszitok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A biztonságos és kényelmes töltéshez a megfelelő <strong>töltőcsatlakozó és szerelvény</strong> a kulcs. Ebben a kategóriában találsz <strong>töltőcsonkokat, quick connecteket (Foster), töltőtömlőket, adaptereket és kapcsolódó szerelvényeket</strong> PCP légpuskákhoz és palackos rendszerekhez.<br/>Választásnál figyelj a kompatibilitásra (típus, menet, csatlakozó szabvány), és ha megírod, hogy milyen fegyverhez/palackhoz/kompresszorhoz kell, segítünk gyorsan a megfelelő szerelvény kiválasztásában.</p>",
+  "img": "cats/fx-termekek-fx-kiegeszitok-levego-toltes-es-szerelveny.webp"
+ },
+ {
+  "path": "/fx-termekek/fx-fegyverek",
+  "slug": "fx-fegyverek",
+  "name": "FX Légfegyverek",
+  "menu": "FX Légfegyverek",
+  "parent": "/fx-termekek",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható légfegyverek!</strong></p>\n<p><strong>Az FX PCP légfegyverek a modern sportlövészet csúcsa: stabil platform, finomhangolható rendszer és kiemelkedő pontosság. Ebben a kategóriában egy helyen találod a népszerű FX modelleket (pl. DRS, Panthera, Leopard, King, Dreamline, Maverick és további változatok).<br/>Választáskor érdemes figyelembe venni a kalibert, a csőhosszt, valamint azt, hogy inkább pellethez vagy slughoz keresel fegyvert.<br/>Ha bizonytalan vagy, írj nekünk – segítünk a megfelelő modell kiválasztásában, a beállításban és a kompatibilis kiegészítőkben is.</strong></p>",
+  "img": "cats/fx-termekek-fx-fegyverek.webp"
+ },
+ {
+  "path": "/fx-termekek/saber-tactical-termekek",
+  "slug": "saber-tactical-termekek",
+  "name": "Saber Tactical termékek",
+  "menu": "Saber Tactical termékek",
+  "parent": "/fx-termekek",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható termékek!</strong></p>\n<p>A <strong>Saber Tactical</strong> kiegészítők a prémium PCP sportlövészethez készülnek: masszív, precíz és praktikus megoldások FX légfegyverekhez és kompatibilis platformokhoz. Ebben a kategóriában megtalálod a Saber Tactical <strong>szerelékeket, támaszokat, adaptereket és tuning elemeket</strong>, amelyek segítenek stabilabb lőpozíciót, kényelmesebb kezelhetőséget és jobb felszerelhetőséget elérni.<br/>Ha nem vagy biztos a kompatibilitásban (modell/kivitel), írj nekünk – segítünk gyorsan kiválasztani a megfelelő Saber Tactical kiegészítőt.</p>",
+  "img": "cats/fx-termekek-saber-tactical-termekek.webp"
+ },
+ {
+  "path": "/snowpeak",
+  "slug": "snowpeak",
+  "name": "Snowpeak",
+  "menu": "Snowpeak",
+  "parent": null,
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható légfegyverek!</strong></p>\n<p>A <strong>Snowpeak (Artemis)</strong> légfegyverek kiváló belépőt jelentenek a hobbi- és sportcélú lövészetbe: jó ár/érték arány, sok elérhető modell és praktikus kiegészítők. Ebben a kategóriában megtalálod a népszerű <strong>Snowpeak PCP</strong> fegyvereket, valamint a hozzájuk illő tartozékokat és alkatrészeket is.<br/>Választásnál érdemes figyelni a felhasználásra (kert, lőtér, célpont), a kaliberre és a kívánt teljesítményre. Ha bizonytalan vagy, írj nekünk – segítünk a megfelelő Snowpeak modell kiválasztásában.</p>",
+  "img": ""
+ },
+ {
+  "path": "/minden-termek/zan-pellet",
+  "slug": "zan-pellet",
+  "name": "Zan Pellet",
+  "menu": "Zan Pellet",
+  "parent": null,
+  "desc": "<p>A <strong>ZAN pellet</strong> lövedékek stabil minőséget és megbízható pontosságot céloznak edzéshez és sportcélú használathoz. A megfelelő pellet kiválasztásánál a legfontosabb a <strong>kaliber/méret</strong>, a fegyver <strong>csövének “ízlése”</strong>, valamint a tervezett távolság. Ha megírod a fegyver típusát, kaliberét és a használt pelletméretet, segítünk gyorsan a jó választásban.</p>",
+  "img": ""
+ },
+ {
+  "path": "/minden-termek/jsb-pellet",
+  "slug": "jsb-pellet",
+  "name": "JSB Pellet",
+  "menu": "JSB Pellet",
+  "parent": null,
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható lövedékek!</strong></p>\n<p>A <strong>JSB pellet</strong> lövedékek a légpuskás sportlövészet egyik legnépszerűbb választásai: stabil minőség, jó egyenletesség és megbízható pontosság. Ebben a kategóriában több <strong>kaliberben és méretben</strong> találsz JSB pelleteket, így érdemes a fegyvered csövéhez és a cél távolságához választani (pl. 4,5 / 5,5 mm). Ha nem vagy biztos a megfelelő típusban vagy méretben, írj nekünk – segítünk gyorsan választani.</p>",
+  "img": ""
+ },
+ {
+  "path": "/zan-slugok",
+  "slug": "zan-slugok",
+  "name": "ZAN slugok",
+  "menu": "ZAN slugok",
+  "parent": null,
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható lövedékek!</strong></p>\n<p><b>A <strong>ZAN slugok</strong> a prémium kategóriás légpuska lövedékek közé tartoznak: kiváló egyenletesség, stabil minőség és megbízható teljesítmény – különösen akkor, ha hosszabb távon is pontosan szeretnél lőni. Ebben a kategóriában több <strong>kaliber</strong> és <strong>tömeg</strong> közül választhatsz (pl. .22 / .25 / .30), így érdemes a fegyvered beállításaihoz (regulátor, sebesség) és a cső/huzagolás “ízléséhez” választani.<br/>Ha bizonytalan vagy a megfelelő méretben vagy tömegben, írd meg a fegyver típusát és a használt beállítást – segítünk gyorsan a jó ZAN slug kiválasztásában.</b></p>",
+  "img": ""
+ },
+ {
+  "path": "/zan-slugok/30-7-62-slugs",
+  "slug": "30-7-62-slugs",
+  "name": ".30 / 7.62 Slugs",
+  "menu": ".30 / 7.62 Slugs",
+  "parent": "/zan-slugok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható lövedékek!</strong></p>\n<p>A <strong>ZAN .30 (7,62 mm) slugok</strong> a nagy kaliberű sportlövészethez készülnek: nagyobb tömeg és jó energia-megtartás, ami segít a stabilabb röppályában és a széllel szembeni ellenállásban hosszabb távon. A prémium minőségű ZAN slugoknál a megfelelő <strong>tömeg/méret</strong> és a fegyver beállításai (sebesség, regulátor) döntően befolyásolják a szórásképet, ezért érdemes tudatosan választani.<br/>Ha megírod a fegyver típusát, kaliberét és a célsebességet, segítünk kiválasztani a megfelelő ZAN .30 slugot.</p>",
+  "img": "cats/zan-slugok-30-7-62-slugs.webp"
+ },
+ {
+  "path": "/zan-slugok/35-9mm-slugs",
+  "slug": "35-9mm-slugs",
+  "name": ".35 /9mm Slugs",
+  "menu": ".35 /9mm Slugs",
+  "parent": "/zan-slugok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható lövedékek!</strong></p>\n<p>A <strong>ZAN 9 mm (.35) slugok</strong> a nagy kaliberű sportlövészethez készülnek: magas tömeg, nagy energia-megtartás és stabil teljesítmény, különösen akkor, ha hosszabb távon is következetes találatokat szeretnél. A megfelelő slug kiválasztásánál a <strong>cső mérete</strong>, a fegyver <strong>beállításai</strong> (sebesség, regulátor) és a választott tömeg döntően befolyásolja a szórásképet.<br/>Ha megírod a fegyver típusát és a célsebességet, segítünk a megfelelő ZAN 9 mm slug kiválasztásában.</p>",
+  "img": "cats/zan-slugok-35-9mm-slugs.webp"
+ },
+ {
+  "path": "/zan-slugok/elr-zan-slug",
+  "slug": "elr-zan-slug",
+  "name": "ELR Zan Slug",
+  "menu": "ELR Zan slug",
+  "parent": "/zan-slugok",
+  "desc": "",
+  "img": "cats/zan-slugok-elr-zan-slug.webp"
+ },
+ {
+  "path": "/zan-slugok/teszt-csomag",
+  "slug": "teszt-csomag",
+  "name": "Teszt csomag",
+  "menu": "Teszt csomag",
+  "parent": "/zan-slugok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható lövedékek!</strong></p>\n<p>A <strong>ZAN teszt csomag</strong> arra való, hogy gyorsan és egyszerűen megtaláld, <strong>melyik slug működik a legjobban a fegyveredben</strong>. A csövek és beállítások (sebesség/regulátor) miatt ugyanazon kaliberen belül is nagy különbség lehet tömeg és méret között – ezért a tesztcsomagok többféle ZAN slugot adnak egy válogatásban, hogy össze tudd hasonlítani a szórásképet.</p>",
+  "img": "cats/zan-slugok-35-9mm-slugs.webp"
+ },
+ {
+  "path": "/zan-slugok/177-4-5mm-slugs",
+  "slug": "177-4-5mm-slugs",
+  "name": "ZAN .177 / 4,5 mm slugok",
+  "menu": "ZAN .177 / 4,5 mm slugok",
+  "parent": "/zan-slugok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható lövedékek!</strong></p>\n<p>A <strong>ZAN .177 (4,5 mm) slugok</strong> prémium minőségű légpuska lövedékek, amelyeket a stabil egyenletesség és a pontos, kiszámítható repülés igényeihez terveztek. Ez az alkategória kifejezetten a <strong>4,5 mm / .177</strong> kaliberhez kínál ZAN slugokat, ahol a megfelelő <strong>cső/huzagolás</strong>, a beállított <strong>sebesség</strong> és a slug tömege különösen sokat számít a szórásképben.<br/>Válassz a fegyveredhez és a célodhoz illő változatot, és ha nem vagy biztos a megfelelő slugban, írd meg a fegyver típusát és a beállítást – segítünk gyorsan választani</p>",
+  "img": "cats/zan-slugok-35-9mm-slugs.webp"
+ },
+ {
+  "path": "/zan-slugok/22-5-5mm-slugs",
+  "slug": "22-5-5mm-slugs",
+  "name": "ZAN .22 / 5,5 mm slugok",
+  "menu": "ZAN .22 / 5,5 mm slugok",
+  "parent": "/zan-slugok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható lövedékek!</strong></p>\n<p>A <strong>ZAN .22 (5,5 mm) slugok</strong> a prémium légpuska lövedékek közé tartoznak: kiváló egyenletesség, stabil minőség és megbízható teljesítmény – különösen akkor, ha hosszabb távon is pontosan szeretnél lőni. Ebben az alkategóriában több <strong>tömeg</strong> és <strong>méret</strong> közül választhatsz (pl. .217 / .218), ezért érdemes a fegyvered beállításaihoz (regulátor, sebesség) és a cső/huzagolás “ízléséhez” választani.<br/>Ha bizonytalan vagy a megfelelő ZAN slugban, írd meg a fegyver típusát és a használt beállítást – segítünk gyorsan kiválasztani a jó változatot.</p>",
+  "img": "cats/zan-slugok-30-7-62-slugs.webp"
+ },
+ {
+  "path": "/zan-slugok/25-6-35-mm-slugs",
+  "slug": "25-6-35-mm-slugs",
+  "name": ".25 / 6.35 mm Slugs",
+  "menu": ".25 / 6.35 mm Slugs",
+  "parent": "/zan-slugok",
+  "desc": "<p><strong>Csakis kizárólag sportcélra használható lövedékek!</strong></p>\n<p>A <strong>ZAN .25 (6,35 mm) slugok</strong> a nagyobb kaliber előnyeit adják: magasabb tömeg és jó energia-megtartás, ami különösen hasznos lehet <strong>hosszabb távú</strong> sportlövészetnél. A ZAN slugok prémium minősége az egyenletességre és a stabil teljesítményre épít, ezért fontos a megfelelő <strong>tömeg/méret</strong> kiválasztása a fegyvered csövéhez és beállításaihoz (sebesség, regulátor).<br/>Ha megírod a fegyver típusát és a használt beállítást, segítünk a megfelelő ZAN .25 slug kiválasztásában.</p>",
+  "img": "cats/zan-slugok-30-7-62-slugs.webp"
+ }
+]
