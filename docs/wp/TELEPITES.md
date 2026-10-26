@@ -64,7 +64,14 @@ régi bolt beállításából (VirtueMart admin). Számlázz.hu. GLS ügyfélazo
   régi oldal adata marad.
 - **JUTA:** [`../JUTA.md`](../JUTA.md) – stagingen csak a `raw_sync.php` cronja, élesen az `elad.php` is.
 
-## 5. Ellenőrzés
+## 5. Régi vásárlók, rendelések, hiányzó termékek
+
+`dist/slugshop-import.zip` bővítmény → Eszközök → Régi bolt átvétele. Az oldalról letöltött adatátadó fájlt
+(saját tokennel) a régi Joomla gyökerébe kell tölteni, utána Próba → Indítás (termékek → vásárlók → rendelések).
+Semmit nem ír felül, levelet nem küld, készletet nem von le, a JUTA-nak nem küldi be a régi rendeléseket. A végén a
+fájlt törölni kell a régi oldalról. Élesítés előtt újra futtatva csak az újakat hozza.
+
+## 6. Ellenőrzés
 
 - **Megjelenés → Slugshop → Élesítési ellenőrzés** (vagy `wp slugshop check`): ami a kódból ellenőrizhető.
 - Automatikus próbák (helyi vagy staging teszt-WordPressen, a repó gyökeréből):
@@ -75,7 +82,7 @@ régi bolt beállításából (VirtueMart admin). Számlázz.hu. GLS ügyfélazo
   Az e2e rendelést ad le (előre utalással) és levélnaplót olvas – éles oldalon NE futtasd; helyi teszt-WordPresshez:
   `tools/wp/dev-wp.sh`.
 
-## 6. Hibaelhárítás
+## 7. Hibaelhárítás
 
 | Jelenség | Ok, teendő |
 |---|---|
