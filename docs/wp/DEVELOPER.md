@@ -45,7 +45,9 @@ A régi Joomla SEF-címek változatlanok, perjel nélkül (`permalink_structure 
 | `/cikkeink/cikkek/<cikk>`, `/cikkeink/articles` | bejegyzés / kategória | `cikkek`, `articles` kategóriák |
 | `/szerviz`, `/videok/fx-king` | oldal | a WordPress oldal-hierarchiája |
 
-A `request` szűrő a WordPress saját szabályai után fut: ha az útvonal kategória, termék vagy cikk, azt adja vissza.
+A `request` szűrő a WordPress saját szabályai után fut: ha az útvonal kategória, termék vagy cikk, azt adja vissza
+(ha egy termék címe pontosan egy kategóriáé is, a termék nyer – a régi boltban így volt az ELR).
+Ismétlődő tétel (`slugshop_dup_of` meta, rejtett): 301 a megmaradóra.
 A `redirect_canonical` ezeknél ki van kapcsolva. Régi alakok (legacy.php, csak 404 esetén): `/index.php/…`, `/hu/…`,
 `/component/virtuemart/…`, `-detail` / `.html` végződés, termék vagy kategória az utolsó része szerint,
 `/images/virtuemart/product/<kép>` → a termék (a kép eredeti útja a melléklet `slugshop_source` metájában),
@@ -93,6 +95,13 @@ Word, `uploads/slugshop-uzenetek/` (véletlen előtag), letöltés csak adminnak
 Mode v2 alapállapot (minden `denied`); a GTM csak „Teljesítmény” vagy „Marketing” elfogadása után töltődik, a Meta és a
 Barion Pixel csak „Marketing” után. A lábléc „Sütibeállítások” linkje újra megnyitja.
 
+## Gyári FX-cikkszám, modellszűrő
+
+A termék nevéből a gyári szám (`FX16092`, `… (FX20267C)`) a `slugshop_mpn` metába kerül. A `setup/data/fxparts.json`
+a gyári robbantott ábrákból (Letöltések PDF-jei) mondja meg, mely modellek ábráján szerepel – csak pontos egyezés,
+tehát igazolt adat. Ebből: a termékoldal „Gyári / Belső cikkszám” sora és „ezekben a modellekben szerepel” doboza, a
+kategória modellválasztója (`?modell=fx-panthera`, ha a kategóriában van ilyen termék) és a cikkszámkereső (`?q=`).
+
 ## Telepítő (setup.php)
 
 `slugshop_setup_steps()`: settings → categories → products (25-ös köteg) → pages → posts → menus → finish.
@@ -102,6 +111,8 @@ Barion Pixel csak „Marketing” után. A lábléc „Sütibeállítások” li
 - A meglévő termék árához, készletéhez, cikkszámához csak `--force` nyúl (JUTA).
 - Képek: `slugshop_attach()` a médiacsomagból egyszer (`slugshop_media` meta = relatív út); a tartalomban a
   `{{media:articles/x.webp}}` jelölő a médiatár URL-jére cserélődik.
+- Frissítéskor a hiányzó kategóriákat hozzáadja (sosem vesz el), a gyári cikkszámot (`slugshop_mpn`) és az ismétlődő
+  tételt (`dupOf` → rejtve) beírja; a kategória `oldPath`-ja szerint a régi címen tárolt kategóriát viszi tovább.
 - Kategória keresése útvonal szerint közvetlen SQL-lel: a WooCommerce a termékkategóriák `get_terms()`-ébe saját
   `order`-rendezést tesz, ami a `meta_key` szűrővel üres eredményt ad (duplikált kategóriák lettek volna).
 
@@ -112,6 +123,8 @@ tools/wp/media.py              teljes méretű termékképek és PDF-ek a régi 
 tools/wp/dev-wp.sh /tmp/wp     helyi teszt-WordPress (MariaDB, WP-CLI, iu_theme a hlprv repóból, telepítővel)
 (cd /tmp/wp && PHP_CLI_SERVER_WORKERS=6 php -S localhost:8890 -t /tmp/wp /tmp/slug-router.php)
 tools/wp/rebuild.sh            build_data.py → canon.mjs ×2 (adatok + kanonikus blokk-markup)
+python3 tools/wp/fixes.py      az ügyfél javításai az adatokon (a build_data.py is lefuttatja; idempotens)
+python3 tools/wp/fxparts.py build/media/files   gyári cikkszám → modellek a gyári robbantott ábrákból (fxparts.json)
 python3 tools/wp/build_theme.py   dist/slugshop-tema.zip + dist/slugshop-media.zip
 BASE=http://localhost:8890 WPDIR=/tmp/wp node tests/wp/e2e.mjs
 BASE=http://localhost:8890 WP="wp --allow-root --path=/tmp/wp" WPUSER=admin WPPASS=admin node tests/wp/editor-check.mjs

@@ -138,6 +138,13 @@ add_filter('request', function (array $vars): array {
     $cats = slugshop_cat_paths();
     if (isset($cats['/' . $path])) {
         $term = get_term($cats['/' . $path], 'product_cat');
+        // Ha egy termék címe pontosan ugyanez (a régi boltban az ELR kategória és termék így ütközött), a termék nyer, mint régen.
+        $slash = strrpos($path, '/');
+        $same = $slash !== false ? get_posts(['post_type' => 'product', 'name' => substr($path, $slash + 1), 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids']) : [];
+        if ($same && slugshop_product_path((int) $same[0]) === '/' . $path) {
+            $slug = substr($path, $slash + 1);
+            return ['product' => $slug, 'post_type' => 'product', 'name' => $slug];
+        }
         if ($term instanceof WP_Term) {
             return ['product_cat' => $term->slug];
         }
@@ -156,10 +163,18 @@ add_filter('request', function (array $vars): array {
     return $vars;
 }, 20);
 
-/** Több kategóriás termék más kategória alól → a saját (fő kategóriás) címére. */
+/** Ismétlődő tétel (a telepítő rejtette el) → a megmaradó; több kategóriás termék más kategória alól → a saját címére. */
 add_action('template_redirect', function () {
     if (!is_singular('product')) {
         return;
+    }
+    $dup = (string) get_post_meta(get_queried_object_id(), 'slugshop_dup_of', true);
+    if ($dup !== '') {
+        $keep = get_posts(['post_type' => 'product', 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids', 'meta_key' => 'slugshop_key', 'meta_value' => $dup]);
+        if ($keep) {
+            wp_safe_redirect(get_permalink($keep[0]), 301);
+            exit;
+        }
     }
     $want = slugshop_product_path(get_queried_object_id());
     if ($want !== '' && '/' . slugshop_request_path() !== $want) {

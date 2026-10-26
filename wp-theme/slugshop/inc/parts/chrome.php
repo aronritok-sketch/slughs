@@ -99,12 +99,22 @@ function slugshop_render_header(): string
         }
         $nav .= '<li><a href="' . esc_url($item['url']) . '"' . (slugshop_is_current($item['url']) ? ' aria-current="page"' : '') . '>' . esc_html($item['title']) . '</a>' . $sub . '</li>';
     }
+    // Mobilmenü: az alkategóriák összecsukva (a nyitott oldal csoportja kinyitva), hogy a menü rövid maradjon.
     $drawer = '';
-    foreach ($menu as $item) {
-        $drawer .= '<a href="' . esc_url($item['url']) . '">' . esc_html($item['title']) . '</a>';
-        foreach ($item['children'] as $c) {
-            $drawer .= '<a class="sub" href="' . esc_url($c['url']) . '">' . esc_html($c['title']) . '</a>';
+    foreach ($menu as $i => $item) {
+        $link = '<a href="' . esc_url($item['url']) . '"' . (slugshop_is_current($item['url']) ? ' aria-current="page"' : '') . '>' . esc_html($item['title']) . '</a>';
+        if (!$item['children']) {
+            $drawer .= $link;
+            continue;
         }
+        $open = slugshop_is_current($item['url']);
+        $subs = '';
+        foreach ($item['children'] as $c) {
+            $subs .= '<a class="sub" href="' . esc_url($c['url']) . '"' . (slugshop_is_current($c['url']) ? ' aria-current="page"' : '') . '>' . esc_html($c['title']) . '</a>';
+        }
+        $drawer .= '<div class="drawer-group"><div class="drawer-row">' . $link
+            . '<button class="drawer-tog" type="button" aria-expanded="' . ($open ? 'true' : 'false') . '" aria-controls="drawer-sub-' . $i . '" aria-label="' . esc_attr($item['title'] . ' alkategóriái') . '">' . slugshop_icon('down') . '</button></div>'
+            . '<div class="drawer-sub" id="drawer-sub-' . $i . '"' . ($open ? '' : ' hidden') . '>' . $subs . '</div></div>';
     }
     foreach (slugshop_menu('slugshop-footer') as $item) {
         $drawer .= '<a href="' . esc_url($item['url']) . '">' . esc_html($item['title']) . '</a>';

@@ -1,0 +1,335 @@
+{
+ "models": {
+  "fx-bobcat-mki": "FX Bobcat MkI",
+  "fx-bobcat-mkii": "FX Bobcat MkII",
+  "fx-crown": "FX Crown",
+  "fx-dreamline": "FX Dreamline",
+  "fx-drs": "FX DRS",
+  "fx-drs-tactical": "FX DRS Tactical",
+  "fx-dynamic": "FX Dynamic",
+  "fx-impact-m3": "FX Impact M3",
+  "fx-impact-m4": "FX Impact M4",
+  "fx-impact-mki": "FX Impact MkI",
+  "fx-impact-mkii": "FX Impact MkII",
+  "fx-king": "FX King",
+  "fx-maverick": "FX Maverick",
+  "fx-panthera": "FX Panthera",
+  "fx-panthera-hunter": "FX Panthera Hunter",
+  "fx-royale": "FX Royale",
+  "fx-streamline": "FX Streamline",
+  "fx-typhoon-t12": "FX Typhoon T12",
+  "fx-wildcat-mki": "FX Wildcat MkI",
+  "fx-wildcat-mkii": "FX Wildcat MkII",
+  "fx-wildcat-mkiii": "FX Wildcat MkIII"
+ },
+ "parts": {
+  "10291": {
+   "name": "Quick adjustment axle Impact M3",
+   "models": [
+    "fx-impact-m3",
+    "fx-impact-m4",
+    "fx-panthera"
+   ]
+  },
+  "10293": {
+   "name": "Quick adjustment guide Impact M3",
+   "models": [
+    "fx-impact-m3",
+    "fx-impact-m4",
+    "fx-panthera"
+   ]
+  },
+  "10310": {
+   "name": "Power adjuster Impact M3",
+   "models": [
+    "fx-impact-m3"
+   ]
+  },
+  "1147": {
+   "name": "Spring 0,25X2,37X20",
+   "models": [
+    "fx-impact-m3",
+    "fx-impact-m4",
+    "fx-panthera"
+   ]
+  },
+  "11501": {
+   "name": "Spring 0,5x2,5x6,1",
+   "models": [
+    "fx-bobcat-mki",
+    "fx-bobcat-mkii",
+    "fx-crown",
+    "fx-drs",
+    "fx-drs-tactical",
+    "fx-impact-m3",
+    "fx-impact-m4",
+    "fx-impact-mki",
+    "fx-impact-mkii",
+    "fx-maverick",
+    "fx-panthera",
+    "fx-streamline",
+    "fx-wildcat-mkiii"
+   ]
+  },
+  "11504": {
+   "name": "Spring 0,32x3,2x14,4",
+   "models": [
+    "fx-drs",
+    "fx-drs-tactical",
+    "fx-impact-m3",
+    "fx-impact-m4",
+    "fx-impact-mki",
+    "fx-impact-mkii",
+    "fx-panthera",
+    "fx-royale",
+    "fx-streamline",
+    "fx-typhoon-t12"
+   ]
+  },
+  "11504-2": {
+   "name": "Spring 0,4x2,5x15",
+   "models": [
+    "fx-bobcat-mki",
+    "fx-bobcat-mkii"
+   ]
+  },
+  "11525": {
+   "name": "Trigger wheel",
+   "models": [
+    "fx-bobcat-mki",
+    "fx-bobcat-mkii",
+    "fx-crown",
+    "fx-drs",
+    "fx-drs-tactical",
+    "fx-impact-m3",
+    "fx-impact-mki",
+    "fx-impact-mkii",
+    "fx-maverick",
+    "fx-panthera",
+    "fx-royale",
+    "fx-streamline",
+    "fx-typhoon-t12",
+    "fx-wildcat-mki",
+    "fx-wildcat-mkii",
+    "fx-wildcat-mkiii"
+   ]
+  },
+  "16092": {
+   "name": "Grub screw M3x4",
+   "models": [
+    "fx-bobcat-mki",
+    "fx-bobcat-mkii",
+    "fx-drs",
+    "fx-drs-tactical",
+    "fx-impact-m3",
+    "fx-impact-m4",
+    "fx-panthera"
+   ]
+  },
+  "19039": {
+   "name": "Hammer v7",
+   "models": [
+    "fx-bobcat-mki",
+    "fx-bobcat-mkii",
+    "fx-crown",
+    "fx-drs",
+    "fx-drs-tactical",
+    "fx-maverick",
+    "fx-panthera",
+    "fx-royale",
+    "fx-streamline",
+    "fx-wildcat-mki",
+    "fx-wildcat-mkii",
+    "fx-wildcat-mkiii"
+   ]
+  },
+  "19137": {
+   "name": "Trigger pin",
+   "models": [
+    "fx-bobcat-mki",
+    "fx-bobcat-mkii",
+    "fx-crown",
+    "fx-impact-m4",
+    "fx-panthera"
+   ]
+  },
+  "19498": {
+   "name": "Spring 0,2 x 2,5 x 13,1",
+   "models": [
+    "fx-maverick",
+    "fx-wildcat-mki",
+    "fx-wildcat-mkii",
+    "fx-wildcat-mkiii"
+   ]
+  },
+  "19571": {
+   "name": "Magazine catch wildcat",
+   "models": [
+    "fx-wildcat-mki",
+    "fx-wildcat-mkii"
+   ]
+  },
+  "19643": {
+   "name": "Grub screw, Feeding pin, M4",
+   "models": [
+    "fx-impact-m3",
+    "fx-impact-m4",
+    "fx-impact-mki",
+    "fx-impact-mkii"
+   ]
+  },
+  "19651": {
+   "name": "Front Support Impact",
+   "models": [
+    "fx-impact-mki",
+    "fx-impact-mkii"
+   ]
+  },
+  "19683": {
+   "name": "Grubscrew M3x18",
+   "models": [
+    "fx-crown",
+    "fx-impact-mki",
+    "fx-impact-mkii",
+    "fx-streamline"
+   ]
+  },
+  "19908": {
+   "name": "Power adjuster Crown",
+   "models": [
+    "fx-crown",
+    "fx-panthera"
+   ]
+  },
+  "19960": {
+   "name": "Barrel Attachment .177",
+   "models": [
+    "fx-dreamline",
+    "fx-impact-m3",
+    "fx-maverick",
+    "fx-wildcat-mkii",
+    "fx-wildcat-mkiii"
+   ]
+  },
+  "19961": {
+   "name": "Barrel Attachment .22",
+   "models": [
+    "fx-dreamline",
+    "fx-impact-m3",
+    "fx-maverick",
+    "fx-wildcat-mkii",
+    "fx-wildcat-mkiii"
+   ]
+  },
+  "19962": {
+   "name": "Barrel Attachment .25",
+   "models": [
+    "fx-impact-m3",
+    "fx-maverick",
+    "fx-wildcat-mkii",
+    "fx-wildcat-mkiii"
+   ]
+  },
+  "20305": {
+   "name": "Pellet probe screw Wildcat MKIII",
+   "models": [
+    "fx-maverick",
+    "fx-wildcat-mkiii"
+   ]
+  },
+  "20735": {
+   "name": "Power adjuster Impact M4",
+   "models": [
+    "fx-impact-m4"
+   ]
+  },
+  "20916": {
+   "name": "Carrier Dynamic",
+   "models": [
+    "fx-panthera"
+   ]
+  },
+  "20923": {
+   "name": "Valve Seat Dynamic",
+   "models": [
+    "fx-drs",
+    "fx-drs-tactical",
+    "fx-panthera"
+   ]
+  },
+  "20925": {
+   "name": "Valve Housing Dynamic",
+   "models": [
+    "fx-panthera"
+   ]
+  },
+  "20944": {
+   "name": "Shroud muzzle cap dynamic",
+   "models": [
+    "fx-panthera"
+   ]
+  },
+  "20959": {
+   "name": "Spring Seat 3,1mm Dynamic",
+   "models": [
+    "fx-drs",
+    "fx-drs-tactical",
+    "fx-panthera"
+   ]
+  },
+  "21074R": {
+   "name": "Main Block Dynamic",
+   "models": [
+    "fx-panthera"
+   ]
+  },
+  "21801": {
+   "name": "Hammer spring adjuster DRS",
+   "models": [
+    "fx-drs",
+    "fx-drs-tactical"
+   ]
+  },
+  "2504": {
+   "name": "Countersunk screw M3x6",
+   "models": [
+    "fx-drs",
+    "fx-drs-tactical",
+    "fx-impact-m3",
+    "fx-impact-m4",
+    "fx-impact-mki",
+    "fx-impact-mkii",
+    "fx-king",
+    "fx-maverick",
+    "fx-panthera",
+    "fx-wildcat-mki",
+    "fx-wildcat-mkii",
+    "fx-wildcat-mkiii"
+   ]
+  },
+  "2604": {
+   "name": "Hammerspring 52mm",
+   "models": [
+    "fx-drs",
+    "fx-drs-tactical",
+    "fx-impact-m3",
+    "fx-impact-m4",
+    "fx-impact-mkii",
+    "fx-panthera"
+   ]
+  },
+  "5532": {
+   "name": "Tube/ Bottle Carbonfiber 480cc",
+   "models": [
+    "fx-crown",
+    "fx-dynamic"
+   ]
+  },
+  "5541": {
+   "name": "Tube/ Bottle Carbonfiber",
+   "models": [
+    "fx-panthera-hunter"
+   ]
+  }
+ }
+}

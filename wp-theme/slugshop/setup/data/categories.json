@@ -225,13 +225,14 @@
   "img": "cats/zan-slugok-35-9mm-slugs.webp"
  },
  {
-  "path": "/zan-slugok/elr-zan-slug",
-  "slug": "elr-zan-slug",
-  "name": "ELR Zan Slug",
-  "menu": "ELR Zan slug",
+  "path": "/zan-slugok/elr-slugok",
+  "slug": "elr-slugok",
+  "name": "ELR ZAN slugok",
+  "menu": "ELR ZAN slugok",
   "parent": "/zan-slugok",
   "desc": "",
-  "img": "cats/zan-slugok-elr-zan-slug.webp"
+  "img": "cats/zan-slugok-elr-zan-slug.webp",
+  "oldPath": "/zan-slugok/elr-zan-slug"
  },
  {
   "path": "/zan-slugok/teszt-csomag",

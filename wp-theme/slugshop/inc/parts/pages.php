@@ -121,6 +121,21 @@ function slugshop_file_url(string $file, string $fallback = ''): string
     return $id ? (string) wp_get_attachment_url($id) : $fallback;
 }
 
+/** Telefon- és e-mail-gomb (pl. a Szerviz „Időpontkérés” része alatt). */
+function slugshop_render_contact_buttons(array $a): string
+{
+    $phone = (string) slugshop_site('phone');
+    $email = (string) slugshop_site('email');
+    $out = '';
+    if ($phone !== '') {
+        $out .= '<a class="btn btn--primary" href="tel:' . esc_attr(preg_replace('/[^+\d]/', '', $phone)) . '">' . slugshop_icon('phone', 'icon') . esc_html($a['phoneLabel'] . ': ' . $phone) . '</a>';
+    }
+    if ($email !== '') {
+        $out .= '<a class="btn" href="mailto:' . esc_attr($email) . '?subject=' . rawurlencode((string) $a['subject']) . '">' . slugshop_icon('mail', 'icon') . esc_html($a['emailLabel'] . ': ' . $email) . '</a>';
+    }
+    return $out !== '' ? '<p class="contact-buttons">' . $out . '</p>' : '';
+}
+
 function slugshop_render_downloads(array $a): string
 {
     $items = slugshop_setup_data('downloads');
@@ -129,6 +144,9 @@ function slugshop_render_downloads(array $a): string
     }
     $out = '<h2 class="sec-title">' . esc_html($a['title']) . '</h2><ul class="downloads">';
     foreach ($items as $it) {
+        if (!empty($it['dupOf'])) {
+            continue; // bájtra azonos másolat („… copy 1”): a fájl megmarad, a listában egyszer szerepel
+        }
         $url = slugshop_file_url($it['file'], home_url($it['src']));
         $id = slugshop_media_files()['files/' . $it['file']] ?? 0;
         $size = $id ? size_format((int) @filesize((string) get_attached_file($id)), 1) : '';

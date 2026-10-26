@@ -80,6 +80,7 @@ function slugshop_icon(string $name, string $class = ''): string
         'right' => '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg>',
         'mail' => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 5h20v14H2z" opacity=".15"/><path d="M2 5h20v14H2V5zm2 2v.5l8 5.5 8-5.5V7H4zm16 2.9-8 5.5-8-5.5V17h16V9.9z"/></svg>',
         'a11y' => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 8.5 12 10l8-1.5.4 1.8-6 1.7V15l2.4 6.5-1.8.7L12 16.6l-3 5.6-1.8-.7L9.6 15v-3l-6-1.7z"/></svg>',
+        'phone' => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>',
         'box' => '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M24 4 42 13v22L24 44 6 35V13z"/><path d="m6 13 18 9 18-9M24 22v22"/></svg>',
     ];
     $svg = $icons[$name] ?? '';

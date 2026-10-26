@@ -277,13 +277,17 @@ function slugshop_setup_categories(int $offset, bool $force, array &$log): array
     $ids = [];
     foreach ($cats as $i => $c) {
         $parent = $c['parent'] ? ($ids[$c['parent']] ?? 0) : 0;
-        $found = slugshop_term_by_path($c['path']);
+        // Ha a kategória címe változott (oldPath), a régi címen tárolt kategóriát viszi tovább.
+        $found = slugshop_term_by_path($c['path']) ?: (!empty($c['oldPath']) ? slugshop_term_by_path($c['oldPath']) : []);
         $args = ['description' => $c['desc'], 'parent' => $parent, 'slug' => $c['slug']];
         if ($found) {
             $id = (int) $found[0];
             $term = get_term($id, 'product_cat');
             $stored = (string) get_term_meta($id, 'slugshop_hash', true);
             $hash = md5($c['name'] . '|' . $c['desc']);
+            if (!empty($c['oldPath']) && $term->slug !== $c['slug'] && (string) get_term_meta($id, 'slugshop_path', true) === $c['oldPath']) {
+                wp_update_term($id, 'product_cat', ['slug' => $c['slug']]);
+            }
             if ($stored !== $hash && ($force || $stored === '' || md5($term->name . '|' . $term->description) === $stored)) {
                 wp_update_term($id, 'product_cat', $args + ['name' => $c['name']]);
                 update_term_meta($id, 'slugshop_hash', $hash);
@@ -363,9 +367,23 @@ function slugshop_setup_product(array $d, int $order, array $cat_ids, bool $forc
         }
         if ($force) {
             $create = true; // az alábbi „új termék” mezőket is újraírja
-        } elseif (!$product->get_category_ids() && $terms) {
-            $product->set_category_ids($terms);
+        } elseif (array_diff($terms, $product->get_category_ids())) {
+            // csak hozzáad (pl. az új ELR kategória); amit az adminban adtak hozzá, az marad
+            $product->set_category_ids(array_values(array_unique(array_merge($product->get_category_ids(), $terms))));
             $changed = true;
+        }
+    }
+    // Gyári cikkszám (a névből; a termékoldal és a modellszűrő használja) és az ismétlődő tétel (rejtve, a címe az elsőre visz).
+    if ((string) $product->get_meta('slugshop_mpn') !== (string) ($d['mpn'] ?? '')) {
+        $product->update_meta_data('slugshop_mpn', (string) ($d['mpn'] ?? ''));
+        $changed = true;
+    }
+    if ((string) $product->get_meta('slugshop_dup_of') !== (string) ($d['dupOf'] ?? '')) {
+        $product->update_meta_data('slugshop_dup_of', (string) ($d['dupOf'] ?? ''));
+        $product->set_catalog_visibility(!empty($d['dupOf']) ? 'hidden' : 'visible');
+        $changed = true;
+        if (!empty($d['dupOf'])) {
+            $log[] = '⚠ ismétlődő tétel elrejtve (a címe a megmaradóra visz): ' . $d['name'];
         }
     }
     if ($create) {

@@ -38,8 +38,8 @@ A Mandala leírása: `aronritok-sketch/mdn` → `docs/JUTA.md`, kód: `wp-theme/
 2. A cikkszámok egyeztetése: a JUTA `barcode` mezője = a WooCommerce SKU. A régi boltból átjött cikkszámok vegyesek
    (EAN, pl. `3830079160087`; gyári FX-cikkszám, pl. `FX20710`; belső kód). Az első staging-szinkron után nézd meg:
    hány új piszkozat keletkezett (= a JUTA ismer, a bolt nem) és hány termék nem változott (= a bolt ismer, a JUTA
-   nem). A régi boltban egy cikkszám kétszer szerepelt (`9990000007233`): az egyik termék `slugshop_old_sku` metában
-   őrzi – ezt javítani kell.
+   nem). A régi boltban egy cikkszám kétszer szerepelt (`9990000007233`, FX2504): a második tétel rejtett, a címe az
+   elsőre visz (`slugshop_dup_of`), a cikkszámot `slugshop_old_sku` metában őrzi.
 3. **Fizetési módok leképezése** az `elad.php`-ben: a Viva Wallet bővítmény azonosítóját fel kell venni a kártyás
    listába (a Mandalánál a Teya `borgun` azonosítója hiányzott, ezért utalásként ment át). Az előre utalás (`bacs`),
    az utánvét (`cod`) és a személyes átvételes fizetés leképezését a JUTA-t kezelő kollégával egyeztetni.
@@ -48,9 +48,11 @@ A Mandala leírása: `aronritok-sketch/mdn` → `docs/JUTA.md`, kód: `wp-theme/
    `_slugshop_imported` metát írja, a téma pedig `regi-bolt` jelölőt tesz rájuk, hogy az `elad.php` ne küldje újra).
 5. A `/juta/*.php` fájlokat **ne nyisd meg böngészőből** tesztként: minden megnyitás lefuttatja őket.
 
-## Kérdések (kérdéssor Z02)
+## Az ügyfél válaszai (kérdéssor, 2026-10-26)
 
-1. Ki kezeli a JUTA-oldalt (Zoli?), és ki adja a WooCommerce-es szkripteket (a Mandaláé alapján)?
-2. Milyen gyakran frissül a készlet-export, és milyen állapotú rendelés menjen a JUTA-ba (fizetve / teljesítve)?
-3. Az akciós ár a JUTA-ból jön-e (a Mandalánál a JUTA „Akciós ár” a viszonteladói ár – itt valószínűleg nem kell)?
-4. A JUTA állítja-e ki a számlát, vagy külön számlázó kell (Számlázz.hu, Billingo)?
+1. A JUTA-t Móra László kezeli; Zolit nem ismeri – a JUTA technikai kapcsolattartóját Dohar Istvánnal pontosítják.
+2. A **teljesített / kiküldött** rendelések mennek a JUTA-ba (az utánvétesek is; az utánvét pénzügyét külön követik).
+3. Az árat **és az akciós árat** a JUTA-ban kezelik, a bolt onnan vegye át – a szinkron ármezőit élesítés előtt
+   ellenőrizni (a Mandalánál a JUTA „Akciós ár” a viszonteladói ár volt!).
+4. Számlázás: Számlázz.hu. A JUTA és a webshop cikkszámainak egyezése nincs ellenőrizve: élesítés előtt a két export
+   tételes összevetése (a 2025-12-19-i vonalkód-kitöltés alapján).

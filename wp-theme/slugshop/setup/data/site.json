@@ -93,16 +93,16 @@
  "slides": [
   {
    "title": "ELR ZAN SLUGOK",
-   "text": "Magyarországon csakis kizárólag a Slugshopban! Már Viva Wallet bankkártyás fizetés is elérhető oldalunkon!",
+   "text": "Magyarországon kizárólag a Slugshopnál. Bankkártyával (Viva) is fizethetsz.",
    "button": "ELR Slugok",
-   "href": "/zan-slugok/elr-zan-slug",
+   "href": "/zan-slugok/elr-slugok",
    "img": "slide-elrslug-png.webp"
   },
   {
    "title": "Légfegyverek forradalma",
-   "text": "Fedezze fel a PCP légfegyverek új generációját. Precizitás, megbízhatóság, és forradalmi design egy helyen: a Slugshop Webshopban!",
-   "button": "Termékek",
-   "href": "/zan-slugok",
+   "text": "Fedezd fel az FX Airguns PCP légfegyvereit: pontosság és megbízhatóság, szervizzel és alkatrészekkel együtt.",
+   "button": "Légfegyverek",
+   "href": "/fx-termekek/fx-fegyverek",
    "img": "slide-slide01-webp.webp"
   },
   {
@@ -121,7 +121,7 @@
   },
   {
    "title": "FX légfegyverek – videótár",
-   "text": "Gyere és fedezd fel az Fx légfegyverek világát!",
+   "text": "Nézd meg az FX légfegyvereket működés közben.",
    "button": "Videók",
    "href": "/videok",
    "img": "slide-image-9-png.webp"
@@ -150,23 +150,23 @@
   }
  ],
  "intro": {
-  "title": "Légfegyver innováció a Slugshopban",
-  "text": "Üdvözöljük a Slugshopban, ahol a légfegyver technológia úttörőjeként büszkén kínáljuk a legfinomabb FX, FLUG és Panthera modelleket. A Maverick tervezésű fegyvereinkkel, a precíz Zan slug lövedékekkel és a Heavy csővel garantáljuk az élvonalbeli teljesítményt. Az O-gyűrűtől a Regulátoron át a Dreamline designig mindent megtalál nálunk, ami egy kiváló légfegyverhez szükséges. Fedezze fel nálunk a légfegyverezés következő generációját!"
+  "title": "Légfegyverek, ZAN lövedékek, FX alkatrészek",
+  "text": "A Slugshop jászberényi légfegyver-szaküzlet és szerviz. FX Airguns PCP légfegyvereket, gyári FX alkatrészeket és kiegészítőket forgalmazunk, a ZAN lövedékek magyarországi kizárólagos forgalmazójaként slugokat és pelleteket. A fegyvereket szervizeljük, és a választott lövedékhez hangoljuk."
  },
  "blocks": [
   {
-   "title": "Felsőkategóriás légfegyverek a Slugshopban",
-   "text": "Nem minden légfegyver teremtett egyenlőnek. A Slugshop kínálatában olyan prémium minőségű légfegyvereket talál, mint amilyenek a FX márkájú modellek, melyek az autóiparban a Mercédesz kiválóságával vannak egyenlő szinten. Kiemelkedünk a konkurenciából a magas színvonalú termékeinkkel, garantálva ezzel a tökéletes lövészélményt az igazán elkötelezett légfegyver-tulajdonosoknak.",
-   "button": "Bővebben",
-   "href": "/rolunk",
+   "title": "FX légfegyverek és gyári alkatrészek",
+   "text": "FX Airguns PCP légfegyverek, gyári alkatrészek, csövek, tárak és kiegészítők. Az alkatrészeket a gyári cikkszám vagy a fegyver modellje alapján is megtalálod, a gyári robbantott ábrák a Letöltések között vannak.",
+   "button": "FX termékek",
+   "href": "/fx-termekek",
    "img": "",
    "imgCore": ""
   },
   {
-   "title": "Élvonalbeli minőség és teljesítmény a légfegyverek világában",
-   "text": "Azoknak, akik nem elégszenek meg a középszerűséggel és igazán kiváló légfegyverre vágynak, a Slugshop a tökéletes választás. A FX márkájú modellekkel, melyek a légfegyverek Mercédeszeként vannak elismerve, biztosítjuk, hogy minden lövés a legnagyobb precizitással és teljesítménnyel rendelkezzen. Válassza a legjobbat, válassza a Slugshopot.",
-   "button": "Bővebben",
-   "href": "/rolunk",
+   "title": "Szerviz és hangolás",
+   "text": "Az FX légfegyverek szervizét és a lövedékhez illesztett rendszerhangolást előzetes egyeztetéssel vállaljuk Jászberényben: ingadozó sebességnél, romló szórásképnél, levegővesztésnél, lövedékváltáskor vagy használt fegyver vásárlása után.",
+   "button": "Szerviz",
+   "href": "/szerviz",
    "img": "blokk-harmadik.webp",
    "imgCore": "blokk-harmadik-mag.webp"
   }
@@ -284,5 +284,13 @@
   "/regisztracio": "/fiokom?regisztracio=1",
   "/kosar/penztar": "/penztar"
  },
- "currencySwitcher": false
+ "currencySwitcher": false,
+ "shipping": {
+  "lines": [
+   "GLS házhozszállítás: 3 650 Ft",
+   "GLS CsomagPont vagy automata: 2 000 Ft",
+   "Személyes átvétel Jászberényben: ingyenes"
+  ],
+  "dispatch": ""
+ }
 }

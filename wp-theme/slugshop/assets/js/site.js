@@ -332,7 +332,7 @@
       }
       const ask = t.closest('[data-ask]');
       if (ask) {
-        modal(`<button class="close-btn" type="button" data-modal-close aria-label="Bezárás" style="float:right">×</button><h2 style="font-size:1.5rem">Tegye fel kérdését</h2><p class="sub">${esc(ask.dataset.name)}</p>
+        modal(`<button class="close-btn" type="button" data-modal-close aria-label="Bezárás" style="float:right">×</button><h2 style="font-size:1.5rem">Kérdezz a termékről</h2><p class="sub">${esc(ask.dataset.name)}</p>
           <form class="form form-dark" data-form="ask" novalidate style="text-align:left">${guard()}<input type="hidden" name="product" value="${esc(ask.dataset.ask)}">
           <div class="field"><label for="a-name">Név *</label><input id="a-name" name="your-name" required autocomplete="name"></div>
           <div class="field"><label for="a-email">E-mail cím *</label><input id="a-email" name="your-email" type="email" required autocomplete="email"></div>
@@ -345,6 +345,8 @@
       if (t.closest('[data-open-search]')) { openLayer('#search'); return; }
       if (t.closest('[data-close]')) { closeAll(); return; }
       if (t.closest('[data-toggle-sidebar]')) { const s = $('#sidebar'); s.classList.toggle('is-open'); t.closest('[data-toggle-sidebar]').setAttribute('aria-expanded', String(s.classList.contains('is-open'))); return; }
+      const dt = t.closest('.drawer-tog');
+      if (dt) { const sub = $('#' + dt.getAttribute('aria-controls')); const open = sub.hidden; sub.hidden = !open; dt.setAttribute('aria-expanded', String(open)); return; }
       const tog = t.closest('.cat-tree .tog');
       if (tog) { const ul = tog.closest('li').querySelector('ul'); const open = ul.hidden; ul.hidden = !open; tog.setAttribute('aria-expanded', String(open)); return; }
       const yt = t.closest('.yt[data-yt]'); if (yt) { yt.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(yt.dataset.yt)}?autoplay=1" title="YouTube-videó" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`; return; }

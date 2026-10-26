@@ -28,7 +28,8 @@
   "path": "/zan-slugok/elr-zan-slug",
   "primary": "/zan-slugok",
   "cats": [
-   "/zan-slugok"
+   "/zan-slugok",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "ELR Zan Slug",
   "price": 8600,
@@ -63,7 +64,8 @@
   "path": "/zan-slugok/elr-zan-slug-734",
   "primary": "/zan-slugok",
   "cats": [
-   "/zan-slugok"
+   "/zan-slugok",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "ELR Zan Slug 35,5 grain",
   "price": 8600,
@@ -98,7 +100,8 @@
   "path": "/zan-slugok/zan-elr-hyper-783",
   "primary": "/zan-slugok",
   "cats": [
-   "/zan-slugok"
+   "/zan-slugok",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "Zan ELR hyper 35 grain( 217)",
   "price": 11000,
@@ -125,7 +128,8 @@
   "path": "/zan-slugok/zan-elr-hyper-783-784",
   "primary": "/zan-slugok",
   "cats": [
-   "/zan-slugok"
+   "/zan-slugok",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "Zan ELR hyper 35 grain( 218)",
   "price": 11000,
@@ -152,7 +156,8 @@
   "path": "/zan-slugok/zan-elr-hyper-785",
   "primary": "/zan-slugok",
   "cats": [
-   "/zan-slugok"
+   "/zan-slugok",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "Zan ELR hyper 40,7grain (218)",
   "price": 11000,
@@ -179,7 +184,8 @@
   "path": "/zan-slugok/zan-elr-hyper",
   "primary": "/zan-slugok",
   "cats": [
-   "/zan-slugok"
+   "/zan-slugok",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "Zan ELR hyper 42,3 grain (217)",
   "price": 11500,
@@ -206,7 +212,8 @@
   "path": "/zan-slugok/zan-elr-hyper-784",
   "primary": "/zan-slugok",
   "cats": [
-   "/zan-slugok"
+   "/zan-slugok",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "Zan ELR hyper 42,3 grain (218)",
   "price": 11500,
@@ -235,20 +242,21 @@
   "cats": [
    "/fx-alkatreszek"
   ],
-  "name": "FX16092 süllyesztett imbuszcsavar – gyári FX alkatrész",
+  "name": "FX16092 hernyócsavar M3×4 – gyári FX alkatrész",
   "price": 330,
   "stock": "in",
   "stockText": "Raktáron",
   "sku": "9990000007257",
-  "short": "<p>Gyári FX16092 süllyesztett fejű, imbuszkulcsos rögzítőcsavar. Több FX modellben használt pótalkatrész, pontos illeszkedéssel.</p>",
-  "desc": "<p>Az <strong>FX16092</strong> egy <strong>gyári FX süllyesztett fejű imbuszcsavar</strong>, amelyet több FX légfegyverben használnak különböző rögzítési pontokon.<br/>Ideális megoldás <strong>hiányzó, sérült vagy elveszett csavar</strong> pótlására szerviz vagy karbantartás során.</p>\n<p>A süllyesztett fej kialakítás lehetővé teszi, hogy a csavar <strong>síkban feküdjön fel</strong>, nem áll ki az alkatrész síkjából, így pontos és biztonságos rögzítést biztosít.</p>\n<p><strong>Gyors specifikáció</strong></p>\n<ul>\n<li>\n<p>Gyári cikkszám: <strong>FX16092</strong></p>\n</li>\n<li>\n<p>Megnevezés: süllyesztett fejű imbuszcsavar</p>\n</li>\n<li>\n<p>Fejkialakítás: süllyesztett</p>\n</li>\n<li>\n<p>Meghajtás: imbusz (hex socket)</p>\n</li>\n<li>\n<p>Anyag: fekete oxidált acél</p>\n</li>\n<li>\n<p>Kiszerelés: 1 db</p>\n</li>\n<li>\n<p>Gyártó: <strong>FX Airguns</strong></p>\n</li>\n</ul>\n<p><strong>Fő előnyök</strong></p>\n<ul>\n<li>\n<p>Eredeti FX alkatrész → pontos illeszkedés</p>\n</li>\n<li>\n<p>Süllyesztett fej → nem áll ki, esztétikus és biztonságos</p>\n</li>\n<li>\n<p>Szervizhez és javításhoz ideális pótcsavar</p>\n</li>\n</ul>\n<p><strong>Mit tartalmaz a csomag</strong></p>\n<ul>\n<li>\n<p>1 db FX16092 süllyesztett imbuszcsavar</p>\n</li>\n</ul>\n<p><strong>Kompatibilitás</strong></p>\n<ul>\n<li>\n<p>Több FX modell</p>\n</li>\n</ul>",
+  "short": "<p>Gyári FX16092 hernyócsavar (gyári megnevezés: Grub screw M3x4): fej nélküli, imbuszkulcsos M3×4 csavar.</p>",
+  "desc": "<p>Az <strong>FX16092</strong> gyári FX hernyócsavar (gyári megnevezés: <em>Grub screw M3x4</em>): fej nélküli, imbuszkulcsos M3×4 csavar. Hiányzó, sérült vagy elveszett csavar pótlására szerviz vagy karbantartás során.</p>\n<p><strong>Gyors specifikáció</strong></p>\n<ul>\n<li>Gyári cikkszám: <strong>FX16092</strong></li>\n<li>Megnevezés: hernyócsavar (grub screw) M3×4</li>\n<li>Kiszerelés: 1 db</li>\n<li>Gyártó: <strong>FX Airguns</strong></li>\n</ul>\n<p>Hogy mely modellekben szerepel, azt a gyári robbantott ábrák alapján a termékoldal mutatja.</p>",
   "meta": "",
   "images": [
    [
     "products/fx16092-sullyesztett-imbuszcsavar-gyari-fx-alkatresz.webp",
     "/images/virtuemart/product/h4x4-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "16092"
  },
  {
   "key": "fx2504-sullyesztett-csavar-m3x6-2504-gyari-fx-alkatresz",
@@ -271,7 +279,8 @@
     "products/fx2504-sullyesztett-csavar-m3x6-2504-gyari-fx-alkatresz.webp",
     "/images/virtuemart/product/jka-pt-m3x6-fhs-100-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "2504"
  },
  {
   "key": "fx2504-sullyesztett-feju-csavar-m3x6",
@@ -294,7 +303,9 @@
     "products/fx2504-sullyesztett-feju-csavar-m3x6.webp",
     "/images/virtuemart/product/fx2504-sullyesztett-feju-csavar-m3x6.png"
    ]
-  ]
+  ],
+  "dupOf": "fx2504-sullyesztett-csavar-m3x6-2504-gyari-fx-alkatresz",
+  "mpn": "2504"
  },
  {
   "key": "rugo-1147",
@@ -317,7 +328,8 @@
     "products/rugo-1147.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 13.30.01.png"
    ]
-  ]
+  ],
+  "mpn": "1147"
  },
  {
   "key": "rugo-0-32x3-2x14-4-11504",
@@ -340,7 +352,8 @@
     "products/rugo-0-32x3-2x14-4-11504.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 13.12.34.png"
    ]
-  ]
+  ],
+  "mpn": "11504"
  },
  {
   "key": "rugo-11501-0-5x2-5x6-1-000579-1026",
@@ -363,7 +376,8 @@
     "products/rugo-11501-0-5x2-5x6-1-000579-1026.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 9.37.04.png"
    ]
-  ]
+  ],
+  "mpn": "11501"
  },
  {
   "key": "fx19498-rugo-0-2c2x2-2c5x13-2c1-gyari-fx-alkatresz",
@@ -386,7 +400,8 @@
     "products/fx19498-rugo-0-2c2x2-2c5x13-2c1-gyari-fx-alkatresz.webp",
     "/images/virtuemart/product/12db51b7-bcf0-43b5-aa99-69f3c33c895d-ezgif.com-webp-to-jpg-converter5.jpg"
    ]
-  ]
+  ],
+  "mpn": "19498"
  },
  {
   "key": "fx-19683-grub-screw-m3x18",
@@ -409,7 +424,8 @@
     "products/fx-19683-grub-screw-m3x18.webp",
     "/images/virtuemart/product/product-3851-1000x1000w-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "19683"
  },
  {
   "key": "fx11504-2-rugo-0-2c4x2-2c5x15-gyari-fx-alkatresz",
@@ -432,7 +448,8 @@
     "products/fx11504-2-rugo-0-2c4x2-2c5x15-gyari-fx-alkatresz.webp",
     "/images/virtuemart/product/12db51b7-bcf0-43b5-aa99-69f3c33c895d-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "11504-2"
  },
  {
   "key": "burst-disk-dominator",
@@ -479,7 +496,8 @@
     "products/fx10291-m3.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.30.56.png"
    ]
-  ]
+  ],
+  "mpn": "10291"
  },
  {
   "key": "fx-impact-power-tuning-szelep-visszatero-rugo-gumi-puffergolyo",
@@ -525,7 +543,8 @@
     "products/fx-21801-drs-feszito.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 13.38.56.png"
    ]
-  ]
+  ],
+  "mpn": "21801"
  },
  {
   "key": "fx-tomurugo-fx2604-52mm-007776-2796",
@@ -548,7 +567,8 @@
     "products/fx-tomurugo-fx2604-52mm-007776-2796.webp",
     "/images/virtuemart/product/FX-Hammer-spring-fx2604-970x728.jpg2-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "2604"
  },
  {
   "key": "fx-crown-tuning-hammer-rugo",
@@ -594,7 +614,8 @@
     "products/fx-19643-grub-screw-2c-feeding-pin-2c-m4.webp",
     "/images/virtuemart/product/FX_19643-856x1200-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "19643"
  },
  {
   "key": "fx11525",
@@ -617,7 +638,8 @@
     "products/fx11525.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.33.20.png"
    ]
-  ]
+  ],
+  "mpn": "11525"
  },
  {
   "key": "reg-rugokeszlet-9pc10x4-2x0-6",
@@ -668,7 +690,8 @@
     "products/szelep-tamasz-20959-3-1mm-2.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.05.09.png"
    ]
-  ]
+  ],
+  "mpn": "20959"
  },
  {
   "key": "fx20305",
@@ -691,7 +714,8 @@
     "products/fx20305.webp",
     "/images/virtuemart/product/whatsapp-image-2024-07-03-at-17-06-34-cdd6ea96-1000x1000-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "20305"
  },
  {
   "key": "fx1917-trigger-pin",
@@ -714,7 +738,8 @@
     "products/fx1917-trigger-pin.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.37.30.png"
    ]
-  ]
+  ],
+  "mpn": "19137"
  },
  {
   "key": "fx-drs-2cpanthera-2cimpact-micro-allito-tamasz",
@@ -737,7 +762,8 @@
     "products/fx-drs-2cpanthera-2cimpact-micro-allito-tamasz.webp",
     "/images/virtuemart/product/IMG_5147.jpeg"
    ]
-  ]
+  ],
+  "mpn": "10293"
  },
  {
   "key": "tuning-kalapacs-suly-13-5-13-9g-kozott",
@@ -783,7 +809,8 @@
     "products/fx20944-shroud-zarokupak-dynamic-kopeny-vegkupak.webp",
     "/images/virtuemart/product/Kepernyofoto2026-01-24-9.45.07-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "20944"
  },
  {
   "key": "kalapacs-19039",
@@ -806,7 +833,8 @@
     "products/kalapacs-19039.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 13.31.28.png"
    ]
-  ]
+  ],
+  "mpn": "19039"
  },
  {
   "key": "power-kerek-crown-19908",
@@ -829,7 +857,8 @@
     "products/power-kerek-crown-19908.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 13.24.29.png"
    ]
-  ]
+  ],
+  "mpn": "19908"
  },
  {
   "key": "szelepzaro-panthera-king-drs-20925",
@@ -852,7 +881,8 @@
     "products/szelepzaro-panthera-king-drs-20925.webp",
     "/images/virtuemart/product/logo-sin-imagen1-ezgif.com-crop.jpg"
    ]
-  ]
+  ],
+  "mpn": "20925"
  },
  {
   "key": "fx-panthera-drs-szelep",
@@ -875,7 +905,8 @@
     "products/fx-panthera-drs-szelep.webp",
     "/images/virtuemart/product/IMG_5143.jpeg"
    ]
-  ]
+  ],
+  "mpn": "20924C"
  },
  {
   "key": "fx-20153c-dreamline-long-2020",
@@ -898,7 +929,8 @@
     "products/fx-20153c-dreamline-long-2020.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.38.52.png"
    ]
-  ]
+  ],
+  "mpn": "20153C"
  },
  {
   "key": "eroallito-kerek-20735",
@@ -921,7 +953,8 @@
     "products/eroallito-kerek-20735.webp",
     "/images/virtuemart/product/logo-sin-imagen-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "20735"
  },
  {
   "key": "fx-maverick-2c-wildcat-2c-dreamline-2c-crown-2c-boss-hammer-sulyhangolo-keszlet",
@@ -967,7 +1000,8 @@
     "products/trigger-sear-dream-2c-crown.webp",
     "/images/virtuemart/product/trigger-sear-dream-crown-2023-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "21093"
  },
  {
   "key": "fx-impact-power-adjuster",
@@ -990,7 +1024,8 @@
     "products/fx-impact-power-adjuster.webp",
     "/images/virtuemart/product/power.png"
    ]
-  ]
+  ],
+  "mpn": "10310"
  },
  {
   "key": "nagy-atfolyasu-tus-szonda-fx-dreamline-hoz",
@@ -1063,7 +1098,8 @@
     "products/fx19571-2.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.34.43.png"
    ]
-  ]
+  ],
+  "mpn": "19571"
  },
  {
   "key": "fx-drs-2c-panthera-szelepules",
@@ -1086,7 +1122,8 @@
     "products/fx-drs-2c-panthera-szelepules.webp",
     "/images/virtuemart/product/IMG_5146.jpeg"
    ]
-  ]
+  ],
+  "mpn": "20923"
  },
  {
   "key": "fx-dreamline-kulso-tapegyseg-17cc",
@@ -1109,7 +1146,8 @@
     "products/fx-dreamline-kulso-tapegyseg-17cc.webp",
     "/images/virtuemart/product/1163747272.jpeg"
    ]
-  ]
+  ],
+  "mpn": "20267C"
  },
  {
   "key": "dupla-palack-csatlakozo-fx-panthera-dynamichoz",
@@ -1133,7 +1171,8 @@
     "products/dupla-palack-csatlakozo-fx-panthera-dynamichoz.webp",
     "/images/virtuemart/product/double_airkit_fx_panthera-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "20995"
  },
  {
   "key": "fx-drs-2c-panthera-szelepules-682",
@@ -1156,7 +1195,8 @@
     "products/fx-drs-2c-panthera-szelepules-682.webp",
     "/images/virtuemart/product/IMG_5146.jpeg"
    ]
-  ]
+  ],
+  "mpn": "20923C"
  },
  {
   "key": "high-flow-v2-177-278385-910",
@@ -1271,7 +1311,8 @@
     "products/carrier-dynamic.webp",
     "/images/virtuemart/product/carrier-dynamic-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "20916"
  },
  {
   "key": "fx-impact-kalibervalto-keszlet-177-fx19960-fx19968",
@@ -1294,7 +1335,8 @@
     "products/fx-impact-kalibervalto-keszlet-177-fx19960-fx19968.webp",
     "/images/virtuemart/product/image (9).png"
    ]
-  ]
+  ],
+  "mpn": "19960"
  },
  {
   "key": "fx-hordorogzito-22",
@@ -1317,7 +1359,8 @@
     "products/fx-hordorogzito-22.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.28.15.png"
    ]
-  ]
+  ],
+  "mpn": "19961"
  },
  {
   "key": "fx-hordorogzito-25",
@@ -1340,7 +1383,8 @@
     "products/fx-hordorogzito-25.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.23.37.png"
    ]
-  ]
+  ],
+  "mpn": "19962"
  },
  {
   "key": "fx-21785-drs-ora",
@@ -1364,7 +1408,8 @@
     "products/fx-21785-drs-ora.webp",
     "/images/virtuemart/product/pressure_gauge_fx_drs_hp_plenum_250_bar_1_-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "21784"
  },
  {
   "key": "fx-impact-front-support-fx19651",
@@ -1387,7 +1432,8 @@
     "products/fx-impact-front-support-fx19651.webp",
     "/images/virtuemart/product/1908239955.jpg"
    ]
-  ]
+  ],
+  "mpn": "19651"
  },
  {
   "key": "fx20714-power-slug-kit-dreamline",
@@ -1410,7 +1456,8 @@
     "products/fx20714-power-slug-kit-dreamline.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.44.19.png"
    ]
-  ]
+  ],
+  "mpn": "20714"
  },
  {
   "key": "fx-9121-regulator-jav-keszl",
@@ -1434,7 +1481,8 @@
     "products/fx-9121-regulator-jav-keszl.webp",
     "/images/virtuemart/product/100021-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "9121"
  },
  {
   "key": "fx-20668-crown-slug-kit",
@@ -1457,7 +1505,8 @@
     "products/fx-20668-crown-slug-kit.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.13.04.png"
    ]
-  ]
+  ],
+  "mpn": "20668"
  },
  {
   "key": "drs-v2-tuning-port-22-es",
@@ -1526,7 +1575,8 @@
     "products/fx20396-power-slug-kit-maverick-wildcat.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.49.25.png"
    ]
-  ]
+  ],
+  "mpn": "20396"
  },
  {
   "key": "fx20340-power-kit-impact",
@@ -1549,7 +1599,8 @@
     "products/fx20340-power-kit-impact.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.42.00.png"
    ]
-  ]
+  ],
+  "mpn": "20340"
  },
  {
   "key": "slug-power-kit-fx-panthera-dynamic-king-drs",
@@ -1572,7 +1623,8 @@
     "products/slug-power-kit-fx-panthera-dynamic-king-drs.webp",
     "/images/virtuemart/product/slug_power_kit_fx_pantheradynamickingdrs-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "21056"
  },
  {
   "key": "fx-20588-1-drs-impact-oratarto",
@@ -1597,7 +1649,8 @@
     "products/fx-20588-1-drs-impact-oratarto.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 14.59.19.png"
    ]
-  ]
+  ],
+  "mpn": "20588-1"
  },
  {
   "key": "fx-20964c",
@@ -1620,7 +1673,8 @@
     "products/fx-20964c.webp",
     "/images/virtuemart/product/IMG_66873-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "20964C"
  },
  {
   "key": "panthera-block-21074r",
@@ -1643,7 +1697,8 @@
     "products/panthera-block-21074r.webp",
     "/images/virtuemart/product/Képernyőfotó 2026-01-20 - 15.08.28.png"
    ]
-  ]
+  ],
+  "mpn": "21074R"
  },
  {
   "key": "pp750-toltoszonda-007011-1001",
@@ -4369,7 +4424,8 @@
   "path": "/zan-slugok/22-5-5mm-slugs/zan-elr-hp-33grain-130-db-007806-2804",
   "primary": "/zan-slugok/22-5-5mm-slugs",
   "cats": [
-   "/zan-slugok/22-5-5mm-slugs"
+   "/zan-slugok/22-5-5mm-slugs",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "ZAN ELR HP slug – 5,5 mm (.22), 33 grain, 130 db",
   "price": 5500,
@@ -5048,7 +5104,8 @@
   "path": "/zan-slugok/22-5-5mm-slugs/zan-elr-hyper-40-7-217-006311-1010",
   "primary": "/zan-slugok/22-5-5mm-slugs",
   "cats": [
-   "/zan-slugok/22-5-5mm-slugs"
+   "/zan-slugok/22-5-5mm-slugs",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "Zan ELR hyper 40,7(217)",
   "price": 11000,
@@ -5378,7 +5435,8 @@
   "path": "/zan-slugok/25-6-35-mm-slugs/elr-zan-slug-1",
   "primary": "/zan-slugok/25-6-35-mm-slugs",
   "cats": [
-   "/zan-slugok/25-6-35-mm-slugs"
+   "/zan-slugok/25-6-35-mm-slugs",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "ELR Zan Slug 61,3 grain",
   "price": 9300,
@@ -5405,7 +5463,8 @@
   "path": "/zan-slugok/25-6-35-mm-slugs/elr-zan-slug-1-766",
   "primary": "/zan-slugok/25-6-35-mm-slugs",
   "cats": [
-   "/zan-slugok/25-6-35-mm-slugs"
+   "/zan-slugok/25-6-35-mm-slugs",
+   "/zan-slugok/elr-slugok"
   ],
   "name": "ELR Zan Slug 49 grain",
   "price": 9300,
@@ -10651,7 +10710,8 @@
     "products/fx-volfram-kalapacs-impact-mki-mkii-m3-m4-fx20710.webp",
     "/images/virtuemart/product/image (9)2.png"
    ]
-  ]
+  ],
+  "mpn": "20710"
  },
  {
   "key": "fx-impact-side-shot-nagy-kapacitasu-taratalakito-keszlet",
@@ -10697,7 +10757,8 @@
     "products/fx-dreamline-slug-power-tune-keszlet-volfram-kalapaccsal-fx20714.webp",
     "/images/virtuemart/product/1932634701.jpg"
    ]
-  ]
+  ],
+  "mpn": "20714"
  },
  {
   "key": "fx-dynamic-vagy-fx-panthera-high-flow-ketlyuku-atviteli-port",
@@ -10743,7 +10804,8 @@
     "products/fx-impact-slug-probe-power-kit-volfram-kalapaccsal.webp",
     "/images/virtuemart/product/1976167890.jpg"
    ]
-  ]
+  ],
+  "mpn": "20340"
  },
  {
   "key": "fx-dynamic-panthera-nv-bridge-fx21126c-007813-2805",
@@ -10906,7 +10968,8 @@
     "products/fx-dreamline-osszecsukhato-keszlet-adapter.webp",
     "/images/virtuemart/product/1340439786.jpg"
    ]
-  ]
+  ],
+  "mpn": "20183"
  },
  {
   "key": "bag-rider-panthera-mkii-007639-2787",
@@ -11138,7 +11201,8 @@
     "products/fx20997-adapter-006342-1024-3.webp",
     "/images/virtuemart/product/adapter_fx_klapkolf_panthera_3_-ezgif.com-webp-to-jpg-converter (1).jpg"
    ]
-  ]
+  ],
+  "mpn": "20997"
  },
  {
   "key": "fx-pro-csoszajfek-6-8-mm",
@@ -11193,7 +11257,8 @@
     "products/fx-impact-m3-power-block-kit-fx20845-1.webp",
     "/images/virtuemart/product/image (24)95.png"
    ]
-  ]
+  ],
+  "mpn": "20845"
  },
  {
   "key": "hogue-valltamasz-006410-973",
@@ -11266,7 +11331,8 @@
     "products/fx-dreamline-palackadapter-480-580-cm3-250-bar-fx20148c.webp",
     "/images/virtuemart/product/1595876256.jpg"
    ]
-  ]
+  ],
+  "mpn": "20148C"
  },
  {
   "key": "panthera-elulso-alvaz-a-humatol",
@@ -11347,7 +11413,8 @@
     "products/fx-impact-m3-ketkezes-oldalso-karkeszlet.webp",
     "/images/virtuemart/product/oldalkar.png"
    ]
-  ]
+  ],
+  "mpn": "20602"
  },
  {
   "key": "fx-kulso-kronometer-kijelzo-az-fx-pocket-chrono-szamara-1",
@@ -11370,7 +11437,8 @@
     "products/fx-kulso-kronometer-kijelzo-az-fx-pocket-chrono-szamara-1.webp",
     "/images/virtuemart/product/1769522031 (1).jpg"
    ]
-  ]
+  ],
+  "mpn": "20590"
  },
  {
   "key": "hogue-ar15-omc-mil-spec-puffercsovel-drs",
@@ -11424,7 +11492,8 @@
     "products/power-block-kit-fx-impact-mki-mkii-fx20839.webp",
     "/images/virtuemart/product/1876388661.jpg"
    ]
-  ]
+  ],
+  "mpn": "20839"
  },
  {
   "key": "az-fx-dreamline-classic-vagy-a-bullpup-atalakito-keszlet-dreamline-tactical-ba-f",
@@ -11451,7 +11520,8 @@
     "products/az-fx-dreamline-classic-vagy-a-bullpup-atalakito-keszlet-dreamline-tactical-ba-fx20309-2.webp",
     "/images/virtuemart/product/conversion-kit-fx-dreamline-classic-bullpup-to-tactical-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "20309"
  },
  {
   "key": "atalakitokeszlet-fx-dreamline-lite-classic-tactical-dreamline-bullpup-ba-fx20310",
@@ -11478,7 +11548,8 @@
     "products/atalakitokeszlet-fx-dreamline-lite-classic-tactical-dreamline-bullpup-ba-fx20310-2.webp",
     "/images/virtuemart/product/conversion-kit-fx-dreamline-lite-classic-tactical-to-bullpup-_2_-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "20310"
  },
  {
   "key": "az-fx-dreamline-classic-vagy-a-bullpup-konvertalo-keszlet-dreamline-lite-re-fx20",
@@ -11501,7 +11572,8 @@
     "products/az-fx-dreamline-classic-vagy-a-bullpup-konvertalo-keszlet-dreamline-lite-re-fx20317.webp",
     "/images/virtuemart/product/1789458201.jpg"
    ]
-  ]
+  ],
+  "mpn": "20317"
  },
  {
   "key": "atalakito-keszlet-fx-dreamline-bullpup-2c-lite-2c-tactical-dreamline-classic-szi",
@@ -11524,7 +11596,8 @@
     "products/atalakito-keszlet-fx-dreamline-bullpup-2c-lite-2c-tactical-dreamline-classic-szintetikus-keszlette.webp",
     "/images/virtuemart/product/1789458849.jpg"
    ]
-  ]
+  ],
+  "mpn": "20252"
  },
  {
   "key": "ac-230-v-tapadapter-lmbr-r2-sorozatu-fenykepezesi-kronografhoz",
@@ -11616,7 +11689,8 @@
     "products/szerelokeszlet-fx-pocket-chrono-hoz.webp",
     "/images/virtuemart/product/1765879530.jpg"
    ]
-  ]
+  ],
+  "mpn": "20589"
  },
  {
   "key": "szelmero-caldwell-wind-wizard-ii",
@@ -11895,7 +11969,8 @@
     "products/fx-true-ballistic-chronograph-ce-7.webp",
     "/images/virtuemart/product/chronometer_fx_outdoors_true_ballistic_chronograph_ce_8_-ezgif.com-webp-to-jpg-converter.jpg"
    ]
-  ]
+  ],
+  "mpn": "30104"
  },
  {
   "key": "cheese-bag",
@@ -13602,7 +13677,8 @@
     "products/fx-airguns-legpalackveg-vagy-palackszelep.webp",
     "/images/virtuemart/product/1907827752.jpg"
    ]
-  ]
+  ],
+  "mpn": "7024"
  },
  {
   "key": "toltocso-1500mm-006175-1072",
@@ -13748,7 +13824,8 @@
     "products/fx-dreamline-kompakt-leghenger.webp",
     "/images/virtuemart/product/henger.png"
    ]
-  ]
+  ],
+  "mpn": "20245"
  },
  {
   "key": "dry-pac-hill-ec-3000-evo-compressor-pro-legszarito-szuro",
@@ -13821,7 +13898,8 @@
     "products/fx-300-cc-kompakt-szenpalack-250-bar.webp",
     "/images/virtuemart/product/kpalack.png"
    ]
-  ]
+  ],
+  "mpn": "5541"
  },
  {
   "key": "fx-480-cc-szenpalack-250-bar",
@@ -13844,7 +13922,8 @@
     "products/fx-480-cc-szenpalack-250-bar.webp",
     "/images/virtuemart/product/palack54.png"
    ]
-  ]
+  ],
+  "mpn": "5532"
  },
  {
   "key": "pcp-carbon-palaci-4-2c7-l-300bar",
@@ -13936,7 +14015,8 @@
     "products/fx-580-cc-nagy-kapacitasu-szenpalack-2c-250-bar.webp",
     "/images/virtuemart/product/palack.png"
    ]
-  ]
+  ],
+  "mpn": "5534"
  },
  {
   "key": "9literes-carbon-palack",

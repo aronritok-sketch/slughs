@@ -156,3 +156,31 @@ li.product .button { padding: 10px 18px; }
 .order-done .no { display: inline-block; margin: var(--space-4) 0; padding: 10px 18px; border: 1px dashed var(--c-primary); font-weight: 700; font-size: 1.25rem; }
 .sec-dark li.product h2, .sec-dark li.product .price { color: var(--c-ink); }
 .order-review .item b { white-space: nowrap; }
+
+/* Gyári és belső cikkszám, gyári ábra szerinti modellek, szállítás (az ügyfél 1. javításköre) */
+.product-ids { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin: 0 0 var(--space-4); font-size: var(--fs-small); }
+.product-ids div { display: flex; gap: 6px; }
+.product-ids dt { color: var(--c-muted); }
+.product-ids dd { margin: 0; font-weight: 600; color: var(--c-ink); }
+.compat { margin: 0 0 var(--space-5); padding: var(--space-3) var(--space-4); background: var(--c-light); border-left: 3px solid var(--c-primary); font-size: var(--fs-small); line-height: 1.6; }
+.compat a { color: var(--c-primary-text); }
+.compat small { display: block; margin-top: 4px; color: var(--c-muted); }
+.ship-info { margin-top: var(--space-5); padding: var(--space-3) var(--space-4); border: 1px solid var(--c-line); font-size: var(--fs-small); }
+.ship-info ul { margin: 6px 0 0; padding-left: 18px; }
+.ship-info p { margin: 6px 0 0; }
+/* Kategórián belüli kereső és modellválasztó; a keresési találatok szűrői */
+.list-finder { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); width: 100%; }
+.model-pick { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.list-search { flex: 1 1 220px; }
+.list-search input, .price-range input { width: 100%; min-height: 38px; padding: 0 10px; border: 1px solid #cfcfcf; border-radius: var(--radius-s); background: var(--c-white); font: inherit; }
+.price-range { display: flex; gap: 6px; }
+.price-range label { width: 110px; }
+.list-reset { color: var(--c-primary-text); text-decoration: underline; }
+.list-note { margin: calc(-1 * var(--space-3)) 0 var(--space-4); font-size: var(--fs-small); color: var(--c-muted); }
+.search-filters { margin-top: var(--space-4); }
+@media (max-width: 600px) {
+  .model-pick { width: 100%; }
+  .model-pick select { flex: 1; }
+  .price-range { width: 100%; }
+  .price-range label { flex: 1; width: auto; }
+}

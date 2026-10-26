@@ -100,6 +100,12 @@ a:hover { color: var(--c-primary); }
 .drawer nav a { display: flex; justify-content: space-between; padding: 12px var(--space-5); color: var(--c-white); font-weight: 600; text-transform: uppercase; font-size: var(--fs-small); border-bottom: 1px solid #2c2c30; }
 .drawer nav a.sub { padding-left: calc(var(--space-5) + 14px); text-transform: none; font-weight: 400; color: var(--c-on-dark-muted); }
 .drawer nav a:hover, .drawer nav a[aria-current] { color: var(--c-primary); }
+.drawer-row { display: flex; border-bottom: 1px solid #2c2c30; }
+.drawer-row a { flex: 1; border-bottom: 0 !important; }
+.drawer-tog { width: 52px; flex: none; border: 0; border-left: 1px solid #2c2c30; background: none; color: var(--c-white); display: grid; place-items: center; cursor: pointer; }
+.drawer-tog svg { width: 18px; height: 18px; transition: transform .2s var(--ease); }
+.drawer-tog[aria-expanded="true"] svg { transform: rotate(180deg); }
+.drawer-sub { background: #1d1d20; }
 .drawer-foot { margin-top: auto; padding: var(--space-5); display: grid; gap: var(--space-3); font-size: var(--fs-small); }
 .drawer-foot a { color: var(--c-white); display: flex; gap: var(--space-2); align-items: center; }
 .drawer-foot img { width: 20px; }
@@ -329,6 +335,11 @@ mark { background: rgba(234,129,11,.3); color: inherit; }
 .a11y-panel { position: fixed; z-index: 151; left: 70px; bottom: 96px; width: 250px; background: var(--c-white); color: var(--c-ink); border: 1px solid var(--c-line); box-shadow: var(--shadow-m); padding: var(--space-4); display: grid; gap: var(--space-2); font-size: var(--fs-small); }
 .a11y-panel button { min-height: 40px; border: 1px solid var(--c-line); background: var(--c-light); cursor: pointer; font: inherit; text-align: left; padding: 0 12px; }
 .a11y-panel button[aria-pressed="true"] { border-color: var(--c-primary); background: rgba(234,129,11,.12); }
+/* Mobilon nem lebeg (eltakarta az árat, a kosár gombot): a lábléc alján áll, a panel alul teljes szélességű. */
+@media (max-width: 900px) {
+  .a11y-btn { position: static; margin: 0 auto var(--space-5); }
+  .a11y-panel { left: var(--space-4); right: var(--space-4); bottom: var(--space-4); width: auto; }
+}
 html.a11y-contrast { filter: contrast(1.35); }
 html.a11y-links a { text-decoration: underline !important; outline: 1px dashed currentColor; }
 html.a11y-big { font-size: 112.5%; }
@@ -437,3 +448,6 @@ h1, h2, h3, h4, .woocommerce-loop-product__title, .shop_table .product-name { ov
 .videos-band, .videos-inline { overflow: hidden; }
 .features, .panthera { overflow-x: clip; }
 .coverflow .hero-arrow { z-index: 20; }
+.contact-buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: var(--space-4) 0; }
+.contact-buttons .btn { gap: var(--space-2); }
+.contact-buttons .icon { width: 18px; height: 18px; }

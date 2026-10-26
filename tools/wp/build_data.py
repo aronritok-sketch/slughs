@@ -326,6 +326,8 @@ def main():
     dump('posts', posts)
 
     templates()
+    import fixes  # az ügyfél javításkérései (2026-10-26) – a régi oldal adatai fölött
+    fixes.main()
     print(f'{len(cats)} kategória, {len(products)} termék, {len(pages)} oldal, {len(posts)} cikk, {len(downloads)} PDF')
 
 

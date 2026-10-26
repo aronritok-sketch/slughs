@@ -85,7 +85,7 @@ add_action('init', function () {
         ['title' => ['text', 'Cím']]);
     slugshop_block('videos', 'Videók (lapozó)', ['title' => 'Videók', 'band' => true], 'slugshop_render_videos_band',
         ['title' => ['text', 'Cím']]);
-    slugshop_block('contact-band', 'Kapcsolati sáv űrlappal', ['title' => 'Vegye fel velünk a kapcsolatot!'], 'slugshop_render_contact_band',
+    slugshop_block('contact-band', 'Kapcsolati sáv űrlappal', ['title' => 'Vedd fel velünk a kapcsolatot!'], 'slugshop_render_contact_band',
         ['title' => ['text', 'Cím']]);
     slugshop_block('articles', 'Legújabb cikkek', ['title' => 'Cikkeink', 'lead' => 'Érdekességek, újdonságok, innováció egy helyen'], 'slugshop_render_articles_band',
         ['title' => ['text', 'Cím'], 'lead' => ['text', 'Alcím']]);
@@ -100,6 +100,8 @@ add_action('init', function () {
     slugshop_block('contact', 'Kapcsolat (elérhetőségek + űrlap)', [], 'slugshop_render_contact');
     slugshop_block('legal', 'Jogi szöveg (Fogyasztó Barát)', ['type' => 'aszf'], 'slugshop_render_legal', ['type' => ['text', 'Típus: aszf, adatkezeles vagy imp']]);
     slugshop_block('company', 'Cégadatok (impresszum)', [], 'slugshop_render_company');
+    slugshop_block('contact-buttons', 'Telefon- és e-mail-gomb', ['phoneLabel' => 'Hívás', 'emailLabel' => 'E-mail', 'subject' => 'Szerviz időpontkérés'], 'slugshop_render_contact_buttons',
+        ['phoneLabel' => ['text', 'Telefongomb felirata'], 'emailLabel' => ['text', 'E-mail-gomb felirata'], 'subject' => ['text', 'A levél tárgya']]);
     slugshop_block('downloads', 'Letölthető robbantott ábrák', ['title' => 'Letölthető robbantott ábrák és segédletek'], 'slugshop_render_downloads', ['title' => ['text', 'Cím']]);
     slugshop_block('video-list', 'Videókategóriák', [], 'slugshop_render_video_list');
     slugshop_block('video-grid', 'YouTube-videók', ['ids' => ''], 'slugshop_render_video_grid', ['ids' => ['textarea', 'YouTube-azonosítók (soronként)']]);

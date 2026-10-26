@@ -197,31 +197,37 @@
  {
   "title": "FX Crown copy 1",
   "file": "FX_Crown_Exploded_PartsList_copy_1.pdf",
-  "src": "/media/acfupload/FX_Crown_Exploded_PartsList_copy_1.pdf"
+  "src": "/media/acfupload/FX_Crown_Exploded_PartsList_copy_1.pdf",
+  "dupOf": "FX_Crown_Exploded_PartsList.pdf"
  },
  {
   "title": "FX Dreamline Lite copy 1",
   "file": "FX_Dreamline_Lite_copy_1.pdf",
-  "src": "/media/acfupload/FX_Dreamline_Lite_copy_1.pdf"
+  "src": "/media/acfupload/FX_Dreamline_Lite_copy_1.pdf",
+  "dupOf": "FX_Dreamline_Lite.pdf"
  },
  {
   "title": "FX Dreamline Superlight Barrel Tube Kit copy 1",
   "file": "FX_Dreamline_Superlight_Barrel_Tube_Kit_copy_1.pdf",
-  "src": "/media/acfupload/FX_Dreamline_Superlight_Barrel_Tube_Kit_copy_1.pdf"
+  "src": "/media/acfupload/FX_Dreamline_Superlight_Barrel_Tube_Kit_copy_1.pdf",
+  "dupOf": "FX_Dreamline_Superlight_Barrel_Tube_Kit.pdf"
  },
  {
   "title": "FX Dreamline AirBottle Adapter copy 1",
   "file": "FX_Dreamline_AirBottle_Adapter_copy_1.pdf",
-  "src": "/media/acfupload/FX_Dreamline_AirBottle_Adapter_copy_1.pdf"
+  "src": "/media/acfupload/FX_Dreamline_AirBottle_Adapter_copy_1.pdf",
+  "dupOf": "FX_Dreamline_AirBottle_Adapter.pdf"
  },
  {
   "title": "FX Dreamline Classic copy 1",
   "file": "FX_Dreamline_Classic_copy_1.pdf",
-  "src": "/media/acfupload/FX_Dreamline_Classic_copy_1.pdf"
+  "src": "/media/acfupload/FX_Dreamline_Classic_copy_1.pdf",
+  "dupOf": "FX_Dreamline_Classic.pdf"
  },
  {
   "title": "FX Dreamline Compact Kit copy 1",
   "file": "FX_Dreamline_Compact_Kit_copy_1.pdf",
-  "src": "/media/acfupload/FX_Dreamline_Compact_Kit_copy_1.pdf"
+  "src": "/media/acfupload/FX_Dreamline_Compact_Kit_copy_1.pdf",
+  "dupOf": "FX_Dreamline_Compact_Kit.pdf"
  }
 ]

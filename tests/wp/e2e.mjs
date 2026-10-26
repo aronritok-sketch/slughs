@@ -36,7 +36,8 @@ async function ctxFor(width, height, consent = true) {
 const urls = ['/', '/zan-slugok', '/zan-slugok/22-5-5mm-slugs', '/fx-termekek', '/fx-termekek/fx-kiegeszitok/bipodok', '/fx-alkatreszek', '/snowpeak',
   '/minden-termek/jsb-pellet', '/zan-slugok/zan-457-11-2c6-mm', '/snowpeak/pp750-nagfykapacitasu-tar', '/minden-termek', '/szerviz', '/rolunk', '/letoltesek',
   '/kapcsolat', '/aszf', '/impresszum', '/adatvedelmi-nyilatkozat', '/videok', '/videok/fx-king', '/cikkeink', '/cikkeink/cikkek', '/cikkeink/articles',
-  '/cikkeink/cikkek/kalapacstomeg-hatar-pcp-fx-drs', '/kosar', '/fiokom', '/?s=zan&post_type=product'];
+  '/cikkeink/cikkek/kalapacstomeg-hatar-pcp-fx-drs', '/kosar', '/fiokom', '/?s=zan&post_type=product', '/zan-slugok/elr-zan-slug', '/zan-slugok/elr-slugok',
+  '/fx-alkatreszek/fx16092-sullyesztett-imbuszcsavar-gyari-fx-alkatresz', '/fx-alkatreszek?modell=fx-panthera', '/?s=fx&post_type=product&raktaron=1&rendezes=asc'];
 for (const [w, h] of [[1440, 900], [390, 844]]) {
   const ctx = await ctxFor(w, h); const p = await ctx.newPage();
   const errs = []; p.on('pageerror', (e) => errs.push(e.message));
@@ -58,6 +59,42 @@ ok(head('/bejelentkezes').includes('/fiokom'), '/bejelentkezes → /fiokom');
 ok(/^301 .*\/wp-content\/uploads\/.*FX_Crown_Exploded_PartsList(-\d+)?\.pdf$/.test(head('/media/acfupload/FX_Crown_Exploded_PartsList.pdf')), 'régi PDF-cím → a médiatárbeli fájl');
 ok(head('/component/virtuemart/fx-fegyverek/fx-leopard-mesterlovesz-palackkal').includes('/fx-termekek/fx-fegyverek/fx-leopard'), 'régi VirtueMart-cím → a termék');
 ok(head('/nincs-ilyen-oldal').startsWith('404'), 'ismeretlen cím → 404');
+ok(head('/fx-alkatreszek/fx2504-sullyesztett-feju-csavar-m3x6').startsWith('301 ' + BASE + '/fx-alkatreszek/fx2504-sullyesztett-csavar-m3x6-2504'), 'ismétlődő tétel (FX2504) → 301 a megmaradóra');
+
+// ------------------------------------------------------------- az ügyfél 1. javításköre (2026-10-26)
+{
+  const ctx = await ctxFor(390, 844); const p = await ctx.newPage();
+  await p.goto(BASE + '/zan-slugok/elr-zan-slug');
+  ok((await p.textContent('h1')).trim() === 'ELR Zan Slug', 'ELR: a termék címe a terméket mutatja (mint a régi boltban)');
+  await p.goto(BASE + '/zan-slugok/elr-slugok');
+  ok((await p.locator('#grid li.product').count()) >= 10, 'ELR kategória: az ELR lövedékek listája');
+  await p.goto(BASE + '/');
+  ok((await p.getAttribute('.hero-slide:nth-child(2) .btn', 'href')).endsWith('/fx-termekek/fx-fegyverek'), '2. dia → FX légfegyverek');
+  await p.goto(BASE + '/fx-alkatreszek/fx16092-sullyesztett-imbuszcsavar-gyari-fx-alkatresz');
+  const ids = await p.textContent('.product-ids');
+  ok(ids.includes('Gyári cikkszám') && ids.includes('FX16092') && ids.includes('Belső cikkszám'), 'FX16092: gyári és belső cikkszám külön');
+  ok((await p.textContent('.compat')).includes('FX Panthera') && (await p.textContent('h1')).includes('hernyócsavar'), 'FX16092: gyári ábra szerinti modellek, javított név');
+  ok(await p.evaluate(() => getComputedStyle(document.querySelector('.a11y-btn')).position === 'static'), 'mobil: a kisegítő gomb nem lebeg a tartalom fölött');
+  ok((await p.locator('.ship-info li').count()) === 3, 'termékoldal: szállítási díjak');
+  await p.goto(BASE + '/fx-alkatreszek');
+  const all = await p.locator('#count').textContent();
+  await p.selectOption('#model', 'fx-panthera'); await p.waitForURL(/modell=fx-panthera/);
+  ok((await p.locator('#count').textContent()) !== all && (await p.locator('#grid li.product').count()) > 0, 'FX alkatrészek: modellválasztó szűr');
+  await p.fill('.list-search input', '16092'); await p.press('.list-search input', 'Enter'); await p.waitForURL(/q=16092/);
+  ok((await p.locator('#grid li.product').count()) === 1, 'FX alkatrészek: gyári cikkszám keresés');
+  await p.goto(BASE + '/letoltesek');
+  ok(!(await p.content()).includes('copy 1'), 'Letöltések: a „copy 1” másolatok nélkül');
+  await p.goto(BASE + '/?s=zan&post_type=product');
+  ok(await p.isVisible('form.search-filters select[name=kategoria]'), 'keresés: kategória-, készlet- és árszűrő');
+  await p.click('[data-open-drawer]');
+  const sub = p.locator('.drawer-sub').first();
+  ok(await sub.isHidden(), 'mobilmenü: az alkategóriák összecsukva');
+  await p.locator('.drawer-tog').first().click();
+  ok(await sub.isVisible(), 'mobilmenü: kinyitható');
+  await p.goto(BASE + '/szerviz');
+  ok((await p.locator('.contact-buttons a[href^="tel:"]').count()) === 1 && (await p.locator('a[href*="fx-pcp-rendszerhangolas"]').count()) === 1, 'Szerviz: telefon- és e-mail-gomb, egy cikkajánló');
+  await ctx.close();
+}
 
 // ------------------------------------------------------------- 18+ kapu, sütik, mérőkód csak hozzájárulás után
 {

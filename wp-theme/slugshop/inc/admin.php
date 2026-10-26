@@ -20,6 +20,7 @@ function slugshop_setting_fields(): array
         'trackers.gtm' => ['Google Tag Manager azonosító', 'Csak sütihozzájárulás után töltődik (régi: GTM-K2DT9KZ8).'],
         'trackers.fbPixel' => ['Meta (Facebook) Pixel', 'Csak a marketing-sütik elfogadása után.'],
         'trackers.barionPixel' => ['Barion Pixel', 'Csak a marketing-sütik elfogadása után (a régi oldalon volt).'],
+        'shipping.dispatch' => ['Várható feladás', 'A termékoldal szállítási dobozában, pl. „Raktáron lévő terméket általában 1–2 munkanapon belül feladunk.” Üresen nem látszik.'],
         'seo.homeDescription' => ['Nyitóoldal meta-leírás', 'A Google találati listájában (kb. 150 karakter).'],
     ];
 }

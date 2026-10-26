@@ -47,6 +47,11 @@ változást írja).
 
 ## 4. Beállítások a telepítő után
 
+Az ügyfél válaszai (kérdéssor, 2026-10-26): GLS házhoz **3 650 Ft**, CsomagPont és automata **2 000 Ft**, személyes
+átvétel; **nincs ingyenes szállítás**; külföld csak EU, a díjak Dohar István javaslata és László jóváhagyása után (addig
+csak Magyarország). Fizetés: Viva, előre utalás, utánvét, fizetés az üzletben; az utánvét díja és a bankszámlaszám a
+régi bolt beállításából (VirtueMart admin). Számlázz.hu. GLS ügyfélazonosító: 100023482 | 25669 (MyGLS).
+
 - **WooCommerce → Szállítás → Magyarország:** a GLS-bővítmény módjai (futár, csomagpont / automata), a díjak és az
   ingyenes határ a kérdéssorból (Z01). A telepítő fix díjas „futár” módja kikapcsolva jön (díj nélkül ingyenes lenne!) –
   ha a GLS adja a futárt, töröld.
