@@ -41,7 +41,9 @@ változást írja).
    leírás, kép + galéria, a régi sorrend), 45 PDF a médiatárban, 17 oldal (Kezdőlap, Minden termék, Kosár, Pénztár,
    Fiókom, Szerviz, Rólunk, Letöltések, Kapcsolat, ÁSZF, Adatvédelmi nyilatkozat, Impresszum, Videók + 3 videóoldal,
    Cikkeink), 15 cikk (Cikkek / Articles), fő- és láblécmenü; a WordPress és a WooCommerce mintatartalma a lomtárba.
-4. **Ismételt futtatás:** ami nem változott, ahhoz nem nyúl; amit az adminban szerkesztettek, azt kihagyja (a naplóban
+4. **Zárolás:** az első teljes telepítés után a termékek és a kategóriák zárolódnak (az ügyfél az adminban rendezi
+   őket), a telepítő ezeket kihagyja. Feloldás: Megjelenés → Slugshop → Telepítés, csak az ügyféllel egyeztetve.
+5. **Ismételt futtatás:** ami nem változott, ahhoz nem nyúl; amit az adminban szerkesztettek, azt kihagyja (a naplóban
    „⚠ kihagyva”). Meglévő terméknél az árat, a készletet és a cikkszámot sosem írja át (azt élesítés után a JUTA
    kezeli) – csak a „Felülírás” pipával / `--force`-szal.
 

@@ -63,8 +63,28 @@ function slugshop_setup_steps(): array
  *
  * @return array{done:bool, offset:int, total:int, log:string[]}
  */
+/**
+ * Zárolt katalógus: az első teljes telepítés után a termékeket és a kategóriákat az admin (az ügyfél, CSV-import,
+ * csoportos szerkesztés) kezeli – a telepítő ezekhez a lépésekhez csak feloldás után nyúl (Telepítés fül).
+ */
+function slugshop_catalog_locked(): bool
+{
+    return get_option('slugshop_catalog_lock') === '1';
+}
+
+// Meglévő telepítésnél (a zárolás előtti verzióról frissítve) a katalógus magától zárolódik.
+add_action('admin_init', function () {
+    if (get_option('slugshop_catalog_lock') === false && get_option('slugshop_setup_version')) {
+        update_option('slugshop_catalog_lock', '1');
+    }
+});
+
 function slugshop_setup_run(string $step, int $offset = 0, bool $force = false): array
 {
+    if (in_array($step, ['categories', 'products'], true) && slugshop_catalog_locked()) {
+        $msg = $step === 'products' ? '🔒 Termékek: zárolva, kihagyva (az adminban szerkesztik; feloldás: Megjelenés → Slugshop → Telepítés)' : '🔒 Kategóriák: zárolva, kihagyva';
+        return ['done' => true, 'offset' => 0, 'total' => 0, 'log' => [$msg]];
+    }
     if (function_exists('set_time_limit')) {
         @set_time_limit(300);
     }
@@ -367,11 +387,21 @@ function slugshop_setup_product(array $d, int $order, array $cat_ids, bool $forc
         }
         if ($force) {
             $create = true; // az alábbi „új termék” mezőket is újraírja
-        } elseif (array_diff($terms, $product->get_category_ids())) {
-            // csak hozzáad (pl. az új ELR kategória); amit az adminban adtak hozzá, az marad
-            $product->set_category_ids(array_values(array_unique(array_merge($product->get_category_ids(), $terms))));
-            $changed = true;
+        } else {
+            // Csak az adatfájl ÚJ hozzárendeléseit adja hozzá (pl. az ELR kategória); amit az adminban kivettek vagy
+            // hozzáadtak, az marad. Az előző futás adat-hozzárendeléseit a slugshop_cats_data meta őrzi.
+            $prev = $product->get_meta('slugshop_cats_data');
+            $new = $prev === '' ? [] : array_diff($d['cats'], (array) json_decode((string) $prev, true));
+            $add = array_values(array_filter(array_map(fn($p) => (int) ($cat_ids[$p] ?? 0), $new)));
+            if (array_diff($add, $product->get_category_ids())) {
+                $product->set_category_ids(array_values(array_unique(array_merge($product->get_category_ids(), $add))));
+                $changed = true;
+            }
         }
+    }
+    if ((string) $product->get_meta('slugshop_cats_data') !== wp_json_encode($d['cats'])) {
+        $product->update_meta_data('slugshop_cats_data', wp_json_encode($d['cats']));
+        $changed = true;
     }
     // Gyári cikkszám (a névből; a termékoldal és a modellszűrő használja) és az ismétlődő tétel (rejtve, a címe az elsőre visz).
     if ((string) $product->get_meta('slugshop_mpn') !== (string) ($d['mpn'] ?? '')) {

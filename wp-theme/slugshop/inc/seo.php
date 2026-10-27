@@ -17,7 +17,7 @@ function slugshop_meta_description(): string
     $text = '';
     if (is_front_page()) {
         $text = (string) slugshop_site('seo.homeDescription', '');
-    } elseif (is_tax('product_cat')) {
+    } elseif (function_exists('is_product_taxonomy') && is_product_taxonomy()) {
         $term = get_queried_object();
         $text = (string) (get_term_meta($term->term_id, 'slugshop_meta', true) ?: $term->description);
     } elseif (is_singular('product')) {

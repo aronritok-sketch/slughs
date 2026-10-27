@@ -76,6 +76,14 @@ function slugshop_admin_setup(): void
     echo '<h2>2. Telepítés / frissítés</h2>';
     echo '<p>Létrehozza és beállítja: WooCommerce (Ft, bruttó ár, 27% ÁFA, szállítási zóna, fizetési módok előkészítve), 30 kategória, ~516 termék képekkel, az oldalakat (kosár, pénztár, fiók, jogi oldalak, videók …), a cikkeket és a menüket. Ismételten futtatható: ami nem változott, ahhoz nem nyúl; amit az adminban szerkesztettek, azt kihagyja (kivéve „Felülírás”). Élesítés után az árat és a készletet nem írja át (azt a JUTA kezeli).</p>';
     echo $ver ? '<p>Utolsó telepítés: <strong>' . esc_html((string) $ver) . '</strong>, ' . esc_html(wp_date('Y-m-d H:i', (int) get_option('slugshop_setup_time'))) . '.</p>' : '<p><strong>Még nem futott.</strong></p>';
+    $locked = slugshop_catalog_locked();
+    echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" style="margin:12px 0;padding:10px 14px;border-left:4px solid ' . ($locked ? '#00a32a' : '#dba617') . ';background:#fff">';
+    wp_nonce_field('slugshop_lock');
+    echo '<input type="hidden" name="action" value="slugshop_lock"><input type="hidden" name="lock" value="' . ($locked ? '0' : '1') . '">'
+        . ($locked
+            ? '<strong>🔒 A termékek és a kategóriák zárolva.</strong> A telepítő ezekhez nem nyúl, mert az adminban szerkesztik őket (kézzel, CSV-importtal, csoportos szerkesztéssel). Az oldalakat, a cikkeket, a menüt és a beállításokat továbbra is frissíti. '
+            : '<strong>A termékek és a kategóriák nincsenek zárolva:</strong> a telepítő a szerkesztetlen szövegeket frissítheti, és a fájl új kategória-hozzárendeléseit hozzáadhatja. ')
+        . '<button class="button" onclick="return confirm(' . esc_attr(wp_json_encode($locked ? 'Feloldod? Csak az ügyféllel egyeztetve.' : 'Zárolod?')) . ')">' . ($locked ? 'Feloldás' : 'Zárolás') . '</button></form>';
     echo '<p><label><input type="checkbox" id="slug-force"> Felülírás (a szerkesztett tartalmat, az árat és a készletet is visszaírja a régi oldal szerint)</label></p>';
     echo '<p><button class="button button-primary" id="slug-run">Telepítés indítása</button> <span id="slug-status"></span></p>';
     echo '<pre id="slug-log" style="max-height:420px;overflow:auto;background:#fff;border:1px solid #ccd0d4;padding:10px;display:none"></pre>';
@@ -160,6 +168,17 @@ function slugshop_admin_data(): void
     submit_button('Mentés');
     echo '</form>';
 }
+
+add_action('admin_post_slugshop_lock', function () {
+    check_admin_referer('slugshop_lock');
+    if (!current_user_can('manage_options')) {
+        wp_die('Nincs jogosultság.');
+    }
+    $lock = !empty($_POST['lock']) && $_POST['lock'] === '1';
+    update_option('slugshop_catalog_lock', $lock ? '1' : '0');
+    wp_safe_redirect(admin_url('themes.php?page=slugshop&tab=setup&msg=' . rawurlencode($lock ? 'A termékek és a kategóriák zárolva.' : 'Feloldva: a következő telepítés a termékekhez és a kategóriákhoz is hozzányúl.')));
+    exit;
+});
 
 add_action('admin_post_slugshop_data', function () {
     check_admin_referer('slugshop_data');

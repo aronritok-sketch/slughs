@@ -43,6 +43,7 @@ A régi Joomla SEF-címek változatlanok, perjel nélkül (`permalink_structure 
 | `/zan-slugok`, `/fx-termekek/fx-kiegeszitok/bipodok` | termékkategória | a `slugshop_path` term-meta (a telepítő írja; új kategóriánál szülő útvonala + slug); térkép: `slugshop_cat_paths` opció, kategória-változáskor újraépül |
 | `/zan-slugok/<termék>` | termék | a fő kategória (`slugshop_primary_cat` meta, különben az első) útvonala + `post_name`; más kategória alól 301 a saját címére |
 | `/cikkeink/cikkek/<cikk>`, `/cikkeink/articles` | bejegyzés / kategória | `cikkek`, `articles` kategóriák |
+| `/marka/wheeler` | márka (WooCommerce) | ugyanaz a lista, mint a kategóriánál (`tax_product_brand` sablon), kategóriafa nélkül |
 | `/szerviz`, `/videok/fx-king` | oldal | a WordPress oldal-hierarchiája |
 
 A `request` szűrő a WordPress saját szabályai után fut: ha az útvonal kategória, termék vagy cikk, azt adja vissza
@@ -111,7 +112,10 @@ kategória modellválasztója (`?modell=fx-panthera`, ha a kategóriában van il
 - A meglévő termék árához, készletéhez, cikkszámához csak `--force` nyúl (JUTA).
 - Képek: `slugshop_attach()` a médiacsomagból egyszer (`slugshop_media` meta = relatív út); a tartalomban a
   `{{media:articles/x.webp}}` jelölő a médiatár URL-jére cserélődik.
-- Frissítéskor a hiányzó kategóriákat hozzáadja (sosem vesz el), a gyári cikkszámot (`slugshop_mpn`) és az ismétlődő
+- **Zárolt katalógus** (`slugshop_catalog_lock`, Telepítés fül): az első teljes telepítés után a termékek és a
+  kategóriák lépése kimarad – az ügyfél az adminban / CSV-vel / csoportos szerkesztéssel dolgozik. Feloldás csak egyeztetve.
+- Feloldva frissítéskor csak az adatfájl ÚJ kategória-hozzárendeléseit adja hozzá (`slugshop_cats_data`), a kézi
+  kivételt nem írja vissza; sosem vesz el, a gyári cikkszámot (`slugshop_mpn`) és az ismétlődő
   tételt (`dupOf` → rejtve) beírja; a kategória `oldPath`-ja szerint a régi címen tárolt kategóriát viszi tovább.
 - Kategória keresése útvonal szerint közvetlen SQL-lel: a WooCommerce a termékkategóriák `get_terms()`-ébe saját
   `order`-rendezést tesz, ami a `meta_key` szűrővel üres eredményt ad (duplikált kategóriák lettek volna).

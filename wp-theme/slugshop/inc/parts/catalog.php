@@ -140,7 +140,7 @@ function slugshop_list_query(?WP_Term $term, string $sort, bool $only_stock, int
         'meta_query' => [],
     ];
     if ($term) {
-        $args['tax_query'][] = ['taxonomy' => 'product_cat', 'terms' => $term->term_id, 'include_children' => false];
+        $args['tax_query'][] = ['taxonomy' => $term->taxonomy, 'terms' => $term->term_id, 'include_children' => false];
     }
     if ($only_stock) {
         $args['meta_query'][] = ['key' => '_stock_status', 'value' => 'instock'];
@@ -163,8 +163,10 @@ function slugshop_list_query(?WP_Term $term, string $sort, bool $only_stock, int
 
 function slugshop_render_category(): string
 {
-    $term = is_tax('product_cat') ? get_queried_object() : null;
+    // Termékkategória, márka (WooCommerce márkák: /marka/…) vagy címke: ugyanaz a lista, a márkánál a kategóriafa nélkül.
+    $term = function_exists('is_product_taxonomy') && is_product_taxonomy() ? get_queried_object() : null;
     $term = $term instanceof WP_Term ? $term : null;
+    $is_cat = $term && $term->taxonomy === 'product_cat';
     $sort = isset($_GET['rendezes']) ? sanitize_key(wp_unslash($_GET['rendezes'])) : 'default';
     $sort = in_array($sort, ['default', 'asc', 'desc', 'name'], true) ? $sort : 'default';
     $stock = !empty($_GET['raktaron']);
@@ -174,7 +176,7 @@ function slugshop_render_category(): string
     $models = [];
     if ($term) {
         $mpn_ids = get_posts(['post_type' => 'product', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids',
-            'tax_query' => [['taxonomy' => 'product_cat', 'terms' => $term->term_id, 'include_children' => false]],
+            'tax_query' => [['taxonomy' => $term->taxonomy, 'terms' => $term->term_id, 'include_children' => false]],
             'meta_query' => [['key' => 'slugshop_mpn', 'value' => '', 'compare' => '!=']]]);
         $models = slugshop_models_for($mpn_ids);
     }
@@ -182,10 +184,14 @@ function slugshop_render_category(): string
     $model = isset($models[$model]) ? $model : '';
     $filtered = $model !== '' || $q !== '';
 
-    $chain = slugshop_cat_chain($term);
+    $chain = $is_cat ? slugshop_cat_chain($term) : [];
     $crumbs = [];
     foreach ($chain as $i => $t) {
         $crumbs[] = [slugshop_cat_label($t), $i < count($chain) - 1 ? get_term_link($t) : null];
+    }
+    if ($term && !$is_cat) {
+        $tax = get_taxonomy($term->taxonomy);
+        $crumbs = [[$tax ? (string) $tax->labels->name : 'Termékek', null], [$term->name, null]];
     }
     if (!$term) {
         $crumbs = [['Minden termék', null]];
@@ -193,7 +199,7 @@ function slugshop_render_category(): string
     $title = $term ? $term->name : 'Minden termék';
     $desc = $term ? (string) $term->description : '';
     $subs = '';
-    foreach ($term ? slugshop_child_cats($term->term_id) : slugshop_child_cats(0) as $ch) {
+    foreach ($is_cat ? slugshop_child_cats($term->term_id) : ($term ? [] : slugshop_child_cats(0)) as $ch) {
         $thumb = (int) get_term_meta($ch->term_id, 'thumbnail_id', true);
         $img = $thumb ? wp_get_attachment_image($thumb, 'slugshop-card', false, ['loading' => 'lazy', 'alt' => '']) : '<span class="noimg">' . slugshop_icon('box') . '</span>';
         $subs .= '<a class="subcat" href="' . esc_url(get_term_link($ch)) . '"><span class="img">' . $img . '</span><h3>' . esc_html(slugshop_cat_label($ch)) . '</h3></a>';
@@ -235,7 +241,7 @@ function slugshop_render_category(): string
     }
 
     return '<div class="wrap page">' . slugshop_crumbs($crumbs) . (function_exists('wc_print_notices') ? wc_print_notices(true) : '')
-        . '<div class="shop-layout"><aside class="sidebar" id="sidebar" aria-label="Kategóriák"><h2>Kategóriák</h2>' . slugshop_sidebar_tree($term) . '</aside><div>'
+        . '<div class="shop-layout"><aside class="sidebar" id="sidebar" aria-label="Kategóriák"><h2>Kategóriák</h2>' . slugshop_sidebar_tree($is_cat ? $term : null) . '</aside><div>'
         . '<h1 class="cat-title">' . esc_html($title) . '</h1>'
         . ($desc !== '' && $page === 1 ? '<div class="cat-desc prose">' . wp_kses_post(wpautop($desc)) . '</div>' : '')
         . '<button class="btn btn--sm filter-btn" type="button" data-toggle-sidebar aria-controls="sidebar" style="margin-bottom:var(--space-4)">Kategóriák</button>'
