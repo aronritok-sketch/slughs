@@ -21,9 +21,10 @@ function slugshop_child_cats(int $parent): array
     return $terms;
 }
 
+/** A kategória felirata: mindig a WooCommerce-ben mentett név (az ügyfél átnevezése mindenhol látszik). */
 function slugshop_cat_label(WP_Term $t): string
 {
-    return (string) (get_term_meta($t->term_id, 'slugshop_menu', true) ?: $t->name);
+    return (string) $t->name;
 }
 
 /** A kategória ősei a gyökértől (a kategóriával együtt). */

@@ -40,7 +40,7 @@ function slugshop_menu(string $location): array
         $children = [];
         if (isset($cats[$path])) {
             foreach (slugshop_child_cats($cats[$path]) as $k) {
-                $children[] = ['title' => (string) (get_term_meta($k->term_id, 'slugshop_menu', true) ?: $k->name), 'url' => get_term_link($k), 'children' => []];
+                $children[] = ['title' => slugshop_cat_label($k), 'url' => get_term_link($k), 'children' => []];
             }
         }
         $out[] = ['title' => $title, 'url' => slugshop_url($path), 'children' => $children];

@@ -114,6 +114,10 @@ def main():
     for b, fix in zip(site['blocks'], BLOCKS):
         b.update(fix)
     site['shipping'] = SHIPPING
+    # A ZAN slugok és pelletek közös belépője (az ügyfél kategóriarendezése, 2026-10-28)
+    for t in site['tiles']:
+        if t['href'] == '/zan-slugok':
+            t.update({'title': 'ZAN lövedékek', 'href': '/zan-lovedekek'})
     dump('site', site)
 
 

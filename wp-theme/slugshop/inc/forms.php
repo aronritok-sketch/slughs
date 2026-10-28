@@ -273,3 +273,20 @@ add_action('woocommerce_product_set_stock_status', function ($id, $status) {
         slugshop_notify_back_in_stock((int) $id);
     }
 }, 10, 2);
+
+/**
+ * Tesztmód (Adatok fül, „test.mailTo”): a tesztoldalon minden levél csak a megadott címre megy, a tárgyban az eredeti
+ * címzettel – így a próbarendelés, űrlap, „Értesítést kérek” nem jut el vásárlóhoz. Élesítéskor üresen kell hagyni.
+ */
+add_filter('wp_mail', function (array $args): array {
+    $to = (string) slugshop_site('test.mailTo', '');
+    if (!is_email($to)) {
+        return $args;
+    }
+    $orig = implode(', ', array_map('trim', is_array($args['to']) ? $args['to'] : explode(',', (string) $args['to'])));
+    $args['subject'] = '[TESZT → ' . $orig . '] ' . $args['subject'];
+    $args['to'] = $to;
+    $headers = is_array($args['headers'] ?? null) ? $args['headers'] : preg_split('/\r?\n/', (string) ($args['headers'] ?? ''));
+    $args['headers'] = array_values(array_filter($headers, fn($h) => $h !== '' && !preg_match('/^\s*(cc|bcc)\s*:/i', (string) $h)));
+    return $args;
+}, 999);

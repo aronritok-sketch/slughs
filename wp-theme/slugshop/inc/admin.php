@@ -21,6 +21,7 @@ function slugshop_setting_fields(): array
         'trackers.fbPixel' => ['Meta (Facebook) Pixel', 'Csak a marketing-sütik elfogadása után.'],
         'trackers.barionPixel' => ['Barion Pixel', 'Csak a marketing-sütik elfogadása után (a régi oldalon volt).'],
         'shipping.dispatch' => ['Várható feladás', 'A termékoldal szállítási dobozában, pl. „Raktáron lévő terméket általában 1–2 munkanapon belül feladunk.” Üresen nem látszik.'],
+        'test.mailTo' => ['Tesztmód: minden levél ide', 'Csak a tesztoldalon! Ha kitöltöd, MINDEN levél (rendelés-visszaigazolás, űrlap, értesítés) kizárólag erre a címre megy, a tárgyban az eredeti címzettel. Élesítéskor ürítsd ki.'],
         'seo.homeDescription' => ['Nyitóoldal meta-leírás', 'A Google találati listájában (kb. 150 karakter).'],
     ];
 }
@@ -209,6 +210,7 @@ function slugshop_admin_checks(): array
     $add = function (bool $ok, string $label, string $fix, string $level = 'bad') use (&$c) {
         $c[] = [$ok ? 'ok' : $level, $label, $ok ? '' : $fix];
     };
+    $add(!is_email((string) slugshop_site('test.mailTo', '')), 'A tesztmód ki van kapcsolva (a levelek a valódi címzetthez mennek)', 'Adatok fül → „Tesztmód: minden levél ide” legyen üres élesítéskor.', 'warn');
     $add(version_compare((string) wp_get_theme('iu_theme')->get('Version'), '0.2.0', '>='), 'Alap téma: iu_theme 0.2.0 vagy újabb', 'Telepítsd a hlprv GitHub-kiadásából (iu_theme.zip).');
     $add(defined('HPV_GITHUB_TOKEN'), 'HPV_GITHUB_TOKEN a wp-config.php-ban (az alap téma frissítése)', 'Áron adja a tokent.', 'warn');
     $add(class_exists('WooCommerce'), 'WooCommerce bekapcsolva', 'Telepítsd és kapcsold be.');
