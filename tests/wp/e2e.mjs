@@ -93,6 +93,11 @@ ok(head('/fx-alkatreszek/fx2504-sullyesztett-feju-csavar-m3x6').startsWith('301 
   ok(await sub.isVisible(), 'mobilmenü: kinyitható');
   await p.goto(BASE + '/szerviz');
   ok((await p.locator('.contact-buttons a[href^="tel:"]').count()) === 1 && (await p.locator('a[href*="fx-pcp-rendszerhangolas"]').count()) === 1, 'Szerviz: telefon- és e-mail-gomb, egy cikkajánló');
+  await p.goto(BASE + '/fx-alkatreszek?oldal=2');
+  const cards = await p.locator('#grid li.product').count(); const cnt = await p.textContent('#count');
+  ok(cnt.includes(cards + ' /'), `?oldal=2 újratöltve a teljes eddigi lista (${cards} kártya, ${cnt.trim()})`);
+  await p.goto(BASE + '/?s=nincsilyentermek&post_type=product');
+  ok(await p.isVisible('.search-again input[name=s]'), 'nulla találatnál is van keresőmező');
   await ctx.close();
 }
 

@@ -32,7 +32,8 @@ function slugshop_meta_description(): string
 }
 
 add_action('wp_head', function () {
-    $noindex = is_search() || (function_exists('is_cart') && (is_cart() || is_checkout() || is_account_page())) || !empty($_GET['rendezes']) || !empty($_GET['raktaron']);
+    $noindex = is_search() || (function_exists('is_cart') && (is_cart() || is_checkout() || is_account_page())) || !empty($_GET['rendezes']) || !empty($_GET['raktaron'])
+        || !empty($_GET['oldal']) || !empty($_GET['q']) || !empty($_GET['modell']);
     if ($noindex) {
         echo '<meta name="robots" content="noindex, follow">' . "\n";
     }

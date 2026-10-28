@@ -129,11 +129,17 @@ function slugshop_sidebar_tree(?WP_Term $current): string
     return '<ul class="cat-tree">' . implode('', array_map($node, slugshop_child_cats(0))) . '</ul>';
 }
 
-/** A lista lekérdezése: [azonosítók, összes]. $filter: 'model' (gyári ábra szerinti modell), 'q' (név, cikkszám). */
-function slugshop_list_query(?WP_Term $term, string $sort, bool $only_stock, int $page, array $filter = []): array
+/**
+ * A lista lekérdezése: [azonosítók, összes]. $filter: 'model' (gyári ábra szerinti modell), 'q' (név, cikkszám).
+ * $only_page: csak a kért oldal (a „Továbbiak betöltése” kérése); különben az 1.–$page. oldal együtt, hogy a ?oldal=3
+ * újratöltve vagy megosztva is a teljes, addig betöltött listát mutassa.
+ */
+function slugshop_list_query(?WP_Term $term, string $sort, bool $only_stock, int $page, array $filter = [], bool $only_page = false): array
 {
+    $page = max(1, $page);
     $args = [
-        'post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => SLUGSHOP_PER_PAGE, 'paged' => max(1, $page),
+        'post_type' => 'product', 'post_status' => 'publish',
+        'posts_per_page' => $only_page ? SLUGSHOP_PER_PAGE : SLUGSHOP_PER_PAGE * $page, 'paged' => $only_page ? $page : 1,
         'fields' => 'ids', 'no_found_rows' => false,
         'orderby' => ['menu_order' => 'ASC', 'title' => 'ASC'],
         'tax_query' => [slugshop_visible_tax()],
@@ -204,7 +210,7 @@ function slugshop_render_category(): string
         $img = $thumb ? wp_get_attachment_image($thumb, 'slugshop-card', false, ['loading' => 'lazy', 'alt' => '']) : '<span class="noimg">' . slugshop_icon('box') . '</span>';
         $subs .= '<a class="subcat" href="' . esc_url(get_term_link($ch)) . '"><span class="img">' . $img . '</span><h3>' . esc_html(slugshop_cat_label($ch)) . '</h3></a>';
     }
-    [$ids, $total] = $term || !$subs ? slugshop_list_query($term, $sort, $stock, $page, ['model' => $model, 'q' => $q]) : [[], 0];
+    [$ids, $total] = $term || !$subs ? slugshop_list_query($term, $sort, $stock, $page, ['model' => $model, 'q' => $q], !empty($_GET['resz'])) : [[], 0];
     $shown = min($total, $page * SLUGSHOP_PER_PAGE);
     $base = $term ? get_term_link($term) : (function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/'));
 
@@ -389,12 +395,15 @@ function slugshop_render_search(): string
         if (!$p) {
             continue;
         }
-        $pc = slugshop_primary_cat($id);
-        if ($pc) {
-            $cats[$pc->term_id] = [slugshop_cat_label($pc), ($cats[$pc->term_id][1] ?? 0) + 1];
+        // minden kategória, amelyben a termék szerepel (nem csak a fő kategória)
+        $terms = get_the_terms($id, 'product_cat');
+        $term_ids = [];
+        foreach (is_array($terms) ? $terms : [] as $t) {
+            $term_ids[] = (int) $t->term_id;
+            $cats[$t->term_id] = [slugshop_cat_label($t), ($cats[$t->term_id][1] ?? 0) + 1];
         }
         $price = (float) $p->get_price();
-        if (($stock && !$p->is_in_stock()) || ($cat && (!$pc || $pc->term_id !== $cat)) || ($min !== null && $price < $min) || ($max !== null && $price > $max)) {
+        if (($stock && !$p->is_in_stock()) || ($cat && !in_array($cat, $term_ids, true)) || ($min !== null && $price < $min) || ($max !== null && $price > $max)) {
             continue;
         }
         $rows[] = [$id, $price];
@@ -428,8 +437,14 @@ function slugshop_render_search(): string
             . '</form>';
     }
     $count = count($shown) . ($filtered ? ' / ' . count($ids) : '') . ' termék' . ($posts ? ' és ' . count($posts) . ' cikk' : '') . '.';
+    $again = '<form class="search-again" role="search" method="get" action="' . esc_url(home_url('/')) . '">'
+        . '<label class="sr-only" for="search-again">Keresés a termékek között</label>'
+        . '<input id="search-again" type="search" name="s" value="' . esc_attr($q) . '" placeholder="Termék neve, kaliber vagy cikkszám">'
+        . '<input type="hidden" name="post_type" value="product"><button class="btn btn--sm" type="submit">Keresés</button>'
+        . ($q !== '' ? '<a class="list-reset" href="' . esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/')) . '">Keresés törlése</a>' : '')
+        . '</form>';
     return '<div class="wrap page">' . slugshop_crumbs([['Keresés', null]]) . '<h1 class="page-title">Keresés: „' . esc_html($q) . '”</h1>'
-        . '<p>' . esc_html($count) . '</p>' . $toolbar
+        . $again . '<p>' . esc_html($count) . '</p>' . $toolbar
         . ($shown ? '<ul class="products search-grid">' . implode('', array_map('slugshop_product_card', $shown)) . '</ul>'
             : '<div class="empty">' . ($filtered ? 'A szűrésnek egy termék sem felel meg.' : 'Nincs találat. Próbáld kevesebb szóval vagy cikkszámmal.') . '</div>')
         . ($posts ? '<h2 class="sec-title" style="margin-top:var(--space-7)">Cikkek</h2><div class="cards">' . implode('', array_map('slugshop_article_card', $posts)) . '</div>' : '')

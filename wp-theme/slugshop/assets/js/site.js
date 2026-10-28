@@ -122,7 +122,8 @@
       e.preventDefault(); more.setAttribute('aria-busy', 'true'); more.textContent = 'Betöltés…';
       const loadedUrl = more.href;
       try {
-        const html = await (await fetch(more.href, { credentials: 'same-origin' })).text();
+        const part = new URL(more.href); part.searchParams.set('resz', '1'); // csak a következő rész (újratöltve a teljes lista jön)
+        const html = await (await fetch(part, { credentials: 'same-origin' })).text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
         const grid = $('#grid'); const first = grid.children.length;
         $$('#grid > li.product', doc).forEach((li) => grid.appendChild(document.importNode(li, true)));
@@ -135,8 +136,25 @@
     });
   }
 
+  // A termékoldal „Vissza” linkje oda visz, ahonnan a terméket megnyitották (kategória, márka, keresés – a szűréssel,
+  // rendezéssel és a betöltött oldalakkal együtt); közvetlen megnyitásnál a termék fő kategóriájába.
+  const BACK = 'slugshop_back';
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('#grid li.product a, .search-grid li.product a'); if (!a) return;
+    try { sessionStorage.setItem(BACK, JSON.stringify({ url: location.href, label: ($('h1') || {}).textContent || '' })); } catch (err) { /* privát mód */ }
+  });
+  function initBackLink() {
+    const link = $('.back-link'); if (!link) return;
+    let b = null; try { b = JSON.parse(sessionStorage.getItem(BACK) || 'null'); } catch (err) { return; }
+    if (!b || !b.url || b.url !== document.referrer) return;
+    link.href = b.url;
+    link.innerHTML = '<b>Vissza:</b> ';
+    link.appendChild(document.createTextNode(b.label.trim()));
+  }
+
   // ------------------------------------------------------------- termékoldal
   function initProduct() {
+    initBackLink();
     $$('[data-thumb]').forEach((b) => b.addEventListener('click', () => {
       const img = $('#main-img'); if (!img) return;
       img.src = b.dataset.thumb; img.removeAttribute('srcset');
