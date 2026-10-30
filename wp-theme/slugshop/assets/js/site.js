@@ -347,6 +347,30 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   }
 
+  // GLS: a térképen kiválasztott pont címe a választógomb alatt jelenjen meg (a bővítmény a rendelésösszesítő tetejére
+  // írja). A bővítmény saját dobozát tükrözzük, nem mozgatjuk – így a működése nem változik; a CSS csak akkor rejti el
+  // az eredetit, ha a másolat a helyén van.
+  function initGlsInfo() {
+    const form = $('form.checkout'); if (!form || !('MutationObserver' in window)) return;
+    const sync = () => {
+      const src = document.getElementById('gls-pickup-info');
+      const btn = $('#gls-map-button', form);
+      let copy = $('.gls-pickup-copy', form);
+      if (!src || !btn) { if (copy) copy.remove(); form.classList.remove('gls-info-moved'); return; }
+      const li = btn.closest('li') || btn.parentElement;
+      if (!copy || copy.parentElement !== li) {
+        if (copy) copy.remove();
+        copy = document.createElement('div'); copy.className = 'gls-pickup-copy'; copy.setAttribute('aria-live', 'polite'); li.appendChild(copy);
+      }
+      const html = src.innerHTML.trim();
+      if (copy.innerHTML !== html) copy.innerHTML = html;
+      copy.hidden = html === '';
+      form.classList.add('gls-info-moved');
+    };
+    let t; new MutationObserver(() => { clearTimeout(t); t = setTimeout(sync, 60); }).observe(form, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+    sync();
+  }
+
   function boot() {
     (store.get('slugshop_a11y', []) || []).forEach((c) => document.documentElement.classList.add(c));
     const hdr = $('.site-header');
@@ -400,7 +424,7 @@
     const q = $('#q'); if (q) q.addEventListener('input', (e) => liveSearch(e.target.value));
 
     bindForms(document); initPhone(document);
-    initHero(); initCarousels(); initList(); initProduct(); initNavFit();
+    initHero(); initCarousels(); initList(); initProduct(); initNavFit(); initGlsInfo();
     if (window.SlugFX) $$('.coverflow').forEach(window.SlugFX.coverflow);
     if (window.SlugFX3D) { $$('.rifles').forEach(window.SlugFX3D.rifles); $$('.panthera').forEach(window.SlugFX3D.panthera); }
     if (document.body.classList.contains('show-register')) { const r = $('#reg_email'); if (r) r.focus(); }
