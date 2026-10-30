@@ -310,7 +310,7 @@ function slugshop_render_product(): string
         . slugshop_product_ids($p)
         . ($short !== '' ? '<div class="woocommerce-product-details__short-description prose">' . wp_kses_post(wpautop($short)) . '</div>' : '')
         . slugshop_product_compat($p)
-        . $form . slugshop_shipping_box()
+        . $form . (function_exists('slugshop_is_shop_only') && slugshop_is_shop_only($p->get_id()) ? '<div class="ship-info shop-only"><b>Csak az üzletben</b><p>' . esc_html(slugshop_shop_only_notice()) . '</p></div>' : slugshop_shipping_box())
         . ($cat ? '<a class="back-link" href="' . esc_url(get_term_link($cat)) . '"><b>Vissza:</b> ' . esc_html(slugshop_cat_label($cat)) . '</a>' : '')
         . '</div></div>'
         . '<div class="wc-tabs"><h2 class="tab">Leírás</h2><div class="panel"><div class="prose">' . wp_kses_post(wpautop($desc !== '' ? $desc : ($short !== '' ? $short : '<p>A termékhez nincs részletes leírás.</p>'))) . '</div></div></div>'

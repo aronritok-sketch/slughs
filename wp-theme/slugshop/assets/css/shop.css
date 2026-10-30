@@ -211,3 +211,4 @@ form.checkout.gls-info-moved #order_review > #gls-pickup-info { display: none !i
 .gls-pickup-copy[hidden] { display: none; }
 #gls-map-button { margin-top: 6px; min-height: 36px; padding: 6px 14px; border: 1px solid var(--c-primary); background: var(--c-white); color: var(--c-primary-text); font: inherit; font-size: var(--fs-small); font-weight: 600; cursor: pointer; border-radius: var(--radius-s); }
 #gls-map-button:hover { background: var(--c-primary); color: var(--c-dark); }
+.ship-info.shop-only { border-color: var(--c-primary); background: rgba(234,129,11,.06); }

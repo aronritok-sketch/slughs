@@ -161,3 +161,81 @@ add_filter('template_include', function ($template) {
     }
     return $template;
 }, 100);
+
+/**
+ * Csak az üzletben: a légfegyvert személyi igazolvánnyal, személyes átvétellel és helyszíni fizetéssel lehet megvenni
+ * (az ügyfél szabálya). Ha a kosárban ilyen termék van, csak a személyes átvétel és a megadott fizetési mód(ok)
+ * választhatók. Kategóriák és fizetési módok: Megjelenés → Slugshop → Adatok (alap: fx-fegyverek, ill. cod).
+ */
+function slugshop_shop_only_term_ids(): array
+{
+    static $ids = null;
+    if ($ids === null) {
+        $ids = [];
+        foreach (array_filter(array_map('trim', explode(',', (string) slugshop_site('shopOnly.categories', 'fx-fegyverek')))) as $slug) {
+            $t = get_term_by('slug', sanitize_title($slug), 'product_cat');
+            if ($t) {
+                $ids[] = (int) $t->term_id;
+                $ids = array_merge($ids, array_map('intval', (array) get_term_children($t->term_id, 'product_cat')));
+            }
+        }
+        $ids = array_values(array_unique($ids));
+    }
+    return $ids;
+}
+
+function slugshop_is_shop_only(int $product_id): bool
+{
+    $ids = slugshop_shop_only_term_ids();
+    if (!$ids || !$product_id) {
+        return false;
+    }
+    $parent = (int) wp_get_post_parent_id($product_id);
+    $terms = wp_get_post_terms($parent ?: $product_id, 'product_cat', ['fields' => 'ids']);
+    return is_array($terms) && (bool) array_intersect($ids, array_map('intval', $terms));
+}
+
+function slugshop_cart_has_shop_only(): bool
+{
+    if (!function_exists('WC') || !WC()->cart) {
+        return false;
+    }
+    foreach (WC()->cart->get_cart() as $item) {
+        if (slugshop_is_shop_only((int) ($item['product_id'] ?? 0))) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function slugshop_shop_only_notice(): string
+{
+    return 'Légfegyvert csak az üzletünkben, személyes átvétellel és helyszíni fizetéssel vásárolhatsz (személyi igazolvány szükséges). Jászberény, Megyeház u. 3.';
+}
+
+add_filter('woocommerce_package_rates', function ($rates) {
+    if (!slugshop_cart_has_shop_only()) {
+        return $rates;
+    }
+    $pickup = array_filter($rates, fn($r) => in_array($r->get_method_id(), ['local_pickup', 'pickup_location'], true));
+    return $pickup ?: $rates; // ha nincs személyes átvétel beállítva, ne maradjon üresen a pénztár
+}, 100);
+
+add_filter('woocommerce_available_payment_gateways', function ($gateways) {
+    if (is_admin() && !wp_doing_ajax()) {
+        return $gateways;
+    }
+    if (!is_array($gateways) || !slugshop_cart_has_shop_only()) {
+        return $gateways;
+    }
+    $allowed = array_filter(array_map('trim', explode(',', (string) slugshop_site('shopOnly.gateways', 'cod'))));
+    return array_intersect_key($gateways, array_flip($allowed));
+}, 100);
+
+foreach (['woocommerce_before_cart', 'woocommerce_before_checkout_form'] as $hook) {
+    add_action($hook, function () {
+        if (slugshop_cart_has_shop_only() && function_exists('wc_print_notice')) {
+            wc_print_notice(slugshop_shop_only_notice(), 'notice');
+        }
+    }, 5);
+}

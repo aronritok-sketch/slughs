@@ -21,6 +21,8 @@ function slugshop_setting_fields(): array
         'trackers.fbPixel' => ['Meta (Facebook) Pixel', 'Csak a marketing-sütik elfogadása után.'],
         'trackers.barionPixel' => ['Barion Pixel', 'Csak a marketing-sütik elfogadása után (a régi oldalon volt).'],
         'shipping.dispatch' => ['Várható feladás', 'A termékoldal szállítási dobozában, pl. „Raktáron lévő terméket általában 1–2 munkanapon belül feladunk.” Üresen nem látszik.'],
+        'shopOnly.categories' => ['Csak az üzletben: kategóriák', 'Kategória-slugok vesszővel (az alkategóriáik is). Ha ilyen termék van a kosárban, csak személyes átvétel és az alábbi fizetési mód választható. Üresen: fx-fegyverek.'],
+        'shopOnly.gateways' => ['Csak az üzletben: fizetési módok', 'A helyszíni fizetés azonosítója (WooCommerce → Beállítások → Fizetések, a mód címében, pl. cod). Több is lehet vesszővel. Üresen: cod.'],
         'test.mailTo' => ['Tesztmód: minden levél ide', 'Csak a tesztoldalon! Ha kitöltöd, MINDEN levél (rendelés-visszaigazolás, űrlap, értesítés) kizárólag erre a címre megy, a tárgyban az eredeti címzettel. Élesítéskor ürítsd ki.'],
         'seo.homeDescription' => ['Nyitóoldal meta-leírás', 'A Google találati listájában (kb. 150 karakter).'],
     ];
