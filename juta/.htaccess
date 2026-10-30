@@ -1,0 +1,4 @@
+# A párosító tábla, az állapot- és zárfájlok, a beállítás ne legyen letölthető (a szkriptek kulccsal futnak).
+<FilesMatch "(\.csv|\.json|\.lock|config\.php|common\.php)$">
+  Require all denied
+</FilesMatch>

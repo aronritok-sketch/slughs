@@ -2,3 +2,9 @@ cache/
 node_modules/
 __pycache__/
 build/
+juta/config.php
+juta/keszlet.csv
+juta/parositas.csv
+juta/elad/
+juta/*.json
+juta/*.lock
