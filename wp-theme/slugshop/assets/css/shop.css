@@ -186,3 +186,22 @@ li.product .button { padding: 10px 18px; }
 }
 .search-again { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; margin: 0 0 var(--space-4); max-width: 640px; }
 .search-again input[type=search] { flex: 1 1 260px; min-height: 40px; padding: 0 12px; border: 1px solid #cfcfcf; border-radius: var(--radius-s); font: inherit; background: var(--c-white); }
+
+/* Kosár és pénztár két oszlopban (a WooCommerce klasszikus sablonjának szerkezetére) */
+.wc-page .woocommerce:has(> .woocommerce-cart-form) { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: var(--space-5) var(--space-7); align-items: start; }
+.wc-page .woocommerce:has(> .woocommerce-cart-form) > * { grid-column: 1 / -1; }
+.wc-page .woocommerce > .woocommerce-cart-form { grid-column: 1; }
+.wc-page .woocommerce > .cart-collaterals { grid-column: 2; position: sticky; top: calc(var(--header-h) + 16px); }
+.wc-page .cart-collaterals .cart_totals, .wc-page .cart-collaterals .cross-sells { float: none; width: 100%; }
+.wc-page form.checkout { display: grid; grid-template-columns: minmax(0, 1fr) 420px; column-gap: var(--space-7); align-items: start; }
+.wc-page form.checkout > * { grid-column: 1; }
+.wc-page form.checkout > #customer_details { grid-row: 1 / span 2; }
+.wc-page form.checkout > #order_review_heading { grid-column: 2; grid-row: 1; margin: 0; padding: var(--space-5) var(--space-5) 0; background: var(--c-light); }
+.wc-page form.checkout > #order_review { grid-column: 2; grid-row: 2; background: var(--c-light); padding: var(--space-3) var(--space-5) var(--space-5); position: sticky; top: calc(var(--header-h) + 16px); }
+.wc-page .col2-set .col-1, .wc-page .col2-set .col-2 { float: none; width: 100%; }
+.wc-page .col2-set .col-2 { margin-top: var(--space-5); }
+@media (max-width: 991.8px) {
+  .wc-page .woocommerce:has(> .woocommerce-cart-form), .wc-page form.checkout { grid-template-columns: minmax(0, 1fr); }
+  .wc-page .woocommerce > .cart-collaterals, .wc-page form.checkout > #order_review_heading, .wc-page form.checkout > #order_review { grid-column: 1; grid-row: auto; position: static; }
+  .wc-page form.checkout > #customer_details { grid-row: auto; }
+}

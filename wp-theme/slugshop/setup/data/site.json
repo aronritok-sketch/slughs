@@ -70,6 +70,10 @@
   [
    "Kapcsolat",
    "/kapcsolat"
+  ],
+  [
+   "Fegyvervizsga",
+   "/jelentkezes-fegyvervizsgara"
   ]
  ],
  "footerMenu": [
@@ -111,13 +115,6 @@
    "button": "Termékek",
    "href": "/zan-slugok",
    "img": "slide-slideuj-webp.webp"
-  },
-  {
-   "title": "Légfegyverek forradalma",
-   "text": "Slugshop, a Scandinavian Arms termékeinek magyarországi forgalmazója!",
-   "button": "Termékek",
-   "href": "/zan-slugok",
-   "img": "slide-7cd2a8-b2995fa723f546eba954caa717f92b1bmv2-webp.webp"
   },
   {
    "title": "FX légfegyverek – videótár",

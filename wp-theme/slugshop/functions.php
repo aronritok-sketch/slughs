@@ -10,7 +10,7 @@
 defined('ABSPATH') || exit;
 
 // A stíluslap ideje is benne van: frissítés után a böngésző biztosan az új CSS/JS-t kéri.
-define('SLUGSHOP_VERSION', '1.2.2.' . (int) @filemtime(__DIR__ . '/style.css'));
+define('SLUGSHOP_VERSION', '1.3.0.' . (int) @filemtime(__DIR__ . '/style.css'));
 define('SLUGSHOP_DIR', __DIR__);
 define('SLUGSHOP_URL', get_stylesheet_directory_uri());
 
@@ -26,6 +26,7 @@ require_once __DIR__ . '/inc/legacy.php';
 require_once __DIR__ . '/inc/juta.php';
 require_once __DIR__ . '/inc/setup.php';
 require_once __DIR__ . '/inc/admin.php';
+require_once __DIR__ . '/inc/migrate.php';
 
 if (defined('WP_CLI') && WP_CLI) {
     require_once __DIR__ . '/inc/cli.php';

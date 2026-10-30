@@ -86,6 +86,12 @@ a:hover { color: var(--c-primary); }
   .site-header .wrap { justify-content: space-between; min-height: 72px; }
   .logo img { width: 60px; }
 }
+/* Ha a menüpontok (az ügyfél szerkeszti a menüt) a töréspontok fölött sem férnek ki, a site.js előbb tömöríti,
+   aztán hamburgerre vált (nav-tight / nav-burger a fejlécen). */
+.site-header.nav-tight .main-nav > ul > li > a { padding: 0 8px; font-size: .75rem; letter-spacing: 0; }
+.site-header.nav-burger .main-nav { display: none; }
+.site-header.nav-burger .burger { display: grid !important; }
+.site-header.nav-burger .wrap { justify-content: space-between; }
 @media (max-width: 720px) {
   .topbar .t-hide { display: none; }
   .topbar-group { gap: var(--space-3); }

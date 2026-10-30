@@ -19,6 +19,12 @@ DATA = os.path.join(os.path.dirname(os.path.dirname(HERE)), 'wp-theme', 'slugsho
 #    mutatta, az új az üres kategóriát). A kategória új címet kap, és bekerülnek az ELR lövedékek.
 ELR_OLD, ELR_NEW = '/zan-slugok/elr-zan-slug', '/zan-slugok/elr-slugok'
 
+# Az FX alkatrészek bevezetője csak igazolt modellt ígérjen (a modellválasztó a gyári ábrákból dolgozik).
+FX_INTRO_OLD = 'Válassz modell szerint (DRS / Panthera / Leopard / King / Dreamline / Impact), és mindig figyelj a kompatibilitásra (évjárat, kivitel, cikkszám).'
+FX_INTRO_NEW = ('Fent a modellválasztóban kiválaszthatod a fegyvered típusát: a lista a gyári robbantott ábrák alapján csak azokat a '
+                'modelleket és alkatrészeket mutatja, amelyeknél a gyári cikkszám igazoltan egyezik. Ha a modelled nincs a listában, '
+                'vagy bizonytalan vagy (évjárat, kivitel), keress cikkszámra, vagy írj nekünk.')
+
 # 3. FX16092: a gyári ábrák szerint „Grub screw M3x4” (hernyócsavar) – a kép jó volt, a név és a leírás nem.
 FX16092 = {
     'name': 'FX16092 hernyócsavar M3×4 – gyári FX alkatrész',
@@ -79,6 +85,9 @@ def main():
     for c in cats:
         if c['path'] == ELR_OLD:
             c.update({'path': ELR_NEW, 'slug': ELR_NEW.rsplit('/', 1)[1], 'oldPath': ELR_OLD, 'name': 'ELR ZAN slugok', 'menu': 'ELR ZAN slugok'})
+    for c in cats:
+        if c['path'] == '/fx-alkatreszek':
+            c['desc'] = c['desc'].replace(FX_INTRO_OLD, FX_INTRO_NEW)
     dump('categories', cats)
 
     products = load('products')
@@ -114,6 +123,11 @@ def main():
     for b, fix in zip(site['blocks'], BLOCKS):
         b.update(fix)
     site['shipping'] = SHIPPING
+    # A Scandinavian Arms dia: nincs ilyen termék a boltban, a gombja a ZAN slugokhoz vitt (az ügyfél kérése, 2026-10-30)
+    site['slides'] = [sl for sl in site['slides'] if 'Scandinavian Arms' not in sl.get('text', '')]
+    # Fegyvervizsga (a régi oldalon is volt; az oldalt és a menüpontot a migrate.php hozza létre a meglévő telepítésen)
+    if not any(m[1] == '/jelentkezes-fegyvervizsgara' for m in site['menu']):
+        site['menu'].append(['Fegyvervizsga', '/jelentkezes-fegyvervizsgara'])
     # A ZAN slugok és pelletek közös belépője (az ügyfél kategóriarendezése, 2026-10-28)
     for t in site['tiles']:
         if t['href'] == '/zan-slugok':

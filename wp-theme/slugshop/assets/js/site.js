@@ -331,6 +331,22 @@
   }
 
   // ------------------------------------------------------------- indítás
+  // A főmenü kifér-e: ha nem, tömörebb, ha úgy sem, hamburger (a menüt az ügyfél bővítheti).
+  function initNavFit() {
+    const hdr = $('.site-header'); const nav = $('.main-nav'); if (!hdr || !nav) return;
+    const fit = () => {
+      hdr.classList.remove('nav-tight', 'nav-burger');
+      if (getComputedStyle(nav).display === 'none') return;
+      const ul = $('ul', nav); const fits = () => ul.scrollWidth <= nav.clientWidth + 1;
+      if (fits()) return;
+      hdr.classList.add('nav-tight'); if (fits()) return;
+      hdr.classList.add('nav-burger');
+    };
+    fit();
+    let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fit, 120); }, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  }
+
   function boot() {
     (store.get('slugshop_a11y', []) || []).forEach((c) => document.documentElement.classList.add(c));
     const hdr = $('.site-header');
@@ -384,7 +400,7 @@
     const q = $('#q'); if (q) q.addEventListener('input', (e) => liveSearch(e.target.value));
 
     bindForms(document); initPhone(document);
-    initHero(); initCarousels(); initList(); initProduct();
+    initHero(); initCarousels(); initList(); initProduct(); initNavFit();
     if (window.SlugFX) $$('.coverflow').forEach(window.SlugFX.coverflow);
     if (window.SlugFX3D) { $$('.rifles').forEach(window.SlugFX3D.rifles); $$('.panthera').forEach(window.SlugFX3D.panthera); }
     if (document.body.classList.contains('show-register')) { const r = $('#reg_email'); if (r) r.focus(); }
