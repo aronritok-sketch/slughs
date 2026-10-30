@@ -319,9 +319,14 @@
     const ex = $('.a11y-panel'); if (ex) { ex.remove(); btn.setAttribute('aria-expanded', 'false'); return; }
     const opts = [['a11y-big', 'Nagyobb betű'], ['a11y-contrast', 'Erősebb kontraszt'], ['a11y-links', 'Hivatkozások kiemelése']];
     const p = document.createElement('div'); p.className = 'a11y-panel'; p.setAttribute('role', 'group'); p.setAttribute('aria-label', 'Kisegítő eszközök');
-    p.innerHTML = '<b>Kisegítő eszközök</b>' + opts.map(([c, l]) => `<button type="button" data-a11y-opt="${c}" aria-pressed="${document.documentElement.classList.contains(c)}">${l}</button>`).join('') + '<button type="button" data-a11y-opt="reset">Alaphelyzet</button>';
+    p.innerHTML = '<b>Kisegítő eszközök</b>' + opts.map(([c, l]) => `<button type="button" data-a11y-opt="${c}" aria-pressed="${document.documentElement.classList.contains(c)}">${l}</button>`).join('') + '<button type="button" data-a11y-opt="reset">Alaphelyzet</button><button type="button" class="a11y-close" data-a11y-close>Bezárás</button>';
     document.body.appendChild(p); btn.setAttribute('aria-expanded', 'true');
+    // mobilon a panel a lap alján a gomb fölé kerül: saját Bezárás gomb és Esc kell hozzá
+    const close = () => { p.remove(); btn.setAttribute('aria-expanded', 'false'); document.removeEventListener('keydown', onKey); btn.focus({ preventScroll: true }); };
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    document.addEventListener('keydown', onKey);
     p.addEventListener('click', (e) => {
+      if (e.target.closest('[data-a11y-close]')) { close(); return; }
       const b = e.target.closest('[data-a11y-opt]'); if (!b) return;
       const c = b.dataset.a11yOpt; const h = document.documentElement;
       if (c === 'reset') { opts.forEach(([x]) => h.classList.remove(x)); $$('[data-a11y-opt]', p).forEach((x) => x.setAttribute('aria-pressed', 'false')); }

@@ -10,7 +10,7 @@
 defined('ABSPATH') || exit;
 
 // A stíluslap ideje is benne van: frissítés után a böngésző biztosan az új CSS/JS-t kéri.
-define('SLUGSHOP_VERSION', '1.3.2.' . (int) @filemtime(__DIR__ . '/style.css'));
+define('SLUGSHOP_VERSION', '1.3.3.' . (int) @filemtime(__DIR__ . '/style.css'));
 define('SLUGSHOP_DIR', __DIR__);
 define('SLUGSHOP_URL', get_stylesheet_directory_uri());
 
