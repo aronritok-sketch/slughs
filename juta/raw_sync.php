@@ -4,7 +4,7 @@
  * cikkszám) szerint frissíti az árat, a készletet és – ha be van kapcsolva – az akciós árat.
  *
  * A Mandala raw_sync.php-ja alapján, a Slugshophoz: nincs nagyker ár és WPML; a nyitott rendelések mennyiségét levonja
- * (túleladás ellen); az ismeretlen vonalkódokból alapból nem lesz piszkozat, hanem párosító tábla (parositas.csv):
+ * (túleladás ellen); az ismeretlen vonalkódokból alapból nem lesz piszkozat, hanem párosító tábla (a web gyökerén kívül, config: report):
  * egyezik / csak a JUTA-ban / csak a webshopban / többszörös. A nevekhez, leírásokhoz, képekhez, kategóriákhoz nem nyúl.
  */
 
@@ -236,7 +236,12 @@ foreach ($shop as $sku => $hits) {
 }
 
 // párosító tábla (Excelben nyitható: UTF-8 BOM, „;”)
-$out = fopen(__DIR__ . '/parositas.csv', 'w');
+$reportFile = (string) ($CFG['report'] ?? dirname(__DIR__, 2) . '/juta-parositas.csv');
+$out = @fopen($reportFile, 'w');
+if (!$out) {
+    log_line('A párosító tábla nem írható: ' . $reportFile . ' (config.php: report)', 'ERROR');
+    exit(1);
+}
 fwrite($out, "\xEF\xBB\xBF");
 foreach ($report as $line) {
     fputcsv($out, $line, ';', '"', '\\');
@@ -245,5 +250,5 @@ fclose($out);
 
 log_line(sprintf('KÉSZ – frissítve: %d, változatlan: %d, csak a JUTA-ban: %d, csak a webshopban: %d, többszörös: %d, új piszkozat: %d, hiba: %d',
     $stats['updated'], $stats['unchanged'], $stats['only_juta'], $stats['only_shop'], $stats['multi'], $stats['created'], $stats['error']));
-log_line('Párosító tábla: juta/parositas.csv');
+log_line('Párosító tábla: ' . $reportFile);
 flock($lock, LOCK_UN);

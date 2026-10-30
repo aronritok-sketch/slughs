@@ -23,11 +23,14 @@ return [
     // kisebb a rendes árnál, az a WooCommerce akciós ára; ha üres vagy 0, a webshopban nincs akció.
     'sale_column' => '',
     // Ismeretlen vonalkódból piszkozat termék legyen-e (a Mandalánál igen). A Slugshopnál alapból nem: a párosító
-    // táblában látszik (parositas.csv), és László dönt róla.
+    // táblában látszik (report), és László dönt róla.
     'create_drafts' => false,
     // A nyitott, a JUTA-ba még be nem küldött rendelések mennyiségét levonja a JUTA készletéből (túleladás ellen).
     'reserve_open_orders' => true,
     'reserve_statuses' => ['wc-processing', 'wc-on-hold'],
+
+    // A párosító tábla helye: a web gyökerén KÍVÜL (a tárhely nginx-e a .csv-t a .htaccess ellenére is kiszolgálja).
+    'report' => dirname(__DIR__, 2) . '/juta-parositas.csv',
 
     // ----- elad.php (webshop → JUTA: a teljesített rendelések)
     'export_dir' => __DIR__ . '/elad',
