@@ -54,12 +54,27 @@ add_filter('woocommerce_billing_fields', function (array $f): array {
     if (isset($f['billing_email'])) {
         $f['billing_email']['priority'] = 26;
     }
-    $f['billing_tax_number'] = [
-        'label' => 'Adószám', 'description' => 'Csak cégnek, ha a számlára kell.', 'required' => false, 'class' => ['form-row-wide'], 'priority' => 31,
-        'placeholder' => '12345678-1-12', 'autocomplete' => 'off',
-    ];
+    // Cégnév: a Számlázz.hu bővítmény ehhez köti az adószámot (ha kitöltik, az adószám kötelező).
+    $f['billing_company'] = array_merge($f['billing_company'] ?? [], [
+        'label' => 'Cégnév', 'required' => false, 'class' => ['form-row-wide'], 'priority' => 30, 'autocomplete' => 'organization',
+    ]);
+    // Saját adószám mező csak akkor, ha a Számlázz.hu bővítmény nem ad sajátot (különben kétszer szerepelne).
+    if (!slugshop_szamlazz_vat_field()) {
+        $f['billing_tax_number'] = [
+            'label' => 'Adószám', 'description' => 'Csak cégnek, ha a számlára kell.', 'required' => false, 'class' => ['form-row-wide'], 'priority' => 31,
+            'placeholder' => '12345678-1-12', 'autocomplete' => 'off',
+        ];
+    }
     return $f;
 });
+
+/** A Számlázz.hu bővítmény (Integration for Szamlazz.hu & WooCommerce) saját adószám mezője (wc_szamlazz_adoszam). */
+function slugshop_szamlazz_vat_field(): bool
+{
+    return class_exists('WC_Szamlazz') || defined('WC_SZAMLAZZ_PLUGIN_FILE') || function_exists('WC_Szamlazz');
+}
+/** A cégnév mező a WooCommerce beállításától függetlenül látszik (nem kötelező). */
+add_filter('pre_option_woocommerce_checkout_company_field', fn() => 'optional');
 add_filter('woocommerce_shipping_fields', function (array $f): array {
     if (isset($f['shipping_last_name'], $f['shipping_first_name'])) {
         $f['shipping_last_name']['priority'] = 10;
@@ -74,6 +89,26 @@ add_filter('woocommerce_get_country_locale', function (array $locale): array {
     $locale['HU']['state'] = ['required' => false, 'hidden' => true];
     return $locale;
 });
+/**
+ * A WooCommerce 11 országbeállítása a telefonnak 100-as sorrendet ad, és a pénztár JS-e (address-i18n) ez alapján
+ * a mezőt a cím alá rendezi: a név és az e-mail közé tesszük, a cégnevet az adószám elé.
+ */
+add_filter('woocommerce_get_country_locale_default', function (array $d): array {
+    $d['phone'] = array_merge($d['phone'] ?? [], ['priority' => 25]);
+    $d['company'] = array_merge($d['company'] ?? [], ['priority' => 30, 'required' => false, 'hidden' => false]);
+    return $d;
+});
+add_filter('woocommerce_get_country_locale', function (array $locale): array {
+    foreach ($locale as $cc => $fields) {
+        if (isset($fields['phone'])) {
+            $locale[$cc]['phone']['priority'] = 25;
+        }
+        if (isset($fields['company'])) {
+            $locale[$cc]['company']['priority'] = 30;
+        }
+    }
+    return $locale;
+}, 20);
 
 /**
  * A WooCommerce 11 a telefonmezőt a saját beállítása (woocommerce_checkout_phone_field) szerint a végén újra
@@ -89,10 +124,33 @@ add_filter('woocommerce_checkout_fields', function (array $f): array {
         $f['billing']['billing_email']['priority'] = 26;
         $f['billing']['billing_email']['class'] = ['form-row-wide'];
     }
+    // A Számlázz.hu bővítmény adószám mezője a cégnév után (a saját mezőnk ilyenkor nincs, lásd fent).
+    if (isset($f['billing']['wc_szamlazz_adoszam'])) {
+        unset($f['billing']['billing_tax_number']);
+        $f['billing']['wc_szamlazz_adoszam']['priority'] = 31;
+        $f['billing']['wc_szamlazz_adoszam']['class'] = ['form-row-wide'];
+        $f['billing']['wc_szamlazz_adoszam']['placeholder'] = '12345678-1-12';
+        if (empty($f['billing']['wc_szamlazz_adoszam']['description'])) {
+            $f['billing']['wc_szamlazz_adoszam']['description'] = 'Cégnek, ha a számlára kell.';
+        }
+    }
     uasort($f['billing'], fn($a, $b) => ($a['priority'] ?? 99) <=> ($b['priority'] ?? 99));
     return $f;
-}, 20);
+}, 999);
 add_filter('pre_option_woocommerce_checkout_phone_field', fn() => 'required');
+
+/**
+ * A kosárban nincs szállítási mód választás (a pénztárban választják, ott a GLS-pont és a „csak az üzletben” szabály is):
+ * a WooCommerce „szállítási díj a kosárban” kikapcsolása a már megadott címnél nem rejti el, ezért itt.
+ */
+add_filter('woocommerce_cart_ready_to_calc_shipping', function ($show) {
+    return function_exists('is_cart') && is_cart() ? false : $show;
+}, 99);
+add_action('woocommerce_cart_totals_before_order_total', function () {
+    if (WC()->cart && WC()->cart->needs_shipping()) {
+        echo '<tr class="shipping-note"><th>Szállítás</th><td data-title="Szállítás">A pénztárban választod ki (személyes átvétel ingyenes).</td></tr>';
+    }
+});
 
 /** A kosár / pénztár szállítási sora magyarul (a WooCommerce 11 „Shipment” felirata helyett). */
 add_filter('woocommerce_shipping_package_name', fn($name, $i) => 'Szállítás', 10, 2);

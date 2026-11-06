@@ -212,3 +212,24 @@ form.checkout.gls-info-moved #order_review > #gls-pickup-info { display: none !i
 #gls-map-button { margin-top: 6px; min-height: 36px; padding: 6px 14px; border: 1px solid var(--c-primary); background: var(--c-white); color: var(--c-primary-text); font: inherit; font-size: var(--fs-small); font-weight: 600; cursor: pointer; border-radius: var(--radius-s); }
 #gls-map-button:hover { background: var(--c-primary); color: var(--c-dark); }
 .ship-info.shop-only { border-color: var(--c-primary); background: rgba(234,129,11,.06); }
+/* Pénztár, második oszlop (1.3.4): a táblázat soronként rácsban, a szállítási módok teljes szélességben, kártyaként
+   (a keskeny oszlopban a két táblázatoszlop összenyomta őket) */
+.wc-page #order_review .shop_table, .wc-page #order_review .shop_table :is(thead, tbody, tfoot) { display: block; width: 100%; }
+.wc-page #order_review .shop_table { border: 0; margin: 0 0 var(--space-4); }
+.wc-page #order_review .shop_table tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 2px 12px; padding: 10px 0; border-bottom: 1px solid var(--c-line); }
+.wc-page #order_review .shop_table :is(th, td) { display: block; padding: 0; border: 0; background: none; text-align: left; }
+.wc-page #order_review .shop_table tr:not(.woocommerce-shipping-totals) > :last-child:not(:first-child) { text-align: right; white-space: nowrap; }
+.wc-page #order_review .shop_table .product-name { white-space: normal; }
+.wc-page #order_review .shop_table .order-total td { white-space: normal; }
+.wc-page #order_review .shop_table .order-total td small { display: block; font-size: var(--fs-xs); color: var(--c-muted); }
+.wc-page #order_review .shop_table tr.woocommerce-shipping-totals { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.wc-page #order_review .shop_table tr.woocommerce-shipping-totals > td { text-align: left; white-space: normal; }
+.wc-page #shipping_method { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.wc-page #shipping_method li { text-align: left; white-space: normal; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 4px 8px; margin: 0; padding: 9px 12px; border: 1px solid #cfcfcf; background: var(--c-white); line-height: 1.4; }
+.wc-page #shipping_method li:has(input:checked) { border-color: var(--c-primary); box-shadow: inset 3px 0 0 var(--c-primary); }
+.wc-page #shipping_method li input { margin: 3px 0 0; accent-color: var(--c-primary); }
+.wc-page #shipping_method li label { flex: 1 1 0; min-width: 0; font-weight: 600; cursor: pointer; }
+.wc-page #shipping_method li > :is(small, .method-note, .gls-pickup-copy, #gls-map-button, div, p) { flex-basis: 100%; margin-left: 22px; }
+.wc-page #shipping_method .method-note { display: block; color: var(--c-muted); font-size: var(--fs-xs); line-height: 1.5; }
+/* Kosár: szállítási mód nincs, csak egy sor, hogy a pénztárban választják */
+.cart_totals .shipping-note td { font-size: var(--fs-small); color: var(--c-muted); }
