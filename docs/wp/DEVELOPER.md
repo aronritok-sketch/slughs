@@ -134,6 +134,10 @@ BASE=http://localhost:8890 WPDIR=/tmp/wp node tests/wp/e2e.mjs
 BASE=http://localhost:8890 WP="wp --allow-root --path=/tmp/wp" WPUSER=admin WPPASS=admin node tests/wp/editor-check.mjs
 ```
 
+**Élesre kiadás (2026-11-06-tól, kézi zip nincs):** verzióemelés a `style.css`-ben → commit → `bash tools/wp/publish-hlprv.sh`
+(a téma tükre a hlprv `claude/slugshop-site` ágára). A hlprv kiadó workflow-ja óránként `slugshop-vX.Y.Z` kiadást készít;
+az éles a hlprv `deploy/sites.json` „slugshop” → `live.version` szerinti verziót tölti le (Áron jóváhagyása után írjuk át).
+
 Az előnézet változásakor: `tools/extract.py` → `tools/wp/rebuild.sh` → `build_theme.py`; a CSS / JS az `assets/`-ből
 kézzel kerül a témába (`assets/css/{fonts,vars,site,shop}.css`, `fx.js`, `fx3d.js`; az `iu.css` → `iu-compat.css`).
 
