@@ -113,3 +113,28 @@ add_filter('wp_sitemaps_post_types', function ($types) {
     unset($types['attachment'], $types[SLUGSHOP_MSG]);
     return $types;
 });
+
+/**
+ * Yoast SEO mellett (élesen 2026-11-07-től, László termékenként ad meg SEO-címet és meta-leírást): ahol a Yoastban nincs
+ * saját érték, maradjon a téma eddigi meta-leírása és nyitóoldali címe – különben a bekapcsolás után minden oldalról
+ * eltűnt a meta-leírás, a nyitóoldal címe pedig „Kezdőlap” lett. A Yoastban megadott érték mindig elsőbbséget kap.
+ */
+add_filter('wpseo_metadesc', function ($desc) {
+    return trim((string) $desc) !== '' ? $desc : slugshop_meta_description();
+}, 20);
+add_filter('wpseo_opengraph_desc', function ($desc) {
+    return trim((string) $desc) !== '' ? $desc : slugshop_meta_description();
+}, 20);
+add_filter('wpseo_title', function ($title) {
+    if (!is_front_page()) {
+        return $title;
+    }
+    $front = (int) get_option('page_on_front');
+    if ($front && trim((string) get_post_meta($front, '_yoast_wpseo_title', true)) !== '') {
+        return $title;
+    }
+    return slugshop_site('seo.homeTitle', 'Légfegyverek és ZAN lövedékek') . ' – Slugshop';
+}, 20);
+add_filter('wpseo_opengraph_title', function ($title) {
+    return is_front_page() ? apply_filters('wpseo_title', $title) : $title;
+}, 20);
