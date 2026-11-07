@@ -239,7 +239,7 @@ function slugshop_admin_checks(): array
     $smtp = defined('WPMS_ON') || class_exists('WPMailSMTP\\Core') || (bool) get_option('wp_mail_smtp') || defined('FluentMail') || class_exists('FluentMail\\App\\App') || (bool) apply_filters('slugshop_smtp_configured', false);
     $add($smtp, 'Levélküldés SMTP-n át (WP Mail SMTP vagy hasonló)', 'Telepítsd a WP Mail SMTP-t a bolt postafiókjával; küldj próbalevelet.', 'warn');
     $juta = slugshop_juta_status();
-    $add($juta['last'] !== null && !$juta['stale'], 'JUTA-szinkron él' . ($juta['last'] ? ' (utoljára: ' . wp_date('Y-m-d H:i', (int) $juta['last']) . ')' : ''), 'A /juta/ mappa és a tárhely cronja (raw_sync.php, elad.php) – lásd a JUTA-fejezetet a teendőlistában.', 'warn');
+    $add($juta['last'] !== null && !$juta['stale'] && empty($juta['csv_stale']), 'JUTA-szinkron él' . ($juta['last'] ? ' (utoljára: ' . wp_date('Y-m-d H:i', (int) $juta['last']) . ')' : '') . (!empty($juta['csv_time']) ? ', készletfájl: ' . wp_date('Y-m-d H:i', (int) $juta['csv_time']) : ''), 'A JUTA FTP-feltöltése, a /juta/ mappa és a tárhely cronja (raw_sync.php, elad.php) – lásd a JUTA-fejezetet a teendőlistában.', 'warn');
     $add(!get_posts(['post_type' => 'product', 'post_status' => 'publish', 'numberposts' => 1, 's' => 'Lorem ipsum', 'fields' => 'ids']), 'Nincs helyőrző szöveg a termékekben', 'Keresd meg és javítsd.', 'warn');
     return $c;
 }

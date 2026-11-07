@@ -178,7 +178,11 @@ function slugshop_juta_status(): array
     $sync = (array) get_option('slugshop_juta_sync', []);
     $drafts = (int) (new WP_Query(['post_type' => 'product', 'post_status' => 'draft', 'posts_per_page' => 1, 'fields' => 'ids']))->found_posts;
     $hours = !empty($sync['time']) ? (int) floor((time() - (int) $sync['time']) / HOUR_IN_SECONDS) : null;
-    return ['last' => $sync['time'] ?? null, 'hours' => $hours, 'stale' => $hours !== null && $hours > 26, 'drafts' => $drafts];
+    // A JUTA utolsó készletfájlja (FTP-n érkezik a /juta mappába): ha régi, a JUTA oldalán akad el a feltöltés, nem a szinkronon.
+    $csv = (string) apply_filters('slugshop_juta_csv', ABSPATH . 'juta/keszlet.csv');
+    $csv_time = is_file($csv) ? (int) filemtime($csv) : null;
+    return ['last' => $sync['time'] ?? null, 'hours' => $hours, 'stale' => $hours !== null && $hours > 26, 'drafts' => $drafts,
+        'csv_time' => $csv_time, 'csv_stale' => $csv_time !== null && time() - $csv_time > 26 * HOUR_IN_SECONDS];
 }
 
 add_action('admin_notices', function () {
@@ -186,8 +190,13 @@ add_action('admin_notices', function () {
         return;
     }
     $s = slugshop_juta_status();
-    if ($s['stale']) {
-        echo '<div class="notice notice-warning"><p><strong>JUTA:</strong> ' . (int) $s['hours'] . ' órája nem változott ár vagy készlet. Fut a tárhely cronja (/juta/raw_sync.php)?</p></div>';
+    if ($s['csv_stale']) {
+        echo '<div class="notice notice-warning"><p><strong>JUTA:</strong> a JUTA utolsó készletfájlja (keszlet.csv) ekkor érkezett: '
+            . esc_html(wp_date('Y. m. d. H:i', (int) $s['csv_time'])) . '. Azóta a webshop ára és készlete nem frissül: a JUTA készletexportját és az FTP-feltöltését kell megnézni.</p></div>';
+    } elseif ($s['stale']) {
+        echo '<div class="notice notice-warning"><p><strong>JUTA:</strong> ' . (int) $s['hours'] . ' órája nem változott ár vagy készlet'
+            . ($s['csv_time'] ? ' (az utolsó készletfájl: ' . esc_html(wp_date('Y. m. d. H:i', (int) $s['csv_time'])) . ')' : '')
+            . '. Fut a tárhely cronja (/juta/raw_sync.php)?</p></div>';
     }
     if ($s['drafts'] && get_current_screen() && in_array(get_current_screen()->id, ['dashboard', 'edit-product'], true)) {
         echo '<div class="notice notice-info"><p><strong>JUTA:</strong> ' . (int) $s['drafts'] . ' új termék vár piszkozatként (kategória, kép, leírás kell, aztán közzététel). <a href="' . esc_url(admin_url('edit.php?post_type=product&post_status=draft')) . '">Megnyitás</a></p></div>';
