@@ -66,7 +66,12 @@ function slugshop_render_contact(): string
 function slugshop_render_legal(array $a): string
 {
     $id = (string) slugshop_site('trackers.fogyasztobarat', '');
-    $type = in_array($a['type'], ['aszf', 'adatkezeles', 'imp'], true) ? $a['type'] : 'aszf';
+    $type = in_array($a['type'], ['aszf', 'adatkezeles', 'at', 'imp'], true) ? $a['type'] : 'aszf';
+    // A Fogyasztó Barát beágyazása az adatkezelési tájékoztatót „at” típussal adja; ismeretlen típusnál (pl. „adatkezeles”)
+    // a fogyasztói tájékoztatót mutatná elsőként (az ügyfél jelezte, 2026-11-07).
+    if ($type === 'adatkezeles') {
+        $type = 'at';
+    }
     if ($id === '') {
         return '<p class="note">A jogi szöveg a Fogyasztó Barát rendszeréből töltődik be: add meg a tanúsítvány azonosítóját (Megjelenés → Slugshop).</p>';
     }

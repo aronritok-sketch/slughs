@@ -140,6 +140,37 @@ add_filter('woocommerce_checkout_fields', function (array $f): array {
 add_filter('pre_option_woocommerce_checkout_phone_field', fn() => 'required');
 
 /**
+ * Szállítási módok már a pénztár betöltésekor (az ügyfél jelezte, 2026-11-07: cím megadása után sem látott szállítást).
+ * A WooCommerce a vendég országát alapból nem ismeri, ezért a szállítási sort csak a címmezők AJAX-frissítése után rajzolta
+ * ki; ha az elmaradt, az összeg szállítás nélkül maradt. Csak Magyarországra szállítunk: a vendég alapból magyar címmel
+ * számol, és a díjakhoz nem kell a teljes cím.
+ */
+add_filter('pre_option_woocommerce_default_customer_address', fn() => 'base');
+add_filter('pre_option_woocommerce_shipping_cost_requires_address', fn() => 'no');
+add_filter('default_checkout_billing_country', fn($c) => $c ?: 'HU');
+add_filter('default_checkout_shipping_country', fn($c) => $c ?: 'HU');
+add_action('woocommerce_before_checkout_form', function () {
+    $cu = function_exists('WC') ? WC()->customer : null;
+    if (!$cu) {
+        return;
+    }
+    $changed = false;
+    if (!$cu->get_billing_country()) {
+        $cu->set_billing_country('HU');
+        $changed = true;
+    }
+    if (!$cu->get_shipping_country()) {
+        $cu->set_shipping_country('HU');
+        $changed = true;
+    }
+    if ($changed) {
+        $cu->save();
+        WC()->cart->calculate_shipping();
+        WC()->cart->calculate_totals();
+    }
+}, 1);
+
+/**
  * A kosárban nincs szállítási mód választás (a pénztárban választják, ott a GLS-pont és a „csak az üzletben” szabály is):
  * a WooCommerce „szállítási díj a kosárban” kikapcsolása a már megadott címnél nem rejti el, ezért itt.
  */
