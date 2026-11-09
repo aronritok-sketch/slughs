@@ -328,3 +328,88 @@ foreach (['woocommerce_before_cart', 'woocommerce_before_checkout_form'] as $hoo
         }
     }, 5);
 }
+
+/**
+ * Telefonszám a pénztárban (az ügyfél kérése, 2026-11-09: hibás számmal a GLS csomagpontos címkéje nem készült el –
+ * „Invalid service parameter, Service PSD”). A magyar számot egységes alakra hozzuk (+36301234567: ezt a GLS elfogadja),
+ * GLS-csomagpontnál és -automatánál mobilszám kell (a GLS SMS-ben értesít), hibás számnál magyar hibaüzenet.
+ *
+ * @return array{0: string, 1: string} [egységes szám vagy '', típus: mobile | landline | foreign | invalid]
+ */
+function slugshop_hu_phone(string $raw): array
+{
+    $raw = trim($raw);
+    $d = preg_replace('/\D+/', '', $raw);
+    if ($d === '') {
+        return ['', 'invalid'];
+    }
+    if (str_starts_with($d, '0036')) {
+        $d = substr($d, 2);
+    } elseif (str_starts_with($d, '06')) {
+        $d = '36' . substr($d, 2);
+    } elseif (!str_starts_with($d, '36') && strlen($d) === 9 && preg_match('/^(20|30|31|50|70)/', $d)) {
+        $d = '36' . $d; // „30 123 4567”
+    } elseif (str_starts_with($raw, '+') && !str_starts_with($d, '36')) {
+        return [strlen($d) >= 8 && strlen($d) <= 15 ? '+' . $d : '', strlen($d) >= 8 && strlen($d) <= 15 ? 'foreign' : 'invalid'];
+    }
+    if (!str_starts_with($d, '36')) {
+        return ['', 'invalid'];
+    }
+    $n = substr($d, 2);
+    if (preg_match('/^(20|30|31|50|70)\d{7}$/', $n)) {
+        return ['+36' . $n, 'mobile'];
+    }
+    if (preg_match('/^(1\d{7}|(?!20|30|31|50|70)[2-9]\d{7})$/', $n)) { // a 20/30/31/50/70 mobil, nem körzetszám
+        return ['+36' . $n, 'landline'];
+    }
+    return ['', 'invalid'];
+}
+
+function slugshop_is_gls_point(array $methods): bool
+{
+    foreach ($methods as $m) {
+        if (str_starts_with((string) $m, 'gls_shipping_method_parcel_')) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/** Egységes alak még a mentés előtt (a rendelésbe és a GLS-hez már így kerül). */
+add_filter('woocommerce_checkout_posted_data', function (array $data): array {
+    foreach (['billing_phone', 'shipping_phone'] as $k) {
+        if (!empty($data[$k])) {
+            [$norm] = slugshop_hu_phone((string) $data[$k]);
+            if ($norm !== '') {
+                $data[$k] = $norm;
+            }
+        }
+    }
+    return $data;
+});
+
+add_action('woocommerce_after_checkout_validation', function ($data, WP_Error $errors) {
+    $example = 'pl. +36 30 123 4567';
+    $billing = (string) ($data['billing_phone'] ?? '');
+    [, $type] = slugshop_hu_phone($billing);
+    if ($billing !== '' && $type === 'invalid') {
+        $errors->add('billing_phone', 'A telefonszám nem teljes vagy nem jó formájú. Add meg körzet- vagy mobilszolgáltató-számmal együtt, ' . $example . ' (vezetékes: +36 57 123 456).');
+        return;
+    }
+    if (!slugshop_is_gls_point((array) ($data['shipping_method'] ?? []))) {
+        return;
+    }
+    $use_shipping = !empty($data['ship_to_different_address']) && !empty($data['shipping_phone']);
+    [, $t] = slugshop_hu_phone($use_shipping ? (string) $data['shipping_phone'] : $billing);
+    if ($t !== 'mobile') {
+        $errors->add($use_shipping ? 'shipping_phone' : 'billing_phone', 'GLS-csomagpontra és -automatába csak magyar mobilszámmal tudunk küldeni, mert a GLS SMS-ben értesít, amikor a csomag megérkezett. Kérjük, adj meg mobilszámot (' . $example . '), vagy válassz másik szállítási módot.');
+    }
+}, 20, 2);
+
+/** Segítség a mező alatt. */
+add_filter('woocommerce_checkout_fields', function (array $f): array {
+    if (isset($f['billing']['billing_phone'])) {
+        $f['billing']['billing_phone']['description'] = 'GLS-csomagpontnál és -automatánál mobilszám kell (a GLS SMS-ben értesít).';
+    }
+    return $f;
+}, 1000);

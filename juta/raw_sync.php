@@ -251,4 +251,17 @@ fclose($out);
 log_line(sprintf('KÉSZ – frissítve: %d, változatlan: %d, csak a JUTA-ban: %d, csak a webshopban: %d, többszörös: %d, új piszkozat: %d, hiba: %d',
     $stats['updated'], $stats['unchanged'], $stats['only_juta'], $stats['only_shop'], $stats['multi'], $stats['created'], $stats['error']));
 log_line('Párosító tábla: ' . $reportFile);
+
+// A webshop admin-figyelmeztetése ebből látja, hogy a szinkron lefutott (a téma figyelője a WP-Cronból fut, ami a
+// tárhelyen nem mindig megy; 2026-11-09: a szinkron futott, a figyelmeztetés mégis „286 órája”-t mutatott).
+if (!$DRY) {
+    try {
+        $status = serialize(['time' => time(), 'stats' => array_map('intval', $stats), 'source' => 'script',
+            'csv_time' => (int) @filemtime((string) $CFG['csv'])]);
+        q($db, "INSERT INTO {$p}options (option_name, option_value) VALUES ('slugshop_juta_sync', ?)
+            ON DUPLICATE KEY UPDATE option_value = VALUES(option_value)", [$status]);
+    } catch (Throwable $e) {
+        log_line('Az állapot nem írható a webshopba: ' . $e->getMessage(), 'WARNING');
+    }
+}
 flock($lock, LOCK_UN);

@@ -194,9 +194,9 @@ add_action('admin_notices', function () {
         echo '<div class="notice notice-warning"><p><strong>JUTA:</strong> a JUTA utolsó készletfájlja (keszlet.csv) ekkor érkezett: '
             . esc_html(wp_date('Y. m. d. H:i', (int) $s['csv_time'])) . '. Azóta a webshop ára és készlete nem frissül: a JUTA készletexportját és az FTP-feltöltését kell megnézni.</p></div>';
     } elseif ($s['stale']) {
-        echo '<div class="notice notice-warning"><p><strong>JUTA:</strong> ' . (int) $s['hours'] . ' órája nem változott ár vagy készlet'
+        echo '<div class="notice notice-warning"><p><strong>JUTA:</strong> a szinkron ' . (int) $s['hours'] . ' órája nem futott le'
             . ($s['csv_time'] ? ' (az utolsó készletfájl: ' . esc_html(wp_date('Y. m. d. H:i', (int) $s['csv_time'])) . ')' : '')
-            . '. Fut a tárhely cronja (/juta/raw_sync.php)?</p></div>';
+            . '. Fut a tárhely cronja (php …/juta/raw_sync.php, félóránként)?</p></div>';
     }
     if ($s['drafts'] && get_current_screen() && in_array(get_current_screen()->id, ['dashboard', 'edit-product'], true)) {
         echo '<div class="notice notice-info"><p><strong>JUTA:</strong> ' . (int) $s['drafts'] . ' új termék vár piszkozatként (kategória, kép, leírás kell, aztán közzététel). <a href="' . esc_url(admin_url('edit.php?post_type=product&post_status=draft')) . '">Megnyitás</a></p></div>';
