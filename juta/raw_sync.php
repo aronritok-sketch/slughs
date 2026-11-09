@@ -251,6 +251,12 @@ fclose($out);
 log_line(sprintf('KÉSZ – frissítve: %d, változatlan: %d, csak a JUTA-ban: %d, csak a webshopban: %d, többszörös: %d, új piszkozat: %d, hiba: %d',
     $stats['updated'], $stats['unchanged'], $stats['only_juta'], $stats['only_shop'], $stats['multi'], $stats['created'], $stats['error']));
 log_line('Párosító tábla: ' . $reportFile);
+// A webszerver ne szolgálja ki őket (a tárhely nginx-e a .htaccess-t a .csv-re nem nézi): csak a tárhelyfiók olvashatja.
+@chmod($reportFile, 0600);
+@chmod((string) $CFG['csv'], 0600);
+foreach (glob(rtrim((string) ($CFG['export_dir'] ?? __DIR__ . '/elad'), '/') . '/*.txt') ?: [] as $f) {
+    @chmod($f, 0600);
+}
 
 // A webshop admin-figyelmeztetése ebből látja, hogy a szinkron lefutott (a téma figyelője a WP-Cronból fut, ami a
 // tárhelyen nem mindig megy; 2026-11-09: a szinkron futott, a figyelmeztetés mégis „286 órája”-t mutatott).

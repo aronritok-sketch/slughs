@@ -176,6 +176,7 @@ foreach ($orders as $order) {
             @unlink($path . '.tmp');
             throw new RuntimeException('A fájl nem írható: ' . $path);
         }
+        @chmod($path, 0600); // vásárlói adatok: csak a tárhelyfiók (PHP, a JUTA FTP-je) olvashatja, a webszerver nem
         set_order_meta($db, $p, $hp, $id, $metaKey, $file);
         $state = array_merge($state, ['last_exported_order_id' => $id, 'last_exported_filename' => $file, 'last_exported_at' => date('Y-m-d H:i:s')]);
         save_state($stateFile, $state);
