@@ -21,6 +21,8 @@ if (!is_file($CFG['csv'])) {
     log_line('Nincs meg a CSV: ' . $CFG['csv'], 'ERROR');
     exit(1);
 }
+$csvAge = time() - (int) filemtime($CFG['csv']);
+log_line('Készletfájl: ' . date('Y-m-d H:i', (int) filemtime($CFG['csv'])) . ' (' . round($csvAge / 3600, 1) . ' órás)', $csvAge > 26 * 3600 ? 'WARNING' : 'INFO');
 $db = db();
 
 // ------------------------------------------------------------------ a CSV beolvasása
@@ -93,11 +95,20 @@ if (!empty($CFG['reserve_open_orders'])) {
     $hp = hpos($db, $p);
     $st = array_map(fn($s) => "'" . mysqli_real_escape_string($db, $s) . "'", (array) $CFG['reserve_statuses']);
     $done = "'" . implode("','", array_map(fn($s) => mysqli_real_escape_string($db, $s), (array) $CFG['order_statuses'])) . "'";
+    // Teljesített, még be nem küldött rendelést csak akkor foglalunk le, ha az elad.php be is fogja küldeni: az első
+    // futása (elad-export-state.json) óta módosult. A régebbieket az elad.php soha nem küldi, ezért ezek örökre
+    // levonódtak volna (2026-11-12: a JUTA-ban 5 db, a webshopban elfogyott). A régi boltból átvett rendelés soha.
+    $state = is_file(__DIR__ . '/elad-export-state.json') ? json_decode((string) file_get_contents(__DIR__ . '/elad-export-state.json'), true) : null;
+    $from = is_array($state) && !empty($state['export_from_utc']) ? mysqli_real_escape_string($db, (string) $state['export_from_utc']) : '';
+    $doneHp = $from !== '' ? " OR (o.status IN ({$done}) AND m.id IS NULL AND COALESCE(o.date_updated_gmt, o.date_created_gmt) >= '{$from}')" : '';
+    $donePosts = $from !== '' ? " OR (o.post_status IN ({$done}) AND m.meta_id IS NULL AND o.post_modified_gmt >= '{$from}')" : '';
     $orders = $hp
         ? "SELECT o.id FROM {$p}wc_orders o LEFT JOIN {$p}wc_orders_meta m ON m.order_id = o.id AND m.meta_key = '_elad_exported_file'
-           WHERE o.type = 'shop_order' AND (o.status IN (" . implode(',', $st) . ") OR (o.status IN ({$done}) AND m.id IS NULL))"
+           LEFT JOIN {$p}wc_orders_meta im ON im.order_id = o.id AND im.meta_key = '_slugshop_imported'
+           WHERE o.type = 'shop_order' AND im.id IS NULL AND (o.status IN (" . implode(',', $st) . "){$doneHp})"
         : "SELECT o.ID AS id FROM {$p}posts o LEFT JOIN {$p}postmeta m ON m.post_id = o.ID AND m.meta_key = '_elad_exported_file'
-           WHERE o.post_type = 'shop_order' AND (o.post_status IN (" . implode(',', $st) . ") OR (o.post_status IN ({$done}) AND m.meta_id IS NULL))";
+           LEFT JOIN {$p}postmeta im ON im.post_id = o.ID AND im.meta_key = '_slugshop_imported'
+           WHERE o.post_type = 'shop_order' AND im.meta_id IS NULL AND (o.post_status IN (" . implode(',', $st) . "){$donePosts})";
     foreach (q($db, "SELECT COALESCE(NULLIF(v.meta_value, '0'), pr.meta_value) AS pid, SUM(qt.meta_value) AS qty
         FROM {$p}woocommerce_order_items i
         JOIN ({$orders}) oo ON oo.id = i.order_id
@@ -108,7 +119,10 @@ if (!empty($CFG['reserve_open_orders'])) {
         $reserved[(int) $r['pid']] = (int) round((float) $r['qty']);
     }
     if ($reserved) {
-        log_line('Nyitott rendelésekben lefoglalva: ' . array_sum($reserved) . ' db, ' . count($reserved) . ' termék');
+        log_line('Nyitott rendelésekben lefoglalva: ' . array_sum($reserved) . ' db, ' . count($reserved) . ' termék'
+            . ($from === '' ? ' (a teljesítetteket nem: az elad.php még nem futott)' : ''));
+        arsort($reserved);
+        log_line('Lefoglalva (termék-ID: db): ' . implode(', ', array_map(fn($id, $n) => "{$id}: {$n}", array_keys(array_slice($reserved, 0, 15, true)), array_slice($reserved, 0, 15, true))));
     }
 }
 
