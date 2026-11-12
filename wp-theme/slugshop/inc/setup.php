@@ -203,7 +203,7 @@ function slugshop_setup_settings(int $offset, bool $force, array &$log): array
         'date_format' => 'Y. F j.', 'time_format' => 'H:i', 'start_of_week' => 1, 'permalink_structure' => '/%postname%',
         'default_comment_status' => 'closed', 'default_ping_status' => 'closed', 'show_avatars' => 0, 'uploads_use_yearmonth_folders' => 1,
         // WooCommerce: forint, bruttó ár, 27% ÁFA, Magyarország
-        'woocommerce_default_country' => 'HU', 'woocommerce_store_address' => 'Megyeház u. 3.', 'woocommerce_store_city' => 'Jászberény',
+        'woocommerce_default_country' => 'HU', 'woocommerce_store_address' => 'Megyeház u. 3–6.', 'woocommerce_store_city' => 'Jászberény',
         'woocommerce_store_postcode' => '5100', 'woocommerce_currency' => 'HUF', 'woocommerce_currency_pos' => 'right_space',
         'woocommerce_price_thousand_sep' => '.', 'woocommerce_price_decimal_sep' => ',', 'woocommerce_price_num_decimals' => 0,
         'woocommerce_calc_taxes' => 'yes', 'woocommerce_prices_include_tax' => 'yes', 'woocommerce_tax_display_shop' => 'incl',
@@ -261,7 +261,7 @@ function slugshop_setup_shipping(array &$log): void
     global $wpdb;
     $wpdb->update($wpdb->prefix . 'woocommerce_shipping_zone_methods', ['is_enabled' => 0], ['instance_id' => $courier]);
     update_option('woocommerce_flat_rate_' . $courier . '_settings', ['title' => 'Házhozszállítás futárszolgálattal', 'tax_status' => 'taxable', 'cost' => '']);
-    update_option('woocommerce_local_pickup_' . $pickup . '_settings', ['title' => 'Személyes átvétel (Jászberény, Megyeház u. 3.)', 'tax_status' => 'none', 'cost' => '']);
+    update_option('woocommerce_local_pickup_' . $pickup . '_settings', ['title' => 'Személyes átvétel (Jászberény, Megyeház u. 3–6.)', 'tax_status' => 'none', 'cost' => '']);
     $log[] = '+ szállítási zóna: Magyarország (személyes átvétel be; a futár díja kérdéssor szerint, addig kikapcsolva)';
 }
 

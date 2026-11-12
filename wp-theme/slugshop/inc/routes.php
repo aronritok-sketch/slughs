@@ -96,8 +96,17 @@ add_filter('term_link', function ($url, $term, $taxonomy) {
     return $url;
 }, 10, 3);
 
+/**
+ * A termék címét a szerkesztő is ezen a formán kapja (piszkozat-előnézet): a közzététel előtt a WordPress saját címe
+ * 404-et adott (az ügyfél jelezte, 2026-11-12). Szerkesztőnek a piszkozat is feloldódik (lent), másnak nem.
+ */
+function slugshop_product_statuses(): array
+{
+    return current_user_can('edit_products') ? ['publish', 'private', 'draft', 'pending', 'future'] : ['publish'];
+}
+
 add_filter('post_type_link', function ($url, $post) {
-    if ($post->post_type === 'product' && in_array($post->post_status, ['publish', 'private'], true)) {
+    if ($post->post_type === 'product' && in_array($post->post_status, ['publish', 'private', 'draft', 'pending', 'future'], true) && $post->post_name !== '') {
         return home_url(slugshop_product_path($post->ID));
     }
     return $url;
@@ -155,7 +164,7 @@ add_filter('request', function (array $vars): array {
     $slash = strrpos($path, '/');
     if ($slash !== false && isset($cats['/' . substr($path, 0, $slash)])) {
         $slug = substr($path, $slash + 1);
-        $ids = get_posts(['post_type' => 'product', 'name' => $slug, 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids']);
+        $ids = get_posts(['post_type' => 'product', 'name' => $slug, 'post_status' => slugshop_product_statuses(), 'numberposts' => 1, 'fields' => 'ids']);
         if ($ids) {
             return ['product' => $slug, 'post_type' => 'product', 'name' => $slug];
         }

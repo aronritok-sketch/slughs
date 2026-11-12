@@ -73,7 +73,7 @@ add_action('wp_footer', function () {
         $graph[] = array_filter([
             '@type' => 'Store', '@id' => home_url('/#store'), 'name' => 'Slugshop', 'legalName' => $co['name'] ?? '', 'url' => home_url('/'),
             'logo' => slugshop_img('logo.webp'), 'image' => slugshop_img('logo.webp'), 'telephone' => slugshop_site('phone'), 'email' => slugshop_site('email'),
-            'address' => ['@type' => 'PostalAddress', 'streetAddress' => $c['street'] ?? 'Megyeház u. 3.', 'addressLocality' => 'Jászberény', 'postalCode' => '5100', 'addressCountry' => 'HU'],
+            'address' => ['@type' => 'PostalAddress', 'streetAddress' => $c['street'] ?? 'Megyeház u. 3–6.', 'addressLocality' => 'Jászberény', 'postalCode' => '5100', 'addressCountry' => 'HU'],
             'vatID' => $co['tax'] ?? '', 'sameAs' => array_values(array_filter((array) slugshop_site('social', []))),
         ]);
     }

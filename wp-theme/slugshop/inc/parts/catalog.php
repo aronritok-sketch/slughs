@@ -1,4 +1,10 @@
 <?php
+/** A kép alt szövege: a Médiatárban megadott, ha van; különben a megadott alapérték (az ügyfél kérése, 2026-11-12). */
+function slugshop_img_alt(int $id, string $fallback = ''): string
+{
+    $alt = $id ? trim((string) get_post_meta($id, '_wp_attachment_image_alt', true)) : '';
+    return $alt !== '' ? $alt : $fallback;
+}
 /**
  * Bolt: termékkártya, kategóriaoldal (oldalsó kategóriafa, alkategóriák, rendezés, „csak raktáron”, „Továbbiak
  * betöltése”), termékoldal (galéria, kosárba, kérdés, értesítés), keresés és az élő kereső REST-végpontja.
@@ -99,7 +105,7 @@ function slugshop_product_card($id): string
         return '';
     }
     $in = $p->is_in_stock() && $p->is_purchasable();
-    $img = $p->get_image_id() ? wp_get_attachment_image($p->get_image_id(), 'slugshop-card', false, ['loading' => 'lazy', 'alt' => $p->get_name()]) : slugshop_icon('box');
+    $img = $p->get_image_id() ? wp_get_attachment_image($p->get_image_id(), 'slugshop-card', false, ['loading' => 'lazy', 'alt' => slugshop_img_alt((int) $p->get_image_id(), $p->get_name())]) : slugshop_icon('box');
     $action = $in
         ? '<a href="' . esc_url($p->add_to_cart_url()) . '" rel="nofollow" class="button add_to_cart_button" data-add="' . (int) $p->get_id() . '">' . slugshop_icon('cart', 'icon') . 'Kosárba</a>'
         : '<button type="button" class="button" data-notify="' . (int) $p->get_id() . '" data-name="' . esc_attr($p->get_name()) . '">Értesítést kérek!</button>';
@@ -270,14 +276,14 @@ function slugshop_render_product(): string
     }
     $crumbs[] = [$p->get_name(), null];
     $imgs = array_filter(array_merge([$p->get_image_id()], $p->get_gallery_image_ids()));
-    $main = $imgs ? wp_get_attachment_image((int) reset($imgs), 'large', false, ['id' => 'main-img', 'alt' => $p->get_name(), 'fetchpriority' => 'high']) : slugshop_icon('box');
+    $main = $imgs ? wp_get_attachment_image((int) reset($imgs), 'large', false, ['id' => 'main-img', 'alt' => slugshop_img_alt((int) reset($imgs), $p->get_name()), 'fetchpriority' => 'high']) : slugshop_icon('box');
     $thumbs = '';
     if (count($imgs) > 1) {
         $thumbs = '<div class="thumbs">';
         $i = 0;
         foreach ($imgs as $img) {
             $large = wp_get_attachment_image_url((int) $img, 'large');
-            $thumbs .= '<button type="button" data-thumb="' . esc_url((string) $large) . '" aria-current="' . ($i === 0 ? 'true' : 'false') . '" aria-label="' . ($i + 1) . '. kép">' . wp_get_attachment_image((int) $img, 'thumbnail', false, ['loading' => 'lazy', 'alt' => '']) . '</button>';
+            $thumbs .= '<button type="button" data-thumb="' . esc_url((string) $large) . '" aria-current="' . ($i === 0 ? 'true' : 'false') . '" aria-label="' . ($i + 1) . '. kép">' . wp_get_attachment_image((int) $img, 'thumbnail', false, ['loading' => 'lazy', 'alt' => slugshop_img_alt((int) $img, $p->get_name() . ' – ' . ($i + 1) . '. kép')]) . '</button>';
             $i++;
         }
         $thumbs .= '</div>';

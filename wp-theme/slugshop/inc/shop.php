@@ -299,7 +299,7 @@ function slugshop_cart_has_shop_only(): bool
 
 function slugshop_shop_only_notice(): string
 {
-    return 'Légfegyvert csak az üzletünkben, személyes átvétellel és helyszíni fizetéssel vásárolhatsz (személyi igazolvány szükséges). Jászberény, Megyeház u. 3.';
+    return 'Légfegyvert csak az üzletünkben, személyes átvétellel és helyszíni fizetéssel vásárolhatsz (személyi igazolvány szükséges). Jászberény, ' . slugshop_site('contact.street', 'Megyeház u. 3–6.');
 }
 
 add_filter('woocommerce_package_rates', function ($rates) {

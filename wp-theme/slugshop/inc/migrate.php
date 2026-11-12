@@ -14,7 +14,7 @@ add_action('admin_init', function () {
         return;
     }
     $done = (array) get_option('slugshop_migrations', []);
-    foreach (['exam_page' => 'slugshop_migrate_exam_page', 'fx_parts_intro' => 'slugshop_migrate_fx_parts_intro'] as $key => $fn) {
+    foreach (['exam_page' => 'slugshop_migrate_exam_page', 'fx_parts_intro' => 'slugshop_migrate_fx_parts_intro', 'address_3_6' => 'slugshop_migrate_address'] as $key => $fn) {
         if (empty($done[$key])) {
             $done[$key] = $fn() ?: 'skip';
             update_option('slugshop_migrations', $done, false);
@@ -95,4 +95,35 @@ function slugshop_migrate_fx_parts_intro(): string
     $new = 'Fent a modellválasztóban kiválaszthatod a fegyvered típusát: a lista a gyári robbantott ábrák alapján csak azokat a modelleket és alkatrészeket mutatja, amelyeknél a gyári cikkszám igazoltan egyezik. Ha a modelled nincs a listában, vagy bizonytalan vagy (évjárat, kivitel), keress cikkszámra, vagy írj nekünk.';
     wp_update_term($term->term_id, 'product_cat', ['description' => str_replace($old, $new, $term->description)]);
     return 'ok';
+}
+
+/**
+ * A bolt címe Megyeház u. 3–6. (az ügyfél javítása, 2026-11-12; a telepítő „Megyeház u. 3.”-at írt): a WooCommerce bolt-
+ * címe, a személyes átvétel szállítási módjának neve és az Adatok fül címe – csak ahol még a régi, telepítő írta érték áll.
+ */
+function slugshop_migrate_address(): string
+{
+    $n = 0;
+    if (get_option('woocommerce_store_address') === 'Megyeház u. 3.') {
+        update_option('woocommerce_store_address', 'Megyeház u. 3–6.');
+        $n++;
+    }
+    global $wpdb;
+    foreach ((array) $wpdb->get_col("SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE 'woocommerce\\_local\\_pickup\\_%\\_settings'") as $opt) {
+        $set = get_option($opt);
+        if (is_array($set) && isset($set['title']) && str_contains((string) $set['title'], 'Megyeház u. 3.)')) {
+            $set['title'] = str_replace('Megyeház u. 3.)', 'Megyeház u. 3–6.)', (string) $set['title']);
+            update_option($opt, $set);
+            $n++;
+        }
+    }
+    $settings = (array) get_option('slugshop_settings', []);
+    foreach (['contact.address' => ['Jászberény, Megyeház u. 3, 5100', 'Jászberény, Megyeház u. 3–6., 5100'], 'contact.street' => ['Megyeház u. 3.', 'Megyeház u. 3–6.']] as $k => [$old, $new]) {
+        if (($settings[$k] ?? '') === $old) {
+            $settings[$k] = $new;
+            $n++;
+        }
+    }
+    update_option('slugshop_settings', $settings);
+    return 'kész: ' . $n;
 }
